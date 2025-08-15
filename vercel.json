@@ -1,17 +1,6 @@
 {
   "framework": "nextjs",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/index-new.html",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/index-new",
-      "destination": "/",
-      "permanent": false
-    }
-  ]
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "outputDirectory": ".next"
 }
