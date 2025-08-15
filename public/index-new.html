@@ -879,9 +879,19 @@
     <script>
         // Initialize Charts when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Check if Chart.js is loaded
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js is not loaded');
+                return;
+            }
+            
             // Revenue Donut Chart
-            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-            new Chart(revenueCtx, {
+            const revenueCtx = document.getElementById('revenueChart');
+            if (!revenueCtx) {
+                console.error('Revenue chart canvas not found');
+                return;
+            }
+            new Chart(revenueCtx.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['VAT', 'Income Tax', 'National Insurance', 'Customs & Excise', 'Other'],
@@ -937,8 +947,12 @@
             });
 
             // Expenditure Bar Chart
-            const expenditureCtx = document.getElementById('expenditureChart').getContext('2d');
-            new Chart(expenditureCtx, {
+            const expenditureCtx = document.getElementById('expenditureChart');
+            if (!expenditureCtx) {
+                console.error('Expenditure chart canvas not found');
+                return;
+            }
+            new Chart(expenditureCtx.getContext('2d'), {
                 type: 'bar',
                 data: {
                     labels: ['Health & Social Care', 'Treasury (Benefits)', 'Education', 'Infrastructure', 'Home Affairs', 'Other'],
@@ -996,8 +1010,12 @@
             });
 
             // Reserves Gauge
-            const reservesCtx = document.getElementById('reservesGauge').getContext('2d');
-            new Chart(reservesCtx, {
+            const reservesCtx = document.getElementById('reservesGauge');
+            if (!reservesCtx) {
+                console.error('Reserves gauge canvas not found');
+                return;
+            }
+            new Chart(reservesCtx.getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['General Reserve', 'NI Fund', 'Target Minimum'],
