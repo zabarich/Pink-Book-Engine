@@ -2,10 +2,16 @@
   "framework": "nextjs",
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "redirects": [
     {
       "source": "/index-new.html",
-      "destination": "/"
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/index-new",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
