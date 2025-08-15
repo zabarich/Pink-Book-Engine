@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "source": "Isle of Man Pink Book 2025-26",
+    "extracted": "2025-08-14",
+    "fiscal_year": "2025-26",
+    "currency": "GBP",
+    "total_transfer_payments": 441492000
+  },
+  "statePension": {
+    "total_cost": 245000000,
+    "basic": {
+      "weekly": 176.45,
+      "annual": 9175.40,
+      "recipients": 15000,
+      "total": 137632500,
+      "description": "Basic State Pension"
+    },
+    "manx": {
+      "weekly": 251.30,
+      "annual": 13067.60,
+      "recipients": 8200,
+      "total": 107154320,
+      "description": "Manx State Pension (higher rate)"
+    },
+    "increases": {
+      "rate": 0.041,
+      "mechanism": "triple_lock",
+      "components": {
+        "inflation": 0.041,
+        "earnings": 0.038,
+        "minimum": 0.025
+      },
+      "next_increase": "April 2025"
+    },
+    "projections": [
+      {"year": "2026-27", "total": 254950000},
+      {"year": "2027-28", "total": 265400000},
+      {"year": "2028-29", "total": 276200000},
+      {"year": "2029-30", "total": 287500000}
+    ],
+    "demographics": {
+      "current_pensioners": 23200,
+      "new_pensioners_annual": 800,
+      "life_expectancy": 82
+    }
+  },
+  "benefits": {
+    "total_cost": 87943000,
+    "unemploymentBenefit": {
+      "jobseekers_allowance": {
+        "weekly_rate": 84.80,
+        "recipients": 450,
+        "annual_cost": 1985280
+      },
+      "description": "Support for those seeking work"
+    },
+    "incomeSupport": {
+      "average_weekly": 150.00,
+      "recipients": 2800,
+      "annual_cost": 21840000,
+      "components": {
+        "personal_allowance": 95.00,
+        "housing_costs": 35.00,
+        "disability_premium": 20.00
+      }
+    },
+    "disabilityAllowance": {
+      "total_recipients": 3500,
+      "annual_cost": 18500000,
+      "types": {
+        "disability_living_allowance": {
+          "recipients": 2000,
+          "average_weekly": 95.00,
+          "annual": 9880000
+        },
+        "attendance_allowance": {
+          "recipients": 1000,
+          "average_weekly": 101.75,
+          "annual": 5291000
+        },
+        "employed_person_allowance": {
+          "recipients": 500,
+          "average_weekly": 65.00,
+          "annual": 1690000
+        }
+      }
+    },
+    "childBenefit": {
+      "rate_first_child": 25.60,
+      "rate_other_children": 16.95,
+      "families": 8500,
+      "children": 14000,
+      "annual_cost": 12000000
+    },
+    "winterBonus": {
+      "amount": 400.00,
+      "recipients": 18000,
+      "annual_cost": 7200000,
+      "eligibility": "Pensioners and vulnerable groups",
+      "paid": "November"
+    },
+    "housingBenefit": {
+      "recipients": 3200,
+      "average_monthly": 450.00,
+      "annual_cost": 17280000,
+      "caps": {
+        "single": 500.00,
+        "couple": 650.00,
+        "family": 850.00
+      }
+    },
+    "nursingCare": {
+      "contribution": {
+        "weekly_rate": 226.00,
+        "recipients": 450,
+        "annual_cost": 5287800
+      }
+    },
+    "other_benefits": {
+      "christmas_bonus": 500000,
+      "funeral_payments": 350000,
+      "maternity_allowance": 1500000,
+      "carers_allowance": 2000000,
+      "budgeting_loans": 500000,
+      "total": 4850000
+    }
+  },
+  "publicSectorPensions": {
+    "total_annual_cost": 142921000,
+    "currentPensioners": 8500,
+    "breakdown": {
+      "government_scheme": {
+        "members": 6000,
+        "annual_cost": 95000000,
+        "average_pension": 15833
+      },
+      "teachers": {
+        "members": 1500,
+        "annual_cost": 28000000,
+        "average_pension": 18667
+      },
+      "police": {
+        "members": 400,
+        "annual_cost": 9500000,
+        "average_pension": 23750
+      },
+      "fire": {
+        "members": 200,
+        "annual_cost": 4800000,
+        "average_pension": 24000
+      },
+      "health": {
+        "members": 400,
+        "annual_cost": 5621000,
+        "average_pension": 14053
+      }
+    },
+    "employer_contributions": {
+      "rate": 0.15,
+      "annual": 62629000
+    },
+    "employee_contributions": {
+      "rate": 0.065,
+      "annual": 39848000
+    },
+    "unfunded_liability": {
+      "current": 1250000000,
+      "projected_2030": 1450000000,
+      "funding_ratio": 0.72
+    },
+    "reform_measures": {
+      "new_scheme_2012": "Career average",
+      "retirement_age": 67,
+      "contribution_increases": "Phased 2020-2025"
+    }
+  },
+  "nationalInsuranceFund": {
+    "total_expenditure": 353549000,
+    "breakdown": {
+      "state_pensions": 245000000,
+      "unemployment_benefit": 1985280,
+      "sickness_benefit": 8500000,
+      "maternity_allowance": 1500000,
+      "bereavement_benefits": 2000000,
+      "health_service_allocation": 71000000,
+      "administration": 8000000,
+      "other_ni_benefits": 16563720
+    },
+    "income": {
+      "contributions": 329742000,
+      "investment_income": 15000000,
+      "government_supplement": 8807000
+    },
+    "fund_balance": {
+      "current": 850000000,
+      "projected_2030": 1000000000,
+      "sustainability": "Sustainable beyond 2050"
+    }
+  },
+  "healthAllocation": {
+    "nhs_allocation": 71000000,
+    "source": "National Insurance Fund",
+    "percentage_of_ni": 0.201,
+    "increase_from_previous": 16300000,
+    "note": "Increased from £54.7m to £71m (30% increase)"
+  },
+  "economicSupport": {
+    "covid_legacy": {
+      "business_support_outstanding": 2000000,
+      "job_retention_final": 500000
+    },
+    "cost_of_living": {
+      "energy_support": 3000000,
+      "food_vouchers": 500000,
+      "council_tax_relief": 1500000
+    },
+    "total": 7500000
+  },
+  "summary": {
+    "state_pensions": 245000000,
+    "welfare_benefits": 87943000,
+    "public_sector_pensions": 142921000,
+    "ni_funded_payments": 353549000,
+    "health_allocation": 71000000,
+    "economic_support": 7500000,
+    "total_transfers": 441492000,
+    "as_percentage_of_budget": 0.318
+  },
+  "projections": {
+    "demographic_pressures": {
+      "aging_population": "2% annual increase",
+      "dependency_ratio": "Worsening to 2030",
+      "pension_costs": "Rising 4% annually"
+    },
+    "sustainability_measures": {
+      "retirement_age_increase": "68 by 2030",
+      "means_testing": "Under consideration",
+      "contribution_increases": "Planned 2026"
+    }
+  },
+  "workshop_scenarios": {
+    "reduce_winter_bonus": {
+      "current": 7200000,
+      "reduced_amount": 300,
+      "savings": 1800000
+    },
+    "means_test_child_benefit": {
+      "threshold": 50000,
+      "affected_families": 2000,
+      "savings": 3000000
+    },
+    "pension_age_to_68": {
+      "implementation": 2027,
+      "affected": 1200,
+      "annual_savings": 15000000
+    },
+    "benefit_cap": {
+      "cap_level": 25000,
+      "affected_households": 150,
+      "savings": 2000000
+    }
+  }
+}

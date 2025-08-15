@@ -1,0 +1,131 @@
+# Isle of Man Master Policy Engine
+
+## Project Overview
+Building a comprehensive budget modeling tool for the Isle of Man Government that covers the entire £1.4 billion budget with real-time scenario planning capabilities.
+
+## Current Context
+We have successfully:
+1. Extracted all 93 pages of the Pink Book 2025-26
+2. Created structured JSON data files with all revenue and expenditure details
+3. Identified key figures including:
+   - Vehicle Duty: £16,039,000
+   - Heritage Railway: £2,250,000 annual budget
+   - Public Transport: £11.37m total support
+   - Total Budget: £1.389 billion revenue, £1.388 billion expenditure
+
+## Specification
+**IMPORTANT: Read the full specification at `spec.md` before making any changes.**
+
+The spec.md file contains:
+- Complete MVP requirements
+- All revenue and expenditure controls
+- Real-time calculation models
+- Visualization requirements
+- Workshop scenarios to support
+- Technical implementation details
+
+## Key Features to Implement
+1. **Core Dashboard**: Real-time view of £1.4bn budget
+2. **Workshop Interface**: Interactive controls for all revenue/spending levers
+3. **Calculation Engine**: Behavioral models, sustainability metrics
+4. **Preset Scenarios**: One-click policy packages
+5. **Visualizations**: Waterfall, Sankey, trajectory charts
+6. **Export System**: PDF reports, scenario saving
+
+## Data Structure
+All Pink Book data is extracted and stored in `/data/source/`:
+- `revenue-streams.json` - All government income (£1.389bn)
+- `department-budgets.json` - All department spending (£1.388bn)
+- `capital-programme.json` - Infrastructure investments (£87.4m/year)
+- `transfer-payments.json` - Benefits and pensions (£441m)
+- `reserves-funds.json` - Reserve positions (£1.76bn general)
+
+## Workshop Scenarios to Support
+The tool must enable these key scenarios:
+1. "Find £50m savings" - Optimization across all departments
+2. "Make buses free" - Additional £3.5m cost modeling
+3. "Reduce Heritage Railway to 5 days" - Save £600k
+4. "Balance budget by 2030" - Eliminate structural deficit
+5. Vehicle duty policy changes - Our original £16m revenue stream
+
+## Technical Stack
+- Next.js 14+ with App Router
+- TypeScript for type safety
+- shadcn/ui + Tailwind for UI
+- Zustand for state management
+- Recharts + D3.js for visualizations
+- Real Pink Book data (already extracted)
+
+## Implementation Plan
+**IMPORTANT: See `IMPLEMENTATION_PLAN.md` for detailed implementation of Specific Policies Panel with £49-72m additional savings potential.**
+
+## Development Commands
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Run tests
+npm test
+
+# Lint and typecheck
+npm run lint
+npm run typecheck
+```
+
+## File Structure
+```
+app/
+├── page.tsx                    # Main dashboard
+├── workshop/
+│   └── page.tsx               # Interactive workshop
+├── components/
+│   ├── revenue-controls.tsx   # Tax and revenue sliders
+│   ├── expenditure-controls.tsx # Department budgets
+│   ├── policy-toggles.tsx     # Major policy switches
+│   └── visualizations/        # Charts and graphs
+├── lib/
+│   ├── calculations/          # Revenue/expenditure models
+│   ├── data/                  # JSON data files
+│   └── stores/                # State management
+```
+
+## Implementation Priority
+1. **Phase 1**: Core dashboard with current budget display
+2. **Phase 2**: Calculation engine with real modeling
+3. **Phase 3**: Workshop interface with all controls
+4. **Phase 4**: Visualizations and charts
+5. **Phase 5**: Export and reporting features
+
+## Key Calculations to Implement
+- **Laffer Curve**: Diminishing returns on high tax rates
+- **Behavioral Response**: People leaving if taxes too high
+- **Service Levels**: Minimum viable thresholds per department
+- **Sustainability Score**: Years until reserve depletion
+- **Cross-Dependencies**: Ripple effects between departments
+
+## Testing Checklist
+- [ ] All revenue streams calculate correctly (£1.389bn total)
+- [ ] All departments budget properly (£1.388bn total)
+- [ ] Vehicle duty model works (£16m baseline)
+- [ ] Heritage Railway scenario saves £600k
+- [ ] "Find £50m" scenario identifies real savings
+- [ ] Reserve trajectory calculates accurately
+- [ ] Sustainability metrics are realistic
+- [ ] Export features work properly
+
+## Notes for Development
+- This is a single-user MVP, no auth required
+- Focus on calculation accuracy over UI polish initially
+- Use real Pink Book data, not mock data
+- Ensure all £1.4 billion is accounted for
+- Make it fast (<100ms calculations)
+- Keep it simple but comprehensive
+
+## Contact
+This tool is being built for the Isle of Man Government to transform budget decision-making. It will be used in Council of Ministers workshops to model policy impacts in real-time.

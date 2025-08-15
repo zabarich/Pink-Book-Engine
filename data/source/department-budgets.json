@@ -1,0 +1,372 @@
+{
+  "metadata": {
+    "source": "Isle of Man Pink Book 2025-26",
+    "extracted": "2025-08-14",
+    "fiscal_year": "2025-26",
+    "currency": "GBP",
+    "total_expenditure": 1387759000
+  },
+  "health_social_care": {
+    "total": 357240000,
+    "net_expenditure": 286240000,
+    "income": 71000000,
+    "breakdown": {
+      "manxCare": {
+        "amount": 250000000,
+        "description": "Primary healthcare delivery",
+        "nhs_allocation": 71000000,
+        "note": "NHS allocation increased from £54.7m to £71m (30% increase)"
+      },
+      "publicHealth": {
+        "amount": 35000000,
+        "description": "Prevention and health promotion"
+      },
+      "socialServices": {
+        "amount": 52240000,
+        "description": "Adult and children's social care"
+      },
+      "mentalHealth": {
+        "amount": 20000000,
+        "description": "Mental health services"
+      }
+    },
+    "staff": {
+      "count": 3500,
+      "cost": 180000000,
+      "percentage_of_budget": 0.504
+    },
+    "pressures": [
+      "Aging population",
+      "Increased drug costs",
+      "Staff recruitment challenges",
+      "Long-term care demand"
+    ],
+    "projections": [
+      {"year": "2026-27", "amount": 365000000},
+      {"year": "2027-28", "amount": 375000000},
+      {"year": "2028-29", "amount": 385000000},
+      {"year": "2029-30", "amount": 400000000}
+    ]
+  },
+  "education_sport_culture": {
+    "total": 141000000,
+    "net_expenditure": 135000000,
+    "income": 6000000,
+    "breakdown": {
+      "schools": {
+        "amount": 95000000,
+        "primary": 35000000,
+        "secondary": 45000000,
+        "special_needs": 8000000,
+        "school_meals": 4000000,
+        "transport": 3000000
+      },
+      "higherEducation": {
+        "amount": 15000000,
+        "ucm": 10000000,
+        "student_grants": 5000000
+      },
+      "sports": {
+        "amount": 8000000,
+        "national_sports_centre": 5000000,
+        "grants": 3000000
+      },
+      "culture": {
+        "amount": 23000000,
+        "manx_national_heritage": 5141000,
+        "arts_council": 2000000,
+        "libraries": 3000000,
+        "museums": 2859000,
+        "other_cultural": 10000000
+      }
+    },
+    "staff": {
+      "teachers": 1100,
+      "support": 600,
+      "total_cost": 75000000
+    },
+    "capital_projects": [
+      "School modernization programme",
+      "Sports facility upgrades",
+      "Digital learning initiative"
+    ]
+  },
+  "infrastructure": {
+    "total": 116182000,
+    "net_expenditure": 49661000,
+    "income": 66521000,
+    "taxation_income": 16039000,
+    "breakdown": {
+      "highways": {
+        "amount": 16275000,
+        "maintenance": 6100000,
+        "strategic_refurbishment": 4325000,
+        "winter_maintenance": 2000000,
+        "street_lighting": 1850000,
+        "traffic_management": 2000000
+      },
+      "publicTransport": {
+        "total": 11370000,
+        "buses": {
+          "subsidy": 5000000,
+          "routes": 25,
+          "fleet_replacement": 1437000,
+          "note": "Scenario: 'Make buses free' would cost additional £3.5m"
+        },
+        "heritageRail": {
+          "subsidy": 3038000,
+          "capital_budget": 2250000,
+          "operating_days": 365,
+          "note": "Scenario: 'Reduce to 5 days/week' would save £600k"
+        },
+        "other_transport": 1332000
+      },
+      "ports": {
+        "amount": 4883000,
+        "douglas": 2500000,
+        "other_harbours": 2383000,
+        "net_position": -2531000
+      },
+      "airport": {
+        "amount": 13045000,
+        "income": 4761000,
+        "net": 8284000
+      },
+      "publicEstates": {
+        "amount": 36106000,
+        "income": 14959000,
+        "net": 21147000,
+        "housing_maintenance": 8000000,
+        "government_buildings": 13147000
+      },
+      "utilities": {
+        "amount": 15000000,
+        "description": "Support for essential services"
+      }
+    },
+    "vehicle_duty_revenue": {
+      "amount": 16039000,
+      "description": "Key revenue stream for department"
+    }
+  },
+  "cabinet_office": {
+    "total": 45000000,
+    "net_expenditure": 42000000,
+    "income": 3000000,
+    "breakdown": {
+      "administration": {
+        "amount": 12000000,
+        "chief_executive_office": 3000000,
+        "policy_unit": 2000000,
+        "communications": 2000000,
+        "other_admin": 5000000
+      },
+      "externalRelations": {
+        "amount": 8000000,
+        "london_office": 2000000,
+        "brussels_office": 1500000,
+        "international_relations": 4500000
+      },
+      "hr": {
+        "amount": 10000000,
+        "payroll": 3000000,
+        "recruitment": 2000000,
+        "training": 2000000,
+        "employee_relations": 3000000
+      },
+      "it": {
+        "amount": 15000000,
+        "infrastructure": 8000000,
+        "applications": 4000000,
+        "cyber_security": 3000000
+      }
+    },
+    "transformation_fund": 5300000
+  },
+  "home_affairs": {
+    "total": 75000000,
+    "net_expenditure": 70000000,
+    "income": 5000000,
+    "breakdown": {
+      "police": {
+        "amount": 35000000,
+        "officers": 240,
+        "support_staff": 80,
+        "equipment": 2000000
+      },
+      "prison": {
+        "amount": 15000000,
+        "capacity": 140,
+        "staff": 120,
+        "running_costs": 8000000
+      },
+      "fire": {
+        "amount": 12000000,
+        "stations": 4,
+        "firefighters": 120,
+        "equipment": 1500000
+      },
+      "courts": {
+        "amount": 8000000,
+        "judiciary": 3000000,
+        "administration": 3000000,
+        "legal_aid": 2000000
+      },
+      "emergency_planning": {
+        "amount": 5000000
+      }
+    },
+    "capital_equipment": {
+      "vehicles": 1300000,
+      "communications": 718000,
+      "other_equipment": 489000
+    }
+  },
+  "treasury": {
+    "total": 460000000,
+    "net_expenditure": 450000000,
+    "income": 10000000,
+    "breakdown": {
+      "revenueServices": {
+        "amount": 15000000,
+        "income_tax_division": 8000000,
+        "customs_excise": 7000000
+      },
+      "socialSecurity": {
+        "amount": 353549000,
+        "ni_funded_payments": 353549000,
+        "administration": 8000000
+      },
+      "treasury_operations": {
+        "amount": 12000000,
+        "debt_management": 3500000,
+        "investments": 2000000,
+        "financial_management": 6500000
+      },
+      "welfare_payments": {
+        "amount": 87943000,
+        "description": "Revenue funded welfare"
+      }
+    },
+    "reserves_management": {
+      "general_reserve": 1760000000,
+      "investment_income": 10578000
+    }
+  },
+  "enterprise": {
+    "total": 35000000,
+    "net_expenditure": 30000000,
+    "income": 5000000,
+    "breakdown": {
+      "economicDevelopment": {
+        "amount": 12000000,
+        "business_support": 5000000,
+        "inward_investment": 4000000,
+        "enterprise_support": 3000000
+      },
+      "tourism": {
+        "amount": 8000000,
+        "marketing": 4000000,
+        "visitor_economy": 2000000,
+        "events": 2000000
+      },
+      "finance": {
+        "amount": 10000000,
+        "financial_services": 6000000,
+        "regulation_support": 4000000
+      },
+      "digital": {
+        "amount": 5000000,
+        "digital_transformation": 3000000,
+        "e-gaming": 2000000
+      }
+    },
+    "grants_subsidies": {
+      "film_fund": 2000000,
+      "business_grants": 3000000
+    }
+  },
+  "environment_food_agriculture": {
+    "total": 25000000,
+    "net_expenditure": 22000000,
+    "income": 3000000,
+    "breakdown": {
+      "environment": {
+        "amount": 8000000,
+        "climate_action": 3000000,
+        "biodiversity": 2000000,
+        "waste_management": 3000000
+      },
+      "planning": {
+        "amount": 5000000,
+        "development_control": 2500000,
+        "policy": 1500000,
+        "building_control": 1000000
+      },
+      "agriculture": {
+        "amount": 8000000,
+        "subsidies": 5000000,
+        "rural_support": 2000000,
+        "food_security": 1000000
+      },
+      "fisheries": {
+        "amount": 4000000,
+        "fleet_support": 2000000,
+        "marine_conservation": 1000000,
+        "enforcement": 1000000
+      }
+    },
+    "climate_initiatives": {
+      "mitigation_fund": 5000000,
+      "adaptation_fund": 6775000
+    }
+  },
+  "other_bodies": {
+    "manx_utilities": {
+      "status": "Self-funding",
+      "contribution": 0
+    },
+    "post_office": {
+      "dividend": 1000000
+    },
+    "steam_packet": {
+      "dividend": 1000000
+    },
+    "legislative_branches": {
+      "tynwald": 3500000,
+      "legislative_council": 1500000,
+      "house_of_keys": 2000000
+    }
+  },
+  "summary": {
+    "total_departmental_expenditure": 1274838000,
+    "employee_costs": 507240000,
+    "pension_costs": 142921000,
+    "non_employee_costs": 274276000,
+    "ni_funded_payments": 353549000,
+    "welfare_payments": 87943000,
+    "nhs_allocation": 71000000,
+    "other_costs": 22830000,
+    "grand_total": 1387759000
+  },
+  "efficiency_opportunities": {
+    "shared_services": {
+      "potential_savings": 15000000,
+      "areas": ["HR", "IT", "Procurement", "Finance"]
+    },
+    "digitalization": {
+      "potential_savings": 20000000,
+      "areas": ["Service delivery", "Back office", "Customer service"]
+    },
+    "procurement": {
+      "potential_savings": 10000000,
+      "areas": ["Centralized buying", "Contract management", "Supplier consolidation"]
+    },
+    "property": {
+      "potential_savings": 5000000,
+      "areas": ["Estate rationalization", "Energy efficiency", "Remote working"]
+    },
+    "total_identified_savings": 50000000,
+    "note": "Supports workshop scenario: 'Find £50m savings'"
+  }
+}
