@@ -140,7 +140,7 @@ export default function IntegratedWorkshopPage() {
   const [bankingTaxRate, setBankingTaxRate] = useState(10) // Banking/Property rate
   const [retailerTaxRate, setRetailerTaxRate] = useState(20) // Large retailer rate
   const [retailerThreshold, setRetailerThreshold] = useState(500000) // Threshold for large retailer rate
-  const [pillarTwoEnabled, setPillarTwoEnabled] = useState(false) // OECD Pillar Two
+  const [pillarTwoEnabled, setPillarTwoEnabled] = useState(true) // OECD Pillar Two (included by default)
   
   // VAT & Customs
   const [vatRate, setVatRate] = useState(20)
@@ -206,6 +206,7 @@ export default function IntegratedWorkshopPage() {
     internalRentCharging: false,
     freeTransport: false,
     heritageRailDays: 7,
+    vehicleDutyAdjustment: 0, // -50% to +50% adjustment
     
     // Transfer Reforms
     winterBonusMeans: 'universal',
@@ -275,7 +276,21 @@ export default function IntegratedWorkshopPage() {
   
   // Calculate revenue and expenditure impacts
   useEffect(() => {
-    let newRevenue = INITIAL_STATE.revenue.total
+    // Import debug calculation functions for full traceability
+    const { calculateBaselineBudget, calculatePillar2Impact, calculateWinterBonusSavings, 
+            calculateNIRevenueChange, calculateVehicleDutyChange, calculatePensionAgeSavings,
+            exportDebugLog } = require('@/lib/calculations/debug-calculations')
+    
+    // Get baseline with Pillar 2 included by default
+    const baseline = calculateBaselineBudget(true)
+    
+    // Export debug log to console for transparency
+    if (typeof window !== 'undefined' && window.location.search.includes('debug=true')) {
+      exportDebugLog(baseline)
+    }
+    
+    let newRevenue = baseline.baselineRevenue.total
+    let newExpenditure = baseline.baselineExpenditure.total
     let warnings: string[] = []
     
     // ACCURATE Income tax calculations - NO ARBITRARY MULTIPLIERS
@@ -329,11 +344,19 @@ export default function IntegratedWorkshopPage() {
     const gamingRevenue = 2000000000
     newRevenue += gamingRevenue * (onlineGamingDuty / 100)
     
-    // Add advanced policies revenue impact
-    newRevenue += Math.max(0, advancedPoliciesImpact)
+    // Add advanced policies impact
+    // For revenue increases (positive impact)
+    if (advancedPoliciesImpact > 0) {
+      newRevenue += advancedPoliciesImpact
+    }
+    // For cost savings (also positive impact, but reduces expenditure)
+    // This includes winter bonus savings, heritage railway savings, etc.
+    if (advancedPolicies.winterBonusMeans !== 'universal') {
+      const winterSavings = calculateWinterBonusSavings(advancedPolicies.winterBonusMeans)
+      newExpenditure -= winterSavings.calculatedValue
+    }
     
-    // Calculate expenditure
-    let newExpenditure = INITIAL_STATE.expenditure.total
+    // Expenditure adjustments (already initialized from baseline above)
     
     // Department adjustments
     DEPARTMENTS.forEach(dept => {
@@ -373,9 +396,22 @@ export default function IntegratedWorkshopPage() {
     const pensionImpact = calculatePensionChanges(pensionOptions)
     newExpenditure += pensionImpact // Note: negative values reduce expenditure
     
-    // Add advanced policies expenditure impact (negative values reduce expenditure)
-    if (advancedPoliciesImpact < 0) {
-      newExpenditure += Math.abs(advancedPoliciesImpact)
+    // Handle Pillar 2 Tax toggle (if explicitly disabled)
+    if (!pillarTwoEnabled) {
+      const pillar2Impact = calculatePillar2Impact(false)
+      newRevenue -= 10000000 // Remove Pillar 2 from baseline
+    }
+    
+    // Add Vehicle Duty adjustment if changed
+    if (advancedPolicies.vehicleDutyAdjustment && advancedPolicies.vehicleDutyAdjustment !== 0) {
+      const vehicleDutyChange = calculateVehicleDutyChange(advancedPolicies.vehicleDutyAdjustment)
+      newRevenue += vehicleDutyChange.calculatedValue
+    }
+    
+    // State Pension Age savings
+    if (statePensionAge > 66) {
+      const pensionSavings = calculatePensionAgeSavings(statePensionAge)
+      newExpenditure -= pensionSavings.calculatedValue
     }
     
     setResults({
@@ -1092,6 +1128,25 @@ export default function IntegratedWorkshopPage() {
                             Revenue: {formatCurrency(4900000 * (advancedPolicies.portDuesIncrease / 100))}
                           </p>
                         </div>
+                        
+                        <div>
+                          <div className="flex justify-between items-center mb-2">
+                            <Label>Vehicle Duty Adjustment</Label>
+                            <Badge variant="outline">{advancedPolicies.vehicleDutyAdjustment > 0 ? '+' : ''}{advancedPolicies.vehicleDutyAdjustment}%</Badge>
+                          </div>
+                          <Slider
+                            value={[advancedPolicies.vehicleDutyAdjustment]}
+                            onValueChange={([value]) => 
+                              setAdvancedPolicies(prev => ({ ...prev, vehicleDutyAdjustment: value }))
+                            }
+                            min={-50}
+                            max={50}
+                            step={5}
+                          />
+                          <p className="text-xs text-gray-500 mt-1">
+                            Base: £16.04m | Change: {formatCurrency(16039000 * (advancedPolicies.vehicleDutyAdjustment / 100))}
+                          </p>
+                        </div>
                       </div>
                       
                       <div className="space-y-4">
@@ -1570,6 +1625,60 @@ export default function IntegratedWorkshopPage() {
                           onCheckedChange={setPillarTwoEnabled}
                         />
                       </div>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Coins className="h-5 w-5" />
+                        National Insurance Rates
+                      </CardTitle>
+                      <CardDescription>
+                        Adjust employee and employer contribution rates
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <Label>Employee NI Rate</Label>
+                          <Badge variant="outline">{niEmployeeRate}%</Badge>
+                        </div>
+                        <Slider
+                          value={[niEmployeeRate]}
+                          onValueChange={([value]) => setNiEmployeeRate(value)}
+                          min={9}
+                          max={15}
+                          step={0.5}
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Current: 11% | Revenue impact: {formatCurrency((niEmployeeRate - 11) * 14988273)}
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <Label>Employer NI Rate</Label>
+                          <Badge variant="outline">{niEmployerRate}%</Badge>
+                        </div>
+                        <Slider
+                          value={[niEmployerRate]}
+                          onValueChange={([value]) => setNiEmployerRate(value)}
+                          min={10}
+                          max={16}
+                          step={0.2}
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Current: 12.8% | Revenue impact: {formatCurrency((niEmployerRate - 12.8) * 10304453)}
+                        </p>
+                      </div>
+                      
+                      <Alert className="border-blue-200 bg-blue-50">
+                        <Info className="h-4 w-4 text-blue-600" />
+                        <AlertDescription className="text-blue-700 text-sm">
+                          NI Fund balance: £850m (projected £1bn by 2030)
+                        </AlertDescription>
+                      </Alert>
                     </CardContent>
                   </Card>
                 </div>
