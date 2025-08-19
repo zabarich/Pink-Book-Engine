@@ -1,11 +1,11 @@
 // Debug Calculation Engine - Full traceability for all calculations
 // This file ensures every monetary value traces back to source JSON data
 
-import revenueStreams from '@/data/source/revenue-streams.json';
-import departmentBudgets from '@/data/source/department-budgets.json';
-import transferPayments from '@/data/source/transfer-payments.json';
-import forwardLooking from '@/data/source/forward-looking.json';
-import capitalProgramme from '@/data/source/capital-programme.json';
+const revenueStreams = require('@/data/source/revenue-streams.json');
+const departmentBudgets = require('@/data/source/department-budgets.json');
+const transferPayments = require('@/data/source/transfer-payments.json');
+const forwardLooking = require('@/data/source/forward-looking.json');
+const capitalProgramme = require('@/data/source/capital-programme.json');
 
 export interface CalculationTrace {
   sourceFile: string;
@@ -62,60 +62,50 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
   });
   debugLog.push(`National Insurance: £${niRevenue.toLocaleString()} (revenue-streams.json → nationalInsurance → total_revenue)`);
 
-  // VAT
-  const vatRevenue = revenueStreams.vat.revenue;
+  // Use summary totals for reliable calculation
+  // The summary contains pre-calculated totals that include all components
+  const customsExciseTotal = revenueStreams.summary.customs_excise_total; // Includes VAT and duties
   revenueComponents.push({
     sourceFile: 'revenue-streams.json',
-    sourcePath: 'vat.revenue',
-    sourceValue: vatRevenue,
-    formula: 'Direct from source',
-    calculatedValue: vatRevenue
+    sourcePath: 'summary.customs_excise_total',
+    sourceValue: customsExciseTotal,
+    formula: 'Customs & Excise total (includes VAT)',
+    calculatedValue: customsExciseTotal
   });
-  debugLog.push(`VAT: £${vatRevenue.toLocaleString()} (revenue-streams.json → vat → revenue)`);
-
-  // Customs & Excise
-  const customsRevenue = revenueStreams.customsExcise.revenue;
-  revenueComponents.push({
-    sourceFile: 'revenue-streams.json',
-    sourcePath: 'customsExcise.revenue',
-    sourceValue: customsRevenue,
-    formula: 'Direct from source',
-    calculatedValue: customsRevenue
-  });
-  debugLog.push(`Customs & Excise: £${customsRevenue.toLocaleString()} (revenue-streams.json → customsExcise → revenue)`);
+  debugLog.push(`Customs & Excise (inc. VAT): £${customsExciseTotal.toLocaleString()} (revenue-streams.json → summary → customs_excise_total)`);
 
   // Departmental Income
-  const deptIncomeRevenue = revenueStreams.departmentalIncome.revenue;
+  const deptIncomeRevenue = revenueStreams.summary.departmental_income_total;
   revenueComponents.push({
     sourceFile: 'revenue-streams.json',
-    sourcePath: 'departmentalIncome.revenue',
+    sourcePath: 'summary.departmental_income_total',
     sourceValue: deptIncomeRevenue,
     formula: 'Direct from source',
     calculatedValue: deptIncomeRevenue
   });
-  debugLog.push(`Departmental Income: £${deptIncomeRevenue.toLocaleString()} (revenue-streams.json → departmentalIncome → revenue)`);
+  debugLog.push(`Departmental Income: £${deptIncomeRevenue.toLocaleString()} (revenue-streams.json → summary → departmental_income_total)`);
 
-  // Vehicle Duty
-  const vehicleDutyRevenue = revenueStreams.duties.vehicle.amount;
+  // Other Treasury Income
+  const otherRevenue = revenueStreams.summary.other_treasury_income;
   revenueComponents.push({
     sourceFile: 'revenue-streams.json',
-    sourcePath: 'duties.vehicle.amount',
-    sourceValue: vehicleDutyRevenue,
-    formula: 'Direct from source',
-    calculatedValue: vehicleDutyRevenue
-  });
-  debugLog.push(`Vehicle Duty: £${vehicleDutyRevenue.toLocaleString()} (revenue-streams.json → duties → vehicle → amount)`);
-
-  // Other Revenue
-  const otherRevenue = revenueStreams.otherIncome.revenue;
-  revenueComponents.push({
-    sourceFile: 'revenue-streams.json',
-    sourcePath: 'otherIncome.revenue',
+    sourcePath: 'summary.other_treasury_income',
     sourceValue: otherRevenue,
     formula: 'Direct from source',
     calculatedValue: otherRevenue
   });
-  debugLog.push(`Other Income: £${otherRevenue.toLocaleString()} (revenue-streams.json → otherIncome → revenue)`);
+  debugLog.push(`Other Treasury Income: £${otherRevenue.toLocaleString()} (revenue-streams.json → summary → other_treasury_income)`);
+  
+  // Employee Pension Contributions
+  const pensionContributions = revenueStreams.summary.employee_pension_contributions;
+  revenueComponents.push({
+    sourceFile: 'revenue-streams.json',
+    sourcePath: 'summary.employee_pension_contributions',
+    sourceValue: pensionContributions,
+    formula: 'Direct from source',
+    calculatedValue: pensionContributions
+  });
+  debugLog.push(`Employee Pension Contributions: £${pensionContributions.toLocaleString()} (revenue-streams.json → summary → employee_pension_contributions)`);
 
   // Pillar 2 Tax (included by default)
   let pillar2Revenue = 0;
