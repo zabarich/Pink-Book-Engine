@@ -128,71 +128,49 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
   // EXPENDITURE CALCULATION
   debugLog.push('\n=== EXPENDITURE CALCULATION ===');
 
-  // Department Budgets
-  const departments = [
-    { key: 'health_social_care', name: 'Health & Social Care' },
-    { key: 'education_sport_culture', name: 'Education, Sport & Culture' },
-    { key: 'infrastructure', name: 'Infrastructure' },
-    { key: 'home_affairs', name: 'Home Affairs' },
-    { key: 'treasury', name: 'Treasury' },
-    { key: 'cabinet_office', name: 'Cabinet Office' },
-    { key: 'enterprise', name: 'Enterprise' },
-    { key: 'environment_food_agriculture', name: 'Environment, Food & Agriculture' }
-  ];
-
-  for (const dept of departments) {
-    const deptBudget = (departmentBudgets as any)[dept.key].total;
-    expenditureComponents.push({
-      sourceFile: 'department-budgets.json',
-      sourcePath: `${dept.key}.total`,
-      sourceValue: deptBudget,
-      formula: 'Direct from source',
-      calculatedValue: deptBudget
-    });
-    debugLog.push(`${dept.name}: £${deptBudget.toLocaleString()} (department-budgets.json → ${dept.key} → total)`);
-  }
-
-  // Transfer Payments (State Pension + Benefits)
-  const statePensionCost = transferPayments.statePension.total_cost;
+  // Use the summary totals from the corrected department-budgets.json
+  const deptNetExpenditure = departmentBudgets.summary.departmental_net_expenditure;
   expenditureComponents.push({
-    sourceFile: 'transfer-payments.json',
-    sourcePath: 'statePension.total_cost',
-    sourceValue: statePensionCost,
-    formula: 'Direct from source',
-    calculatedValue: statePensionCost
+    sourceFile: 'department-budgets.json',
+    sourcePath: 'summary.departmental_net_expenditure',
+    sourceValue: deptNetExpenditure,
+    formula: 'Total departmental net expenditure',
+    calculatedValue: deptNetExpenditure
   });
-  debugLog.push(`State Pension: £${statePensionCost.toLocaleString()} (transfer-payments.json → statePension → total_cost)`);
+  debugLog.push(`Departmental Net Expenditure: £${deptNetExpenditure.toLocaleString()} (department-budgets.json → summary → departmental_net_expenditure)`);
 
-  const benefitsCost = transferPayments.benefits.total_cost;
+  // Transfer Payments (from department-budgets.json summary)
+  const transferPaymentsTotal = departmentBudgets.summary.transfer_payments;
   expenditureComponents.push({
-    sourceFile: 'transfer-payments.json',
-    sourcePath: 'benefits.total_cost',
-    sourceValue: benefitsCost,
-    formula: 'Direct from source',
-    calculatedValue: benefitsCost
+    sourceFile: 'department-budgets.json',
+    sourcePath: 'summary.transfer_payments',
+    sourceValue: transferPaymentsTotal,
+    formula: 'Total transfer payments (pensions + benefits)',
+    calculatedValue: transferPaymentsTotal
   });
-  debugLog.push(`Benefits: £${benefitsCost.toLocaleString()} (transfer-payments.json → benefits → total_cost)`);
+  debugLog.push(`Transfer Payments: £${transferPaymentsTotal.toLocaleString()} (department-budgets.json → summary → transfer_payments)`);
 
-  const publicPensionsCost = transferPayments.publicSectorPensions.total_annual_cost;
+  // Capital Programme (from department-budgets.json summary)
+  const capitalSpending = departmentBudgets.summary.capital_expenditure;
   expenditureComponents.push({
-    sourceFile: 'transfer-payments.json',
-    sourcePath: 'publicSectorPensions.total_annual_cost',
-    sourceValue: publicPensionsCost,
-    formula: 'Direct from source',
-    calculatedValue: publicPensionsCost
-  });
-  debugLog.push(`Public Sector Pensions: £${publicPensionsCost.toLocaleString()} (transfer-payments.json → publicSectorPensions → total_annual_cost)`);
-
-  // Capital Programme (using annual allocation for 2025-26)
-  const capitalSpending = capitalProgramme.annual["2025-26"] || 87400000;
-  expenditureComponents.push({
-    sourceFile: 'capital-programme.json',
-    sourcePath: 'annual.2025-26',
+    sourceFile: 'department-budgets.json',
+    sourcePath: 'summary.capital_expenditure',
     sourceValue: capitalSpending,
-    formula: 'Direct from source',
+    formula: 'Capital programme allocation',
     calculatedValue: capitalSpending
   });
-  debugLog.push(`Capital Programme: £${capitalSpending.toLocaleString()} (capital-programme.json → annual → 2025-26)`);
+  debugLog.push(`Capital Expenditure: £${capitalSpending.toLocaleString()} (department-budgets.json → summary → capital_expenditure)`);
+
+  // Reserves and Contingencies (to balance the budget)
+  const reservesContingencies = departmentBudgets.summary.reserves_and_contingencies;
+  expenditureComponents.push({
+    sourceFile: 'department-budgets.json',
+    sourcePath: 'summary.reserves_and_contingencies',
+    sourceValue: reservesContingencies,
+    formula: 'Reserves drawdown and contingencies',
+    calculatedValue: reservesContingencies
+  });
+  debugLog.push(`Reserves & Contingencies: £${reservesContingencies.toLocaleString()} (department-budgets.json → summary → reserves_and_contingencies)`);
 
   // Total Expenditure
   const totalExpenditure = expenditureComponents.reduce((sum, comp) => sum + comp.calculatedValue, 0);
