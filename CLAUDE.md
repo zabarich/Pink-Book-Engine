@@ -1,5 +1,10 @@
 # Isle of Man Master Policy Engine
 
+## ⚠️ CRITICAL: EMERGENCY REBUILD IN PROGRESS
+**Specification Document**: `C:\Users\shopp\OneDrive\Apps\PINK BOOK\Specs\budget_tool_fix_specification.md`
+
+This tool is undergoing a complete rebuild due to catastrophic calculation errors. A Senior Auditor will review all work. Do NOT use the tool until all fixes are verified.
+
 ## Project Overview
 Building a comprehensive budget modeling tool for the Isle of Man Government that covers the entire £1.4 billion budget with real-time scenario planning capabilities.
 
@@ -118,6 +123,26 @@ app/
 - [ ] Reserve trajectory calculates accurately
 - [ ] Sustainability metrics are realistic
 - [ ] Export features work properly
+
+## Quality Assurance Checklist
+Before handover to Senior Auditor, ALL items must be verified:
+- [ ] Income tax 10%→11% calculates £16.5m (NOT £1.9m)
+- [ ] Higher rate 21%→22% calculates £7.9m (NOT £1.9m)
+- [ ] National Insurance uses proper employer/employee splits
+- [ ] All arbitrary multipliers (× 0.5, × 0.8, × 0.9) removed
+- [ ] All department budgets use real Pink Book figures
+- [ ] Save scenario actually saves data
+- [ ] Export produces real PDF/Excel files
+- [ ] No "rough estimate" comments remain in code
+- [ ] All calculations traceable to Pink Book sources
+- [ ] 50+ £1m policy options calculate properly
+
+## Critical Fixes Required
+1. **Tax Calculations**: Currently showing £1.9m for ALL changes - BROKEN
+2. **Arbitrary Multipliers**: Remove all × 0.5, × 0.8, × 0.9 fake adjustments
+3. **Hardcoded Values**: Replace £500m corporate tax, £100m banking tax guesses
+4. **Save/Export**: Currently non-functional, must work for ministerial use
+5. **Benefits Calculations**: Remove all "rough estimates"
 
 ## Notes for Development
 - This is a single-user MVP, no auth required
