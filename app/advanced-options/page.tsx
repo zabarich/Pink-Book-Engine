@@ -27,6 +27,7 @@ import {
   ArrowLeft,
   TrendingUp
 } from 'lucide-react';
+import { BENEFITS_DATA, STATE_PENSION_DATA, calculateBenefitChanges, calculatePensionChanges } from '@/lib/calculations/benefits-calculations';
 
 export default function AdvancedOptionsPage() {
   // State for all policy options
@@ -39,9 +40,12 @@ export default function AdvancedOptionsPage() {
     heritageRailDays: 7,
     
     // Transfer Reforms
+    winterBonusRate: 400, // Current £400 rate
     winterBonusMeans: 'universal',
+    childBenefitThreshold: 0, // 0 means no means testing
     childBenefitTaper: 0,
     housingBenefitCap: 0,
+    pensionAge: 66, // Current pension age
     
     // Department Operations
     cabinetEfficiency: 0,
@@ -62,17 +66,27 @@ export default function AdvancedOptionsPage() {
     let total = 0;
     
     // Infrastructure
-    total += policies.airportCharge * 800000; // £ per passenger × 800k passengers
+    total += policies.airportCharge * 850000; // £ per passenger × 850k passengers (actual Pink Book figure)
     total += 4900000 * (policies.portDuesIncrease / 100); // % of £4.9m base
     total += policies.internalRentCharging ? 3000000 : 0;
     total -= policies.freeTransport ? 3500000 : 0; // Cost of free transport
     total += policies.heritageRailDays === 5 ? 600000 : 0; // Savings from reduced days
     
-    // Transfers
-    total += policies.winterBonusMeans === 'benefits' ? 3600000 : 
-             policies.winterBonusMeans === 'age75' ? 2000000 : 0;
-    total += policies.childBenefitTaper;
-    total += policies.housingBenefitCap;
+    // Transfers - Use real calculations
+    const benefitChanges = calculateBenefitChanges({
+      winterBonusReduction: policies.winterBonusRate < 400 ? 400 - policies.winterBonusRate : 0,
+      winterBonusMeansTest: policies.winterBonusMeans,
+      childBenefitMeansTest: policies.childBenefitThreshold > 0 ? { threshold: policies.childBenefitThreshold } : undefined,
+      childBenefitTaper: policies.childBenefitTaper,
+      housingBenefitCap: policies.housingBenefitCap > 0 ? policies.housingBenefitCap : undefined
+    });
+    total += benefitChanges;
+    
+    // Pension changes
+    const pensionChanges = calculatePensionChanges({
+      retirementAgeIncrease: policies.pensionAge > 66 ? policies.pensionAge - 66 : 0
+    });
+    total -= pensionChanges; // Negative because function returns costs
     
     // Departments
     total += policies.cabinetEfficiency;
@@ -313,6 +327,35 @@ export default function AdvancedOptionsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* Winter Bonus Changes */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Label>Winter Bonus Rate</Label>
+                    <Badge variant="outline">18,000 recipients</Badge>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm w-16">£{policies.winterBonusRate}</span>
+                    <Slider
+                      value={[policies.winterBonusRate]}
+                      onValueChange={([value]) => 
+                        setPolicies(prev => ({ ...prev, winterBonusRate: value }))
+                      }
+                      min={0}
+                      max={400}
+                      step={50}
+                      className="flex-1"
+                    />
+                    <span className="text-sm text-gray-500 w-20">
+                      {policies.winterBonusRate < 400 ? 
+                        `+${formatCurrency(BENEFITS_DATA.winter_bonus.recipients * (400 - policies.winterBonusRate))}` : 
+                        '£0'}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-600">
+                    Current rate: £400 per recipient. Total cost: £{(BENEFITS_DATA.winter_bonus.total_cost / 1000000).toFixed(1)}m
+                  </p>
+                </div>
+
                 {/* Winter Bonus Means Testing */}
                 <div className="space-y-3">
                   <Label>Winter Bonus Means Testing</Label>
@@ -327,41 +370,60 @@ export default function AdvancedOptionsPage() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="universal">Universal (current)</SelectItem>
-                      <SelectItem value="benefits">Benefits recipients only (+£3.6m)</SelectItem>
-                      <SelectItem value="age75">Age 75+ only (+£2m)</SelectItem>
+                      <SelectItem value="benefits">Benefits recipients only (+£{(BENEFITS_DATA.winter_bonus.total_cost * 0.5 / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="age75">Age 75+ only (+£{(BENEFITS_DATA.winter_bonus.total_cost * 0.7 / 1000000).toFixed(1)}m)</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-600">
-                    Currently £4.5m universal payment. UK has moved to means testing.
+                    Currently £{(BENEFITS_DATA.winter_bonus.total_cost / 1000000).toFixed(1)}m universal payment to {BENEFITS_DATA.winter_bonus.recipients.toLocaleString()} recipients. UK has moved to means testing.
                   </p>
                 </div>
 
-                {/* Child Benefit Taper */}
+                {/* Child Benefit Means Testing */}
                 <div className="space-y-3">
-                  <Label>Child Benefit High Earner Taper</Label>
+                  <div className="flex justify-between items-center">
+                    <Label>Child Benefit Means Testing</Label>
+                    <Badge variant="outline">8,500 families</Badge>
+                  </div>
                   <Select
-                    value={policies.childBenefitTaper.toString()}
-                    onValueChange={(value) => 
-                      setPolicies(prev => ({ ...prev, childBenefitTaper: parseInt(value) }))
-                    }
+                    value={policies.childBenefitThreshold.toString()}
+                    onValueChange={(value) => {
+                      const threshold = parseInt(value);
+                      setPolicies(prev => ({ ...prev, childBenefitThreshold: threshold }));
+                      // Calculate and set the taper based on threshold
+                      if (threshold > 0) {
+                        const affectedFamilies = threshold <= 50000 ? BENEFITS_DATA.child_benefit.families * 0.25 :
+                                                 threshold <= 75000 ? BENEFITS_DATA.child_benefit.families * 0.15 :
+                                                 BENEFITS_DATA.child_benefit.families * 0.08;
+                        const avgBenefit = BENEFITS_DATA.child_benefit.total_cost / BENEFITS_DATA.child_benefit.families;
+                        setPolicies(prev => ({ ...prev, childBenefitTaper: Math.round(affectedFamilies * avgBenefit) }));
+                      } else {
+                        setPolicies(prev => ({ ...prev, childBenefitTaper: 0 }));
+                      }
+                    }}
                   >
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="0">No taper</SelectItem>
-                      <SelectItem value="2000000">£50k threshold (+£2m)</SelectItem>
-                      <SelectItem value="3500000">£40k threshold (+£3.5m)</SelectItem>
+                      <SelectItem value="0">No means testing</SelectItem>
+                      <SelectItem value="50000">£50k threshold (+£{((BENEFITS_DATA.child_benefit.families * 0.25 * BENEFITS_DATA.child_benefit.total_cost / BENEFITS_DATA.child_benefit.families) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="75000">£75k threshold (+£{((BENEFITS_DATA.child_benefit.families * 0.15 * BENEFITS_DATA.child_benefit.total_cost / BENEFITS_DATA.child_benefit.families) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="100000">£100k threshold (+£{((BENEFITS_DATA.child_benefit.families * 0.08 * BENEFITS_DATA.child_benefit.total_cost / BENEFITS_DATA.child_benefit.families) / 1000000).toFixed(1)}m)</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-600">
-                    Reduce child benefit for high earners, similar to UK model
+                    {BENEFITS_DATA.child_benefit.families.toLocaleString()} families, {BENEFITS_DATA.child_benefit.total_children.toLocaleString()} children. Total cost: £{(BENEFITS_DATA.child_benefit.total_cost / 1000000).toFixed(0)}m. 
+                    First child: £{BENEFITS_DATA.child_benefit.first_child_rate}/week, others: £{BENEFITS_DATA.child_benefit.other_children_rate}/week
                   </p>
                 </div>
 
                 {/* Housing Benefit Cap */}
                 <div className="space-y-3">
-                  <Label>Housing Benefit Cap</Label>
+                  <div className="flex justify-between items-center">
+                    <Label>Housing Benefit Cap (Monthly)</Label>
+                    <Badge variant="outline">3,200 recipients</Badge>
+                  </div>
                   <Select
                     value={policies.housingBenefitCap.toString()}
                     onValueChange={(value) => 
@@ -372,13 +434,43 @@ export default function AdvancedOptionsPage() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="0">No cap</SelectItem>
-                      <SelectItem value="1500000">£400/week cap (+£1.5m)</SelectItem>
-                      <SelectItem value="2500000">£350/week cap (+£2.5m)</SelectItem>
+                      <SelectItem value="0">No cap (current avg: £{BENEFITS_DATA.housing_benefit.average_monthly}/month)</SelectItem>
+                      <SelectItem value="400">£400/month cap (+£{((BENEFITS_DATA.housing_benefit.recipients * 0.3 * (BENEFITS_DATA.housing_benefit.average_monthly - 400) * 12) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="350">£350/month cap (+£{((BENEFITS_DATA.housing_benefit.recipients * 0.3 * (BENEFITS_DATA.housing_benefit.average_monthly - 350) * 12) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="300">£300/month cap (+£{((BENEFITS_DATA.housing_benefit.recipients * 0.3 * (BENEFITS_DATA.housing_benefit.average_monthly - 300) * 12) / 1000000).toFixed(1)}m)</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-600">
-                    Limit maximum housing benefit payments
+                    {BENEFITS_DATA.housing_benefit.recipients.toLocaleString()} recipients, average £{BENEFITS_DATA.housing_benefit.average_monthly}/month. 
+                    Total cost: £{(BENEFITS_DATA.housing_benefit.total_cost / 1000000).toFixed(1)}m. Cap affects top 30% of claimants.
+                  </p>
+                </div>
+
+                {/* State Pension Age */}
+                <div className="space-y-3 border-t pt-4 mt-4">
+                  <div className="flex justify-between items-center">
+                    <Label>State Pension Age</Label>
+                    <Badge variant="outline">23,200 pensioners</Badge>
+                  </div>
+                  <Select
+                    value={policies.pensionAge.toString()}
+                    onValueChange={(value) => 
+                      setPolicies(prev => ({ ...prev, pensionAge: parseInt(value) }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="66">Age 66 (current)</SelectItem>
+                      <SelectItem value="67">Age 67 (+£{((STATE_PENSION_DATA.total_cost / (STATE_PENSION_DATA.basic_pension.recipients + STATE_PENSION_DATA.manx_pension.recipients) * 400) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="68">Age 68 (+£{((STATE_PENSION_DATA.total_cost / (STATE_PENSION_DATA.basic_pension.recipients + STATE_PENSION_DATA.manx_pension.recipients) * 800) / 1000000).toFixed(1)}m)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    Basic pension: {STATE_PENSION_DATA.basic_pension.recipients.toLocaleString()} at £{STATE_PENSION_DATA.basic_pension.weekly_rate}/week.
+                    Manx pension: {STATE_PENSION_DATA.manx_pension.recipients.toLocaleString()} at £{STATE_PENSION_DATA.manx_pension.weekly_rate}/week.
+                    Total: £{(STATE_PENSION_DATA.total_cost / 1000000).toFixed(0)}m
                   </p>
                 </div>
               </CardContent>
