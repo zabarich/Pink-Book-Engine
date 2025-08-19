@@ -617,6 +617,7 @@ export default function IntegratedWorkshopPage() {
       internalRentCharging: false,
       freeTransport: false,
       heritageRailDays: 7,
+      vehicleDutyAdjustment: 0,
       winterBonusMeans: 'universal',
       childBenefitTaper: 0,
       housingBenefitCap: 0,
