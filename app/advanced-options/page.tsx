@@ -41,7 +41,7 @@ export default function AdvancedOptionsPage() {
     
     // Transfer Reforms
     winterBonusRate: 400, // Current £400 rate
-    winterBonusMeans: 'universal',
+    winterBonusMeans: 'universal' as 'universal' | 'benefits' | 'age75',
     childBenefitThreshold: 0, // 0 means no means testing
     childBenefitTaper: 0,
     housingBenefitCap: 0,
@@ -362,7 +362,7 @@ export default function AdvancedOptionsPage() {
                   <Select
                     value={policies.winterBonusMeans}
                     onValueChange={(value) => 
-                      setPolicies(prev => ({ ...prev, winterBonusMeans: value }))
+                      setPolicies(prev => ({ ...prev, winterBonusMeans: value as 'universal' | 'benefits' | 'age75' }))
                     }
                   >
                     <SelectTrigger>
