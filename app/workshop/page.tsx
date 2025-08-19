@@ -317,7 +317,8 @@ export default function IntegratedWorkshopPage() {
     newRevenue += nhsLevyResult.revenue
     
     // Tourist Accommodation Levy
-    const visitorNights = 500000
+    // IoM Tourism: ~800k visitors × 2.5 average nights = 2M visitor nights
+    const visitorNights = 2000000
     newRevenue += touristAccommodationLevy * visitorNights
     
     // Airport Passenger Duty
@@ -344,7 +345,8 @@ export default function IntegratedWorkshopPage() {
     })
     
     // Public sector pay
-    const payBill = 315000000
+    // Pink Book 2025-26: Total employee costs £507m (page 89)
+    const payBill = 507000000
     const payIncrease = publicSectorPay === 'freeze' ? 0 : 
                        publicSectorPay === '1%' ? 0.01 :
                        publicSectorPay === '2%' ? 0.02 : 0.03
