@@ -183,16 +183,16 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
   });
   debugLog.push(`Public Sector Pensions: £${publicPensionsCost.toLocaleString()} (transfer-payments.json → publicSectorPensions → total_annual_cost)`);
 
-  // Capital Programme
-  const capitalSpending = capitalProgramme.summary.total_annual_allocation;
+  // Capital Programme (using annual allocation for 2025-26)
+  const capitalSpending = capitalProgramme.annual["2025-26"] || 87400000;
   expenditureComponents.push({
     sourceFile: 'capital-programme.json',
-    sourcePath: 'summary.total_annual_allocation',
+    sourcePath: 'annual.2025-26',
     sourceValue: capitalSpending,
     formula: 'Direct from source',
     calculatedValue: capitalSpending
   });
-  debugLog.push(`Capital Programme: £${capitalSpending.toLocaleString()} (capital-programme.json → summary → total_annual_allocation)`);
+  debugLog.push(`Capital Programme: £${capitalSpending.toLocaleString()} (capital-programme.json → annual → 2025-26)`);
 
   // Total Expenditure
   const totalExpenditure = expenditureComponents.reduce((sum, comp) => sum + comp.calculatedValue, 0);
