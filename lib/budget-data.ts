@@ -4,59 +4,80 @@ import { Department, RevenueStream } from './types'
 export const DEPARTMENTS: Department[] = [
   {
     name: 'Health & Social Care',
-    budget: 357240000,
+    budget: 298088000, // NET expenditure from department-budgets.json
     color: '#ef4444',
     minViable: 250000000,
     description: 'NHS, social care, public health'
   },
   {
     name: 'Education, Sport & Culture',
-    budget: 141000000,
+    budget: 149834000, // NET expenditure from department-budgets.json
     color: '#3b82f6',
     minViable: 100000000,
     description: 'Schools, higher education, culture, sports'
   },
   {
     name: 'Infrastructure',
-    budget: 116182000,
+    budget: 49661000, // NET expenditure from department-budgets.json
     color: '#10b981',
-    minViable: 80000000,
+    minViable: 40000000,
     description: 'Roads, transport, ports, airport, public estates'
   },
   {
     name: 'Home Affairs',
-    budget: 75000000,
+    budget: 43951000, // NET expenditure from department-budgets.json
     color: '#f59e0b',
-    minViable: 60000000,
+    minViable: 35000000,
     description: 'Police, prison, fire, courts'
   },
   {
     name: 'Treasury',
-    budget: 460000000,
+    budget: 146878000, // NET expenditure from department-budgets.json (excludes transfer payments)
     color: '#8b5cf6',
-    minViable: 400000000,
-    description: 'Benefits, pensions, revenue services'
+    minViable: 120000000,
+    description: 'Revenue services, administration (transfer payments shown separately)'
   },
   {
     name: 'Cabinet Office',
-    budget: 45000000,
+    budget: 43380000, // NET expenditure from department-budgets.json
     color: '#ec4899',
     minViable: 35000000,
     description: 'Central administration, IT, HR'
   },
   {
     name: 'Enterprise',
-    budget: 35000000,
+    budget: 3242000, // NET expenditure from department-budgets.json
     color: '#06b6d4',
-    minViable: 20000000,
+    minViable: 2000000,
     description: 'Economic development, tourism, finance'
   },
   {
     name: 'Environment, Food & Agriculture',
-    budget: 25000000,
+    budget: 19443000, // NET expenditure from department-budgets.json
     color: '#84cc16',
     minViable: 15000000,
     description: 'Environment, planning, agriculture, fisheries'
+  },
+  {
+    name: 'Executive Government',
+    budget: 56345000, // NET expenditure from department-budgets.json
+    color: '#fbbf24',
+    minViable: 45000000,
+    description: 'Executive offices and services'
+  },
+  {
+    name: 'Statutory Boards',
+    budget: 3377000, // NET expenditure from department-budgets.json
+    color: '#9333ea',
+    minViable: 2500000,
+    description: 'Regulatory and statutory bodies'
+  },
+  {
+    name: 'Legislature',
+    budget: 5591000, // NET expenditure from department-budgets.json
+    color: '#dc2626',
+    minViable: 4500000,
+    description: 'Legislative branch operations'
   }
 ]
 
@@ -124,16 +145,19 @@ export const INITIAL_STATE = {
     other: 35040000
   },
   expenditure: {
-    total: 1387759000,
+    total: 1460000000, // Corrected total from Pink Book
     departments: {
-      health: 357240000,
-      education: 141000000,
-      infrastructure: 116182000,
-      homeAffairs: 75000000,
-      treasury: 460000000,
-      cabinetOffice: 45000000,
-      enterprise: 35000000,
-      environment: 25000000
+      health: 298088000, // NET expenditure
+      education: 149834000, // NET expenditure
+      infrastructure: 49661000, // NET expenditure
+      homeAffairs: 43951000, // NET expenditure
+      treasury: 146878000, // NET expenditure (excludes transfers)
+      cabinetOffice: 43380000, // NET expenditure
+      enterprise: 3242000, // NET expenditure
+      environment: 19443000, // NET expenditure
+      executive: 56345000, // NET expenditure
+      statutoryBoards: 3377000, // NET expenditure
+      legislature: 5591000 // NET expenditure
     },
     employeeCosts: 507240000,
     pensionCosts: 142921000,
@@ -141,8 +165,8 @@ export const INITIAL_STATE = {
     capitalFinancing: 19000000
   },
   balance: {
-    surplus: 1265000,
-    structuralDeficit: -91400000,
+    surplus: -70976000, // Actual deficit from Pink Book
+    structuralDeficit: -110600000, // Reserve drawdown required
     reserves: 1760000000,
     niFund: 850000000
   },

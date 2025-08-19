@@ -1,0 +1,20 @@
+{
+  "id": "page_0073_table_06",
+  "page": 73,
+  "index": 5,
+  "type": "departmental",
+  "rows": 3,
+  "cols": 1,
+  "headers": [
+    "Discrete Schemes"
+  ],
+  "data": [
+    [
+      "£000"
+    ],
+    [
+      "Department"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:16:14.834017"
+}

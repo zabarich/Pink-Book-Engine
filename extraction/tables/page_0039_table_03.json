@@ -1,0 +1,20 @@
+{
+  "id": "page_0039_table_03",
+  "page": 39,
+  "index": 2,
+  "type": "general",
+  "rows": 3,
+  "cols": 1,
+  "headers": [
+    "New"
+  ],
+  "data": [
+    [
+      "Tynwald"
+    ],
+    [
+      "Approval"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:15:57.713290"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "page_0029_table_02",
+  "page": 29,
+  "index": 1,
+  "type": "expenditure",
+  "rows": 3,
+  "cols": 1,
+  "headers": [
+    "Other"
+  ],
+  "data": [
+    [
+      "Payroll"
+    ],
+    [
+      "Costs"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:15:53.794934"
+}

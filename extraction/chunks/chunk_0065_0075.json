@@ -1,0 +1,77 @@
+{
+  "start": 65,
+  "end": 75,
+  "timestamp": "2025-08-14T18:16:12.618015",
+  "pages": [
+    {
+      "page_number": 66,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 798,
+      "table_count": 1
+    },
+    {
+      "page_number": 67,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 1661,
+      "table_count": 2
+    },
+    {
+      "page_number": 68,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 781,
+      "table_count": 1
+    },
+    {
+      "page_number": 69,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 1655,
+      "table_count": 4
+    },
+    {
+      "page_number": 70,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 2010,
+      "table_count": 3
+    },
+    {
+      "page_number": 71,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 1192,
+      "table_count": 1
+    },
+    {
+      "page_number": 72,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 1627,
+      "table_count": 2
+    },
+    {
+      "page_number": 73,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 1957,
+      "table_count": 8
+    },
+    {
+      "page_number": 74,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 2020,
+      "table_count": 4
+    },
+    {
+      "page_number": 75,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 2149,
+      "table_count": 4
+    }
+  ]
+}

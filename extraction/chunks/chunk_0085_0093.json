@@ -1,0 +1,63 @@
+{
+  "start": 85,
+  "end": 93,
+  "timestamp": "2025-08-14T18:16:22.667961",
+  "pages": [
+    {
+      "page_number": 86,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 2873,
+      "table_count": 1
+    },
+    {
+      "page_number": 87,
+      "has_text": true,
+      "has_tables": true,
+      "text_length": 1230,
+      "table_count": 1
+    },
+    {
+      "page_number": 88,
+      "has_text": true,
+      "has_tables": false,
+      "text_length": 2738,
+      "table_count": 0
+    },
+    {
+      "page_number": 89,
+      "has_text": true,
+      "has_tables": false,
+      "text_length": 460,
+      "table_count": 0
+    },
+    {
+      "page_number": 90,
+      "has_text": true,
+      "has_tables": false,
+      "text_length": 3080,
+      "table_count": 0
+    },
+    {
+      "page_number": 91,
+      "has_text": true,
+      "has_tables": false,
+      "text_length": 3159,
+      "table_count": 0
+    },
+    {
+      "page_number": 92,
+      "has_text": true,
+      "has_tables": false,
+      "text_length": 586,
+      "table_count": 0
+    },
+    {
+      "page_number": 93,
+      "has_text": true,
+      "has_tables": false,
+      "text_length": 73,
+      "table_count": 0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "page_0053_table_03",
+  "page": 53,
+  "index": 2,
+  "type": "revenue",
+  "rows": 2,
+  "cols": 1,
+  "headers": [
+    "Gross"
+  ],
+  "data": [
+    [
+      "Income"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:16:04.559973"
+}

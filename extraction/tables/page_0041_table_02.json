@@ -1,0 +1,17 @@
+{
+  "id": "page_0041_table_02",
+  "page": 41,
+  "index": 1,
+  "type": "budget",
+  "rows": 2,
+  "cols": 1,
+  "headers": [
+    "Provisional"
+  ],
+  "data": [
+    [
+      "Budget"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:15:58.582378"
+}

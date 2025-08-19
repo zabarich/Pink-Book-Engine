@@ -1,0 +1,23 @@
+{
+  "id": "page_0075_table_02",
+  "page": 75,
+  "index": 1,
+  "type": "general",
+  "rows": 4,
+  "cols": 1,
+  "headers": [
+    "Total"
+  ],
+  "data": [
+    [
+      "Spend to"
+    ],
+    [
+      "31 March"
+    ],
+    [
+      "2025"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:16:15.582122"
+}

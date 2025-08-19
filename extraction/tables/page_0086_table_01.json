@@ -1,0 +1,151 @@
+{
+  "id": "page_0086_table_01",
+  "page": 86,
+  "index": 0,
+  "type": "expenditure",
+  "rows": 20,
+  "cols": 5,
+  "headers": [
+    "Rolling Scheme",
+    "",
+    "Tynwald",
+    "",
+    "Description of Rolling Scheme"
+  ],
+  "data": [
+    [
+      "",
+      "",
+      "Approval",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "Request",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "£000",
+      "",
+      ""
+    ],
+    [
+      "Department of Infrastructure (continued)",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "MCW - DfE",
+      "150",
+      "",
+      "",
+      "A minor capital works budget for properties owned by the Department for Enterprise. DOI maintain and\nuphold the properties on behalf of the DfE under a Service Level Agreement"
+    ],
+    [
+      "MCW - DHA",
+      "225",
+      "",
+      "",
+      "A minor capital works budget for properties owned by the Department for Home Affairs. DOI maintain\nand uphold the properties on behalf of the DHA under a Service Level Agreement"
+    ],
+    [
+      "MCW - DHSC",
+      "500",
+      "",
+      "",
+      "This rolling scheme includes expenditure for maintenance and replacement of building and property\nservice related items ranging from £5,000 to £250,000"
+    ],
+    [
+      "MCW - Education and Children",
+      "2,000",
+      "",
+      "",
+      "This rolling scheme includes expenditure for maintenance and replacement of building and property\nservice related items ranging from £5,000 to £250,000"
+    ],
+    [
+      "MCW - Flood Asset Improvements",
+      "225",
+      "",
+      "",
+      "A minor capital works budget to maintain flood assets (watercourses and structures) to reduce flood risk\nto people and property"
+    ],
+    [
+      "MCW - Government Estate",
+      "500",
+      "",
+      "",
+      "This rolling scheme includes expenditure for maintenance and replacement of building and property\nservice related items ranging from £5,000 to £250,000"
+    ],
+    [
+      "MCW - Improvements",
+      "625",
+      "",
+      "",
+      "A 10 year scheme starting in 2017-18, to refurbish residential roads. Tackling small-scale neglect to\nprevent longer term problems for the network but, more importantly, encourage some pride in the roads\noutside our homes and directly result in a better place to live"
+    ],
+    [
+      "MCW - Nobles Hospital (Compliance)",
+      "713",
+      "",
+      "",
+      "This rolling scheme ensures the hospital’s services comply with relevant standards"
+    ],
+    [
+      "MCW - Nobles Hospital (Plant & Machinery)",
+      "620",
+      "",
+      "",
+      "This rolling scheme is related to expenditure for replacement of hospital plant and machinery"
+    ],
+    [
+      "MCW - Public Transport",
+      "1,000",
+      "",
+      "",
+      "This rolling scheme includes expenditure for maintenance and replacement of building, equipment and\nproperty service related items for the Transport Services Division. Title changed to now include\nHeritage Rail to now reflect a significant amount of this budget is utilised for this purpose"
+    ],
+    [
+      "MCW - Villa/Gaiety",
+      "200",
+      "",
+      "",
+      "Minor capital works for the upkeep and maintenance of the Villa Marina and Gaiety Theatre complex"
+    ],
+    [
+      "MCW - Wildlife Park",
+      "100",
+      "",
+      "",
+      "Minor capital works for the upkeep and maintenance of the Curragh’s Wildlife Park"
+    ],
+    [
+      "MCW Housing Planned Works",
+      "2,375",
+      "",
+      "",
+      "This capital budget is used to undertake essential works such as re-roofing, kitchen refurbishments,\nelectrical upgrades, central heating, window/door replacements and estate improvements to the DOI’s\npublic sector housing stock of over 1,200 dwellings"
+    ],
+    [
+      "Plant & Vehicle Replacement",
+      "3,200",
+      "",
+      "",
+      "Ongoing programme for the planned replacement of Government’s plant and vehicles"
+    ],
+    [
+      "Public Transport - Bus Fleet Replacement",
+      "1,437",
+      "",
+      "",
+      "Ongoing programme for the replacement of public transport bus vehicles"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:16:22.804844"
+}

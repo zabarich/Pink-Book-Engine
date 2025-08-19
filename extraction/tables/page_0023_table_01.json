@@ -1,0 +1,26 @@
+{
+  "id": "page_0023_table_01",
+  "page": 23,
+  "index": 0,
+  "type": "revenue",
+  "rows": 5,
+  "cols": 1,
+  "headers": [
+    "For Fiscal Years commencing on or after 1 January 2025, groups in scope of Pillar 2 Global"
+  ],
+  "data": [
+    [
+      "Minimum Tax (large multinational enterprise groups with annual revenue of Euro 750 million or"
+    ],
+    [
+      "more in the Consolidated Financial Statements of the Ultimate Parent Entity) will be taxed at"
+    ],
+    [
+      "a minimum effective tax rate of 15% on their Isle of Man profits as a result of the introduction"
+    ],
+    [
+      "of Domestic Top-up Tax, which is a new tax separate from (and in addition to) income tax."
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:15:50.370119"
+}

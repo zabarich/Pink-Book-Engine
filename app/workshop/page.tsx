@@ -174,7 +174,10 @@ export default function IntegratedWorkshopPage() {
     'Treasury': 0,
     'Cabinet Office': 0,
     'Enterprise': 0,
-    'Environment, Food & Agriculture': 0
+    'Environment, Food & Agriculture': 0,
+    'Executive Government': 0,
+    'Statutory Boards': 0,
+    'Legislature': 0
   })
   
   // Efficiency Measures
@@ -594,7 +597,10 @@ export default function IntegratedWorkshopPage() {
       'Treasury': 0,
       'Cabinet Office': 0,
       'Enterprise': 0,
-      'Environment, Food & Agriculture': 0
+      'Environment, Food & Agriculture': 0,
+      'Executive Government': 0,
+      'Statutory Boards': 0,
+      'Legislature': 0
     })
     setPublicSectorPay('2%')
     setSharedServices(0)

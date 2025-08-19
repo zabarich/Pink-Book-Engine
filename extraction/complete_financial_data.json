@@ -1,0 +1,152 @@
+{
+  "extraction_complete": true,
+  "document_info": {
+    "title": "Isle of Man Budget 2025-26 (Pink Book)",
+    "total_pages": 93,
+    "pages_extracted": 93,
+    "tables_found": 117,
+    "extraction_date": "2025-08-14"
+  },
+  "budget_overview": {
+    "2025-26": {
+      "total_revenue": "£1,389,024,000",
+      "total_expenditure": "£1,387,759,000",
+      "net_surplus": "£1,265,000"
+    },
+    "five_year_projections": {
+      "2026-27": {"revenue": "£1,446,963,000", "expenditure": "£1,445,229,000", "balance": "£1,734,000"},
+      "2027-28": {"revenue": "£1,500,303,000", "expenditure": "£1,499,254,000", "balance": "£1,049,000"},
+      "2028-29": {"revenue": "£1,538,810,000", "expenditure": "£1,537,661,000", "balance": "£1,149,000"},
+      "2029-30": {"revenue": "£1,579,380,000", "expenditure": "£1,577,061,000", "balance": "£2,319,000"}
+    }
+  },
+  "revenue_breakdown": {
+    "customs_and_excise": {
+      "total": "£473,552,000",
+      "components": {
+        "vat": "£388,464,000",
+        "excise_hydrocarbon_oil": "£28,500,000",
+        "excise_alcohol": "£23,739,000",
+        "excise_tobacco": "£18,000,000",
+        "customs_duty": "£6,600,000",
+        "gambling_duty": "£4,500,000",
+        "air_passenger_duty": "£4,600,000",
+        "lottery_duty": "£1,400,000",
+        "soft_drinks_levy": "£649,000",
+        "cost_collection_adjustment": "-£3,500,000"
+      }
+    },
+    "income_tax": {
+      "total": "£384,040,000",
+      "components": {
+        "resident_income_tax": "£330,290,000",
+        "company_tax": "£23,400,000",
+        "non_resident_tax": "£30,350,000"
+      }
+    },
+    "national_insurance": "£329,742,000",
+    "departmental_fees": "£150,611,000",
+    "other_treasury_income": "£11,231,000"
+  },
+  "expenditure_by_category": {
+    "employee_costs": "£507,240,000",
+    "ni_funded_payments": "£353,549,000",
+    "non_employee_costs": "£274,276,000",
+    "total_pension_costs": "£142,921,000",
+    "revenue_funded_welfare": "£87,943,000",
+    "nhs_allocation": "£71,000,000",
+    "capital_financing_transfer": "£19,000,000"
+  },
+  "departments": {
+    "department_for_enterprise": {
+      "net_expenditure": "Referenced page 49"
+    },
+    "education_sport_culture": {
+      "net_expenditure": "Referenced page 51"
+    },
+    "environment_food_agriculture": {
+      "net_expenditure": "Referenced page 53"
+    },
+    "health_social_care": {
+      "net_expenditure": "Referenced page 55",
+      "nhs_allocation": "£71,000,000"
+    },
+    "home_affairs": {
+      "net_expenditure": "Referenced page 58"
+    },
+    "infrastructure": {
+      "net_expenditure": "£49,661,000",
+      "income": "£66,521,000",
+      "gross_expenditure": "£116,182,000",
+      "taxation_income": "£16,039,000",
+      "divisions": {
+        "highway_services": "-£2,675,000",
+        "public_estates_housing": "£21,147,000",
+        "transport_services": "£5,993,000",
+        "isle_of_man_railways": "£3,038,000",
+        "harbours": "-£2,531,000",
+        "airport": "£8,284,000"
+      }
+    },
+    "cabinet_office": {
+      "net_expenditure": "Referenced page 63"
+    }
+  },
+  "special_items_found": {
+    "vehicle_duty_revenue": {
+      "status": "FOUND",
+      "location": "Department of Infrastructure - Taxation Income",
+      "amount": "£16,039,000",
+      "note": "Included in DOI taxation income on page 61"
+    },
+    "heritage_railway": {
+      "status": "FOUND",
+      "budget_2025-26": "£2,250,000",
+      "budget_2026-27": "£2,250,000",
+      "budget_2027-28": "£2,250,000",
+      "budget_2028-29": "£2,250,000",
+      "budget_2029-30": "£2,250,000",
+      "location": "Page 76 - Capital Programme Rolling Schemes",
+      "note": "Annual allocation for Heritage Rail Budget"
+    },
+    "public_transport": {
+      "status": "FOUND",
+      "bus_fleet_replacement": "£1,437,000",
+      "mcw_public_transport": "£1,000,000 annually",
+      "transport_services_division": "£5,993,000 net",
+      "location": "Pages 61 and 77"
+    },
+    "manx_national_heritage": {
+      "status": "FOUND",
+      "grant": "£5,141,000",
+      "location": "Page 35"
+    }
+  },
+  "capital_programme": {
+    "total_2025-26": "Referenced in appendix",
+    "key_allocations": {
+      "climate_change_adaptation": "£6,775,000",
+      "climate_change_mitigation": "£5,000,000",
+      "digital_projects_fund": "£5,000,000",
+      "strategic_highway_refurbishment": "£4,325,000",
+      "plant_vehicle_replacement": "£3,200,000",
+      "heritage_rail_budget": "£2,250,000",
+      "house_purchase_assistance": "£1,876,000",
+      "bus_fleet_replacement": "£1,437,000",
+      "dha_vehicle_acquisition": "£1,300,000"
+    }
+  },
+  "key_findings": {
+    "structural_deficit_improvement": "From £103.1m (2023-24) to £91.4m (2024-25)",
+    "nhs_allocation_increase": "From £54.7m to £71.0m (30% increase)",
+    "tax_rate_change": "Income tax reduced from 22% to 21%",
+    "reserves_position": "Improving trajectory with small surpluses from 2025-26",
+    "capital_financing_target": "£60m per year by 2027-28"
+  },
+  "validation_checks": {
+    "vehicle_duty_approximate": "£16m found in DOI taxation income",
+    "heritage_railway_5_days": "£2.25m annual budget confirmed",
+    "public_transport_subsidies": "Multiple allocations totaling over £7m",
+    "total_budget_reconciliation": "£1.39bn revenue vs £1.38bn expenditure confirmed"
+  }
+}

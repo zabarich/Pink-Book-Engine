@@ -1,0 +1,5279 @@
+{
+  "tables": [
+    {
+      "id": "page_0006_table_01",
+      "page": 6,
+      "type": "revenue",
+      "rows": 10,
+      "cols": 27,
+      "headers": []
+    },
+    {
+      "id": "page_0006_table_02",
+      "page": 6,
+      "type": "revenue",
+      "rows": 19,
+      "cols": 27,
+      "headers": []
+    },
+    {
+      "id": "page_0012_table_01",
+      "page": 12,
+      "type": "revenue",
+      "rows": 42,
+      "cols": 31,
+      "headers": []
+    },
+    {
+      "id": "page_0013_table_01",
+      "page": 13,
+      "type": "revenue",
+      "rows": 33,
+      "cols": 31,
+      "headers": []
+    },
+    {
+      "id": "page_0015_table_01",
+      "page": 15,
+      "type": "revenue",
+      "rows": 27,
+      "cols": 31,
+      "headers": []
+    },
+    {
+      "id": "page_0017_table_01",
+      "page": 17,
+      "type": "revenue",
+      "rows": 23,
+      "cols": 31,
+      "headers": []
+    },
+    {
+      "id": "page_0018_table_01",
+      "page": 18,
+      "type": "revenue",
+      "rows": 21,
+      "cols": 31,
+      "headers": []
+    },
+    {
+      "id": "page_0018_table_02",
+      "page": 18,
+      "type": "budget",
+      "rows": 10,
+      "cols": 31,
+      "headers": []
+    },
+    {
+      "id": "page_0019_table_01",
+      "page": 19,
+      "type": "budget",
+      "rows": 13,
+      "cols": 31,
+      "headers": []
+    },
+    {
+      "id": "page_0020_table_01",
+      "page": 20,
+      "type": "revenue",
+      "rows": 11,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0020_table_02",
+      "page": 20,
+      "type": "revenue",
+      "rows": 13,
+      "cols": 29,
+      "headers": []
+    },
+    {
+      "id": "page_0022_table_01",
+      "page": 22,
+      "type": "general",
+      "rows": 21,
+      "cols": 18,
+      "headers": []
+    },
+    {
+      "id": "page_0023_table_01",
+      "page": 23,
+      "type": "revenue",
+      "rows": 5,
+      "cols": 1,
+      "headers": [
+        "For Fiscal Years commencing on or after 1 January 2025, groups in scope of Pillar 2 Global"
+      ]
+    },
+    {
+      "id": "page_0023_table_02",
+      "page": 23,
+      "type": "expenditure",
+      "rows": 9,
+      "cols": 21,
+      "headers": []
+    },
+    {
+      "id": "page_0024_table_01",
+      "page": 24,
+      "type": "general",
+      "rows": 7,
+      "cols": 15,
+      "headers": []
+    },
+    {
+      "id": "page_0024_table_02",
+      "page": 24,
+      "type": "general",
+      "rows": 8,
+      "cols": 12,
+      "headers": []
+    },
+    {
+      "id": "page_0026_table_01",
+      "page": 26,
+      "type": "revenue",
+      "rows": 24,
+      "cols": 16,
+      "headers": []
+    },
+    {
+      "id": "page_0027_table_01",
+      "page": 27,
+      "type": "budget",
+      "rows": 24,
+      "cols": 43,
+      "headers": []
+    },
+    {
+      "id": "page_0028_table_01",
+      "page": 28,
+      "type": "revenue",
+      "rows": 23,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0029_table_01",
+      "page": 29,
+      "type": "expenditure",
+      "rows": 10,
+      "cols": 31,
+      "headers": []
+    },
+    {
+      "id": "page_0029_table_02",
+      "page": 29,
+      "type": "expenditure",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Other"
+      ]
+    },
+    {
+      "id": "page_0029_table_03",
+      "page": 29,
+      "type": "expenditure",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Sub-Total"
+      ]
+    },
+    {
+      "id": "page_0029_table_04",
+      "page": 29,
+      "type": "general",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0029_table_05",
+      "page": 29,
+      "type": "general",
+      "rows": 2,
+      "cols": 1,
+      "headers": [
+        "National"
+      ]
+    },
+    {
+      "id": "page_0030_table_01",
+      "page": 30,
+      "type": "expenditure",
+      "rows": 31,
+      "cols": 37,
+      "headers": []
+    },
+    {
+      "id": "page_0031_table_01",
+      "page": 31,
+      "type": "revenue",
+      "rows": 13,
+      "cols": 29,
+      "headers": []
+    },
+    {
+      "id": "page_0032_table_01",
+      "page": 32,
+      "type": "revenue",
+      "rows": 31,
+      "cols": 33,
+      "headers": []
+    },
+    {
+      "id": "page_0035_table_01",
+      "page": 35,
+      "type": "budget",
+      "rows": 17,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0038_table_01",
+      "page": 38,
+      "type": "budget",
+      "rows": 11,
+      "cols": 32,
+      "headers": []
+    },
+    {
+      "id": "page_0039_table_01",
+      "page": 39,
+      "type": "expenditure",
+      "rows": 31,
+      "cols": 34,
+      "headers": []
+    },
+    {
+      "id": "page_0039_table_02",
+      "page": 39,
+      "type": "general",
+      "rows": 4,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0039_table_03",
+      "page": 39,
+      "type": "general",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "New"
+      ]
+    },
+    {
+      "id": "page_0039_table_04",
+      "page": 39,
+      "type": "departmental",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Discrete Schemes"
+      ]
+    },
+    {
+      "id": "page_0039_table_05",
+      "page": 39,
+      "type": "general",
+      "rows": 2,
+      "cols": 1,
+      "headers": [
+        "New"
+      ]
+    },
+    {
+      "id": "page_0039_table_06",
+      "page": 39,
+      "type": "departmental",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Rolling Schemes"
+      ]
+    },
+    {
+      "id": "page_0040_table_01",
+      "page": 40,
+      "type": "expenditure",
+      "rows": 25,
+      "cols": 26,
+      "headers": []
+    },
+    {
+      "id": "page_0041_table_01",
+      "page": 41,
+      "type": "revenue",
+      "rows": 39,
+      "cols": 9,
+      "headers": []
+    },
+    {
+      "id": "page_0041_table_02",
+      "page": 41,
+      "type": "budget",
+      "rows": 2,
+      "cols": 1,
+      "headers": [
+        "Provisional"
+      ]
+    },
+    {
+      "id": "page_0044_table_01",
+      "page": 44,
+      "type": "revenue",
+      "rows": 31,
+      "cols": 33,
+      "headers": []
+    },
+    {
+      "id": "page_0046_table_01",
+      "page": 46,
+      "type": "revenue",
+      "rows": 49,
+      "cols": 30,
+      "headers": []
+    },
+    {
+      "id": "page_0047_table_01",
+      "page": 47,
+      "type": "revenue",
+      "rows": 45,
+      "cols": 29,
+      "headers": []
+    },
+    {
+      "id": "page_0048_table_01",
+      "page": 48,
+      "type": "revenue",
+      "rows": 39,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0049_table_01",
+      "page": 49,
+      "type": "revenue",
+      "rows": 39,
+      "cols": 28,
+      "headers": []
+    },
+    {
+      "id": "page_0050_table_01",
+      "page": 50,
+      "type": "revenue",
+      "rows": 49,
+      "cols": 19,
+      "headers": []
+    },
+    {
+      "id": "page_0051_table_01",
+      "page": 51,
+      "type": "revenue",
+      "rows": 20,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0051_table_02",
+      "page": 51,
+      "type": "revenue",
+      "rows": 26,
+      "cols": 29,
+      "headers": []
+    },
+    {
+      "id": "page_0052_table_01",
+      "page": 52,
+      "type": "revenue",
+      "rows": 14,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0053_table_01",
+      "page": 53,
+      "type": "revenue",
+      "rows": 25,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0053_table_02",
+      "page": 53,
+      "type": "general",
+      "rows": 2,
+      "cols": 1,
+      "headers": [
+        "Net"
+      ]
+    },
+    {
+      "id": "page_0053_table_03",
+      "page": 53,
+      "type": "revenue",
+      "rows": 2,
+      "cols": 1,
+      "headers": [
+        "Gross"
+      ]
+    },
+    {
+      "id": "page_0053_table_04",
+      "page": 53,
+      "type": "revenue",
+      "rows": 25,
+      "cols": 29,
+      "headers": []
+    },
+    {
+      "id": "page_0054_table_01",
+      "page": 54,
+      "type": "revenue",
+      "rows": 13,
+      "cols": 20,
+      "headers": []
+    },
+    {
+      "id": "page_0055_table_01",
+      "page": 55,
+      "type": "revenue",
+      "rows": 18,
+      "cols": 20,
+      "headers": []
+    },
+    {
+      "id": "page_0055_table_02",
+      "page": 55,
+      "type": "revenue",
+      "rows": 25,
+      "cols": 26,
+      "headers": []
+    },
+    {
+      "id": "page_0056_table_01",
+      "page": 56,
+      "type": "revenue",
+      "rows": 12,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0057_table_01",
+      "page": 57,
+      "type": "revenue",
+      "rows": 14,
+      "cols": 20,
+      "headers": []
+    },
+    {
+      "id": "page_0057_table_02",
+      "page": 57,
+      "type": "revenue",
+      "rows": 24,
+      "cols": 26,
+      "headers": []
+    },
+    {
+      "id": "page_0057_table_03",
+      "page": 57,
+      "type": "revenue",
+      "rows": 13,
+      "cols": 20,
+      "headers": []
+    },
+    {
+      "id": "page_0058_table_01",
+      "page": 58,
+      "type": "revenue",
+      "rows": 19,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0058_table_02",
+      "page": 58,
+      "type": "revenue",
+      "rows": 25,
+      "cols": 28,
+      "headers": []
+    },
+    {
+      "id": "page_0059_table_01",
+      "page": 59,
+      "type": "revenue",
+      "rows": 12,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0060_table_01",
+      "page": 60,
+      "type": "revenue",
+      "rows": 15,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0060_table_02",
+      "page": 60,
+      "type": "revenue",
+      "rows": 23,
+      "cols": 28,
+      "headers": []
+    },
+    {
+      "id": "page_0060_table_03",
+      "page": 60,
+      "type": "revenue",
+      "rows": 12,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0061_table_01",
+      "page": 61,
+      "type": "revenue",
+      "rows": 18,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0061_table_02",
+      "page": 61,
+      "type": "revenue",
+      "rows": 26,
+      "cols": 29,
+      "headers": []
+    },
+    {
+      "id": "page_0062_table_01",
+      "page": 62,
+      "type": "revenue",
+      "rows": 15,
+      "cols": 19,
+      "headers": []
+    },
+    {
+      "id": "page_0063_table_01",
+      "page": 63,
+      "type": "revenue",
+      "rows": 22,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0063_table_02",
+      "page": 63,
+      "type": "revenue",
+      "rows": 25,
+      "cols": 28,
+      "headers": []
+    },
+    {
+      "id": "page_0064_table_01",
+      "page": 64,
+      "type": "revenue",
+      "rows": 17,
+      "cols": 19,
+      "headers": []
+    },
+    {
+      "id": "page_0065_table_01",
+      "page": 65,
+      "type": "revenue",
+      "rows": 20,
+      "cols": 20,
+      "headers": []
+    },
+    {
+      "id": "page_0065_table_02",
+      "page": 65,
+      "type": "revenue",
+      "rows": 26,
+      "cols": 26,
+      "headers": []
+    },
+    {
+      "id": "page_0066_table_01",
+      "page": 66,
+      "type": "revenue",
+      "rows": 18,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0067_table_01",
+      "page": 67,
+      "type": "revenue",
+      "rows": 20,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0067_table_02",
+      "page": 67,
+      "type": "revenue",
+      "rows": 24,
+      "cols": 28,
+      "headers": []
+    },
+    {
+      "id": "page_0068_table_01",
+      "page": 68,
+      "type": "revenue",
+      "rows": 18,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0069_table_01",
+      "page": 69,
+      "type": "revenue",
+      "rows": 9,
+      "cols": 21,
+      "headers": []
+    },
+    {
+      "id": "page_0069_table_02",
+      "page": 69,
+      "type": "revenue",
+      "rows": 17,
+      "cols": 27,
+      "headers": []
+    },
+    {
+      "id": "page_0069_table_03",
+      "page": 69,
+      "type": "revenue",
+      "rows": 12,
+      "cols": 22,
+      "headers": []
+    },
+    {
+      "id": "page_0069_table_04",
+      "page": 69,
+      "type": "expenditure",
+      "rows": 9,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0070_table_01",
+      "page": 70,
+      "type": "revenue",
+      "rows": 14,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0070_table_02",
+      "page": 70,
+      "type": "revenue",
+      "rows": 23,
+      "cols": 29,
+      "headers": []
+    },
+    {
+      "id": "page_0070_table_03",
+      "page": 70,
+      "type": "revenue",
+      "rows": 13,
+      "cols": 23,
+      "headers": []
+    },
+    {
+      "id": "page_0071_table_01",
+      "page": 71,
+      "type": "departmental",
+      "rows": 20,
+      "cols": 42,
+      "headers": []
+    },
+    {
+      "id": "page_0072_table_01",
+      "page": 72,
+      "type": "revenue",
+      "rows": 18,
+      "cols": 15,
+      "headers": []
+    },
+    {
+      "id": "page_0072_table_02",
+      "page": 72,
+      "type": "revenue",
+      "rows": 18,
+      "cols": 15,
+      "headers": []
+    },
+    {
+      "id": "page_0073_table_01",
+      "page": 73,
+      "type": "expenditure",
+      "rows": 23,
+      "cols": 34,
+      "headers": []
+    },
+    {
+      "id": "page_0073_table_02",
+      "page": 73,
+      "type": "general",
+      "rows": 5,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0073_table_03",
+      "page": 73,
+      "type": "general",
+      "rows": 5,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0073_table_04",
+      "page": 73,
+      "type": "general",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "New"
+      ]
+    },
+    {
+      "id": "page_0073_table_05",
+      "page": 73,
+      "type": "expenditure",
+      "rows": 2,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0073_table_06",
+      "page": 73,
+      "type": "departmental",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Discrete Schemes"
+      ]
+    },
+    {
+      "id": "page_0073_table_07",
+      "page": 73,
+      "type": "departmental",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Rolling Schemes"
+      ]
+    },
+    {
+      "id": "page_0073_table_08",
+      "page": 73,
+      "type": "general",
+      "rows": 2,
+      "cols": 1,
+      "headers": [
+        "Tynwald"
+      ]
+    },
+    {
+      "id": "page_0074_table_01",
+      "page": 74,
+      "type": "expenditure",
+      "rows": 40,
+      "cols": 34,
+      "headers": []
+    },
+    {
+      "id": "page_0074_table_02",
+      "page": 74,
+      "type": "general",
+      "rows": 4,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0074_table_03",
+      "page": 74,
+      "type": "expenditure",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0074_table_04",
+      "page": 74,
+      "type": "general",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "New"
+      ]
+    },
+    {
+      "id": "page_0075_table_01",
+      "page": 75,
+      "type": "expenditure",
+      "rows": 37,
+      "cols": 34,
+      "headers": []
+    },
+    {
+      "id": "page_0075_table_02",
+      "page": 75,
+      "type": "general",
+      "rows": 4,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0075_table_03",
+      "page": 75,
+      "type": "expenditure",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0075_table_04",
+      "page": 75,
+      "type": "general",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "New"
+      ]
+    },
+    {
+      "id": "page_0076_table_01",
+      "page": 76,
+      "type": "budget",
+      "rows": 37,
+      "cols": 34,
+      "headers": []
+    },
+    {
+      "id": "page_0077_table_01",
+      "page": 77,
+      "type": "departmental",
+      "rows": 31,
+      "cols": 34,
+      "headers": []
+    },
+    {
+      "id": "page_0078_table_01",
+      "page": 78,
+      "type": "expenditure",
+      "rows": 38,
+      "cols": 34,
+      "headers": []
+    },
+    {
+      "id": "page_0078_table_02",
+      "page": 78,
+      "type": "general",
+      "rows": 4,
+      "cols": 1,
+      "headers": [
+        "Total Spend"
+      ]
+    },
+    {
+      "id": "page_0078_table_03",
+      "page": 78,
+      "type": "expenditure",
+      "rows": 3,
+      "cols": 1,
+      "headers": [
+        "Total"
+      ]
+    },
+    {
+      "id": "page_0079_table_01",
+      "page": 79,
+      "type": "budget",
+      "rows": 30,
+      "cols": 28,
+      "headers": []
+    },
+    {
+      "id": "page_0080_table_01",
+      "page": 80,
+      "type": "expenditure",
+      "rows": 21,
+      "cols": 36,
+      "headers": []
+    },
+    {
+      "id": "page_0081_table_01",
+      "page": 81,
+      "type": "expenditure",
+      "rows": 40,
+      "cols": 32,
+      "headers": []
+    },
+    {
+      "id": "page_0081_table_02",
+      "page": 81,
+      "type": "expenditure",
+      "rows": 2,
+      "cols": 1,
+      "headers": [
+        "Total Estimated"
+      ]
+    },
+    {
+      "id": "page_0082_table_01",
+      "page": 82,
+      "type": "general",
+      "rows": 14,
+      "cols": 9,
+      "headers": []
+    },
+    {
+      "id": "page_0083_table_01",
+      "page": 83,
+      "type": "departmental",
+      "rows": 32,
+      "cols": 19,
+      "headers": []
+    },
+    {
+      "id": "page_0084_table_01",
+      "page": 84,
+      "type": "departmental",
+      "rows": 19,
+      "cols": 9,
+      "headers": [
+        "Discrete Scheme",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "page_0085_table_01",
+      "page": 85,
+      "type": "expenditure",
+      "rows": 29,
+      "cols": 9,
+      "headers": [
+        "Rolling Scheme",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "page_0086_table_01",
+      "page": 86,
+      "type": "expenditure",
+      "rows": 20,
+      "cols": 5,
+      "headers": [
+        "Rolling Scheme",
+        "",
+        "Tynwald"
+      ]
+    },
+    {
+      "id": "page_0087_table_01",
+      "page": 87,
+      "type": "budget",
+      "rows": 12,
+      "cols": 9,
+      "headers": [
+        "Rolling Scheme",
+        "",
+        ""
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "page": 6,
+      "text": "2. OVERALL FINANCIAL SUMMARY FOR REVENUE AND CAPITAL",
+      "level": 2
+    },
+    {
+      "page": 7,
+      "text": "3. THE FIVE YEAR FINANCIAL PLAN",
+      "level": 2
+    },
+    {
+      "page": 16,
+      "text": "4. It has been assumed that £60 million of capital spending will be delivered per year for CFR",
+      "level": 2
+    },
+    {
+      "page": 18,
+      "text": "1. Assumed capital spending per year from CLF and CFR projects going forward rather than full delivery of the entire capital programme detailed in Appendix 4.",
+      "level": 3
+    },
+    {
+      "page": 19,
+      "text": "a. External fund balances are presented here at projected market value rather than book value and it should be noted that market values may fluctuate against market and",
+      "level": 2
+    },
+    {
+      "page": 19,
+      "text": "b. More detail on the Pension Account and the National Insurance Fund is given in Section 5 (Table 15 and 16).",
+      "level": 3
+    },
+    {
+      "page": 19,
+      "text": "c. Movements relating to the Bond Issue funds are included within Tables 22 and 23.",
+      "level": 3
+    },
+    {
+      "page": 19,
+      "text": "d. An explanation of reserves is provided in Appendix 7.",
+      "level": 3
+    },
+    {
+      "page": 19,
+      "text": "e. Returns on investments have been calculated based on the assumption that mandated returns will be achieved by the end of the period of the indicative financial plan.",
+      "level": 3
+    },
+    {
+      "page": 20,
+      "text": "4. REVENUE - INCOME",
+      "level": 2
+    },
+    {
+      "page": 26,
+      "text": "5. REVENUE - EXPENDITURE",
+      "level": 2
+    },
+    {
+      "page": 26,
+      "text": "a. Gross income and expenditure figures for 2025-26 include National Insurance Contributions NHS",
+      "level": 2
+    },
+    {
+      "page": 26,
+      "text": "b. Employee pension contributions and the subsequent use of them to offset pension costs are shown",
+      "level": 2
+    },
+    {
+      "page": 26,
+      "text": "c. The Statutory Boards figures above include the gross income and gross expenditure of Manx Care.",
+      "level": 3
+    },
+    {
+      "page": 26,
+      "text": "d. Treasury figures include the Government Contingency budget totalling £19.7 million.",
+      "level": 4
+    },
+    {
+      "page": 29,
+      "text": "1. Approved adjustments include movements within different pay codes and between pay and non-pay",
+      "level": 2
+    },
+    {
+      "page": 36,
+      "text": "6. THE CAPITAL PROGRAMME",
+      "level": 2
+    },
+    {
+      "page": 43,
+      "text": "7. THE RESERVES",
+      "level": 2
+    },
+    {
+      "page": 50,
+      "text": "1. Anticipated spend in 2025-26 before uprating",
+      "level": 2
+    },
+    {
+      "page": 50,
+      "text": "2. Basic pension increased by 4.1% per triple lock. Additional pension increased by 1.7%. Assumed 3.5% overall",
+      "level": 7
+    },
+    {
+      "page": 50,
+      "text": "3. Per UK triple lock",
+      "level": 2
+    },
+    {
+      "page": 50,
+      "text": "4. Higher rate mobility component to be uprated by 1.7%, same as in the UK all other components to be uprated by 2.2% per",
+      "level": 4
+    },
+    {
+      "page": 50,
+      "text": "5. Starting amount includes extra £1.2m in relation to the uplifts in the income thresholds",
+      "level": 3
+    },
+    {
+      "page": 50,
+      "text": "6. Includes £100k uplift to cover the cost of increasing certain maxima",
+      "level": 2
+    },
+    {
+      "page": 50,
+      "text": "7. All costs of uprating to the nearest whole thousand",
+      "level": 2
+    },
+    {
+      "page": 73,
+      "text": "31 March March Approval",
+      "level": 1
+    },
+    {
+      "page": 74,
+      "text": "31 March",
+      "level": 1
+    },
+    {
+      "page": 75,
+      "text": "31 March",
+      "level": 1
+    },
+    {
+      "page": 78,
+      "text": "31 March",
+      "level": 1
+    }
+  ],
+  "numerical_data": [
+    {
+      "page": 6,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 6,
+      "text": "2025-26 Budget",
+      "type": "financial"
+    },
+    {
+      "page": 6,
+      "text": "2.1 Government Revenue Forecast 2025-26 to 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 6,
+      "text": "TABLE 1 – Government Revenue Forecast 2025-26 to 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 6,
+      "text": "GOVERNMENT REVENUE FORECAST 2025-26 TO 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 6,
+      "text": "1,339,146 1,347,249 Income 1,389,024 1,446,963 1,500,303 1,538,810 1,579,380",
+      "type": "financial"
+    },
+    {
+      "page": 6,
+      "text": "(1,338,180) (1,360,940) Expenditure (1,387,759) (1,445,229) (1,499,254) (1,537,661) (1,577,061)",
+      "type": "financial"
+    },
+    {
+      "page": 6,
+      "text": "5,000 5,000 Transfer from General Revenue to CLF 10,000 5,000 10,000 10,000 12,000",
+      "type": "financial"
+    },
+    {
+      "page": 7,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 7,
+      "text": "The budget for 2025-26 is presented along with the indicative financial plan for the subsequent",
+      "type": "financial"
+    },
+    {
+      "page": 7,
+      "text": "sectors by 2032, reaching an overall GDP of £10bn",
+      "type": "financial"
+    },
+    {
+      "page": 7,
+      "text": "• Public finances: To generate over £200m of additional annual income to reinvest",
+      "type": "financial"
+    },
+    {
+      "page": 8,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 8,
+      "text": "Economic conditions have been broadly stable in the Isle of Man since the 2024-25 Budget",
+      "type": "financial"
+    },
+    {
+      "page": 8,
+      "text": "energy cost growth slowing and reversing in some areas. That said, absolute price levels",
+      "type": "financial"
+    },
+    {
+      "page": 9,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "impact in the next two years and amounts are estimates however initially £35 million per",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "forecasted income included in the plan to be prudent, with any additional income over and",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "facilitate additional funding to the NHS following the reduction in the income tax rate from 22%",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "to 21%. In total this increases the allocation from a forecast £54.7 million in the 2024-25 Pink",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "Book to £71.0 million, with £6.3 million being due to the statistical revision and the remaining",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "£10 million from the policy change raising the NHS allocation from 19.3% to 24.8%.",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "allocation of £10m has been made for 2025-26 it remains to be seen if this will be sufficient",
+      "type": "financial"
+    },
+    {
+      "page": 10,
+      "text": "the estimated spend from £70 million to £60 million each year. This reduction is offset by",
+      "type": "financial"
+    },
+    {
+      "page": 11,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 11,
+      "text": "The table includes a budget for 2025-26 and indicative financial projections for the financial",
+      "type": "financial"
+    },
+    {
+      "page": 11,
+      "text": "Details of income and expenditure by department and other body are included at Table 12A",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Income and Other Taxes 324,915 367,150 367,682 384,040 407,104 435,362 449,247 462,724",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Other Treasury Income 16,040 11,319 12,959 11,231 11,568 11,915 12,272 12,640",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "TOTAL INCOME 1,302,084 1,339,146 1,347,249 1,389,024 1,446,963 1,500,303 1,538,810 1,579,380",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Employee Costs 460,155 489,814 495,895 507,240 522,177 537,623 553,593 570,108",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Pension Costs (net departmental) 82,237 80,707 88,856 80,292 80,653 80,989 81,304 81,591",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Total Pension Costs 131,419 141,079 141,910 142,921 145,170 147,461 149,797 152,182",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Non-Employee Costs 325,358 328,663 343,395 345,276 357,601 365,560 374,894 382,774",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Total Non-Employee Costs 280,328 275,994 290,695 274,276 284,201 290,560 298,494 304,674",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Revenue Funded Welfare Payments 81,976 87,745 86,857 87,943 89,664 91,418 93,207 95,034",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Housing Reserve Fund Expenditure - 2,735 2,735 4,735 4,735 4,046 2,735 2,735",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Internal Fund Expenditure 31,726 32,250 39,150 41,750 38,250 37,250 36,250 35,250",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Total Expenditure pre Reserves Transfers 1,356,786 1,381,475 1,409,836 1,458,051 1,506,254 1,558,736 1,594,690 1,633,282",
+      "type": "financial"
+    },
+    {
+      "page": 12,
+      "text": "Net Expenditure post Reserves Transfer 1,342,237 1,338,180 1,360,940 1,387,759 1,445,229 1,499,254 1,537,661 1,577,061",
+      "type": "financial"
+    },
+    {
+      "page": 13,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 13,
+      "text": "Legal Costs Reserves (750) (4,150) (4,150) (750) (750) (750) (750) (750)",
+      "type": "financial"
+    },
+    {
+      "page": 13,
+      "text": "Surplus/(deficit) on the General Revenue Account (40,153) 966 (13,691) 1,265 1,734 1,049 1,149 2,319",
+      "type": "financial"
+    },
+    {
+      "page": 13,
+      "text": "* The closed internal funds have been re-purposed into ongoing internal funds as part of the 2023-24 Budget. Media Development Fund is to be amalgamated into the Reserve Fund as first",
+      "type": "financial"
+    },
+    {
+      "page": 14,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 14,
+      "text": "The structural deficit in 2023-24 was £103.1m as the Government finances continued to suffer",
+      "type": "financial"
+    },
+    {
+      "page": 14,
+      "text": "budgeted levels, this was not sufficient to offset the increased expenditure levels. This was",
+      "type": "financial"
+    },
+    {
+      "page": 14,
+      "text": "however, an improved position compared to the budgeted structural deficit of £156.7m for",
+      "type": "financial"
+    },
+    {
+      "page": 14,
+      "text": "The forecast structural deficit for 2024-25 is slightly higher than budgeted for the year, being",
+      "type": "financial"
+    },
+    {
+      "page": 14,
+      "text": "£91.4m against the budgeted position of £89.7m. The indicative financial plan shows a",
+      "type": "financial"
+    },
+    {
+      "page": 14,
+      "text": "trends, departmental budgets will continue to face cost pressure, including those from pay",
+      "type": "financial"
+    },
+    {
+      "page": 14,
+      "text": "£60m per year Capital Financing Reserve programme from revenue by 2027-28 and",
+      "type": "financial"
+    },
+    {
+      "page": 15,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 15,
+      "text": "Gross Income 1,302,084 1,339,146 1,347,249 1,389,024 1,446,963 1,500,303 1,538,810 1,579,380",
+      "type": "financial"
+    },
+    {
+      "page": 15,
+      "text": "Operating Income 959,863 1,013,412 1,018,068 1,048,704 1,092,551 1,138,388 1,169,182 1,201,912",
+      "type": "financial"
+    },
+    {
+      "page": 15,
+      "text": "Expenditure 1,356,786 1,381,475 1,409,836 1,458,051 1,506,254 1,558,736 1,594,691 1,633,283",
+      "type": "financial"
+    },
+    {
+      "page": 15,
+      "text": "Less Internal Fund expenditure (31,726) (32,250) (39,150) (41,750) (38,250) (37,250) (36,250) (35,250)",
+      "type": "financial"
+    },
+    {
+      "page": 15,
+      "text": "Operating Expenditure 957,378 998,132 1,018,857 1,029,017 1,053,712 1,080,562 1,108,592 1,135,499",
+      "type": "financial"
+    },
+    {
+      "page": 15,
+      "text": "Capital Financing Reserve Expenditure (73,924) (70,000) (48,694) (60,000) (60,000) (60,000) (60,000) (60,000)",
+      "type": "financial"
+    },
+    {
+      "page": 16,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 16,
+      "text": "budgeted levels continues. The typical level of capital delivery remains at around £60 million",
+      "type": "financial"
+    },
+    {
+      "page": 16,
+      "text": "to £80 million per year.",
+      "type": "financial"
+    },
+    {
+      "page": 16,
+      "text": "The anticipated capital expenditure for 2025-26 is approximately £90 million which remains",
+      "type": "financial"
+    },
+    {
+      "page": 16,
+      "text": "below. This is compared to a Capital Programme of approximately £135.5 million for 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 16,
+      "text": "4. It has been assumed that £60 million of capital spending will be delivered per year for CFR",
+      "type": "financial"
+    },
+    {
+      "page": 16,
+      "text": "funded projects and between £20 million and £40 million of spending from projects funded",
+      "type": "financial"
+    },
+    {
+      "page": 16,
+      "text": "are still expected to be higher than the previously estimated delivery amount of £15 million,",
+      "type": "financial"
+    },
+    {
+      "page": 17,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 17,
+      "text": "Investment Income 1,466 - 1,496 1,526 1,556 1,587 1,619 1,651",
+      "type": "financial"
+    },
+    {
+      "page": 17,
+      "text": "Total Income 5,259 4,032 8,369 11,799 13,863 16,180 18,865 20,664",
+      "type": "financial"
+    },
+    {
+      "page": 17,
+      "text": "Total Expenditure 21,614 15,000 26,715 32,000 35,000 40,000 20,000 20,000",
+      "type": "financial"
+    },
+    {
+      "page": 17,
+      "text": "Transfer (to)/from General Revenue 10,000 5,000 5,000 10,000 5,000 10,000 10,000 12,000",
+      "type": "financial"
+    },
+    {
+      "page": 18,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 18,
+      "text": "Total Income 2,443 3,185 3,185 5,185 5,185 4,496 3,185 3,185",
+      "type": "financial"
+    },
+    {
+      "page": 18,
+      "text": "Total Expenditure 73,924 70,000 48,694 60,000 60,000 60,000 60,000 60,000",
+      "type": "financial"
+    },
+    {
+      "page": 18,
+      "text": "Transfer (to)/from General Revenue 48,500 20,000 20,000 19,000 43,000 58,000 61,000 64,000",
+      "type": "financial"
+    },
+    {
+      "page": 19,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 19,
+      "text": "Taking account of the combined revenue and capital position (including the operating account balance), together with projections for cash and",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "2024-25 Budget Against Probable",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "£ '000 2024-25 Transfers Budget 2024-25 Variance",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "Income & Other Taxes 367,150 - 367,150 367,682 532",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "Other Treasury Income 11,319 - 11,319 12,959 1,640",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "Total Treasury Income 1,151,544 - 1,151,544 1,155,104 3,560",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "Treasury income is forecast to be slightly ahead of the 2024-25 budgeted level, mainly due to",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "4.2 2025-26 Budget Overview",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "The budget figures included within this Pink Book present income figures on a gross basis,",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "Income & Other Taxes 367,150 367,682 384,040 407,104 435,362 449,247 462,724",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "Other Treasury Income 11,319 12,959 11,231 11,568 11,915 12,272 12,640",
+      "type": "financial"
+    },
+    {
+      "page": 20,
+      "text": "Total Treasury Income 1,151,544 1,155,104 1,198,565 1,251,494 1,299,688 1,332,669 1,366,848",
+      "type": "financial"
+    },
+    {
+      "page": 21,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 21,
+      "text": "4.3 2025-26 Budget Proposals",
+      "type": "financial"
+    },
+    {
+      "page": 21,
+      "text": "The revenues raised by Customs & Excise include “shared” duties under the 1979 Customs",
+      "type": "financial"
+    },
+    {
+      "page": 21,
+      "text": "income for the period of the indicative financial plan presented. The surveys for 2023-24 have",
+      "type": "financial"
+    },
+    {
+      "page": 21,
+      "text": "machine games duty), Lottery Duty and non-revenue receipts (fines, penalties and interest).",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Single Person £6,500 £6,500 £6,500",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Jointly Assessed Couples £13,000 £13,000 £13,000",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Single Person £14,750* £14,500* £14,500*",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Jointly Assessed Couples £29,500* £29,000* £29,000*",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Single Parent £6,400 £6,400 £6,400",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Blind Person £2,900 £2,900 £2,900",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Disabled Person £2,900 £2,900 £2,900",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "Retail Trade (Small companies limit of £500,000) 10% 10% or 15% 10%",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "* The Personal Allowance is reduced by £1 for every £2 that your income is in excess of £100,000 or £200,000",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "For the 2025-26 tax year, the lower rate of income tax remains at 10% and the higher rate will",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "The threshold up to which the lower rate of income tax applies remains at £6,500 for a single",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "person and £13,000 for a jointly assessed couple. The Personal Allowance will increase from",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "£14,500 to £14,750 for a resident individual and from £29,000 to £29,500 for a jointly assessed",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "The personal allowance will continue to be reduced by £1 for every £2 that a person’s total",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "income is above £100,000. This means if a person’s total income is £129,500 or above their",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "The single parent allowance will remain at £6,400 and the blind or disabled person’s allowance",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "at £2,900.",
+      "type": "financial"
+    },
+    {
+      "page": 22,
+      "text": "will increase to £220,000 and to £440,000 for a jointly assessed couple.",
+      "type": "financial"
+    },
+    {
+      "page": 23,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 23,
+      "text": "The standard rate of tax applying to the income of companies remains at 0% with the",
+      "type": "financial"
+    },
+    {
+      "page": 23,
+      "text": "• Income from Retail Trade (subject to a small companies limit of £500,000) – 10%",
+      "type": "financial"
+    },
+    {
+      "page": 23,
+      "text": "income) – 20%",
+      "type": "financial"
+    },
+    {
+      "page": 23,
+      "text": "• Income from Petroleum extraction in the Isle of Man and its territorial waters – 20%",
+      "type": "financial"
+    },
+    {
+      "page": 23,
+      "text": "Minimum Tax (large multinational enterprise groups with annual revenue of Euro 750 million or",
+      "type": "financial"
+    },
+    {
+      "page": 23,
+      "text": "TABLE 10 – Cost of Income Tax Deductions 2022-23",
+      "type": "financial"
+    },
+    {
+      "page": 23,
+      "text": "pension. In the Isle of Man, they also cover the cost of the Manx pension supplement,",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "The Lower Earnings Limit (LEL) will increase from £123 to £125 per week from April 2025 to",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "Class 1 NIC will increase from £160 per week to £168 per week and the Upper Earnings Limit",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "will increase from £938 to £1,032 per week from April 2025.",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "The profits level at which Class 4 NIC becomes payable will increase to £168 per week (Lower",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "Profits Limit). The Upper Profits Limit for Class 4 NIC will increase to £1,032 per week and",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "From April 2025 Class 2 NIC will increase to £6.45 per week for self-employed and £7.90 per",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "April 2025, this level will increase to £8,736 for the year (Small Earnings Exception Limit).",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "will increase from £6.15 to £6.25 per week for the 2025-26 tax year.",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "Up to £168.00 Nil Nil",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "£168.01 - £1,032.00 11% 12.8%",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "£1,032.01 and over 1% 12.8%",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "Below £168.00 Nil",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "£168.00 £6.45 per week",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "£168.01 - £1,032.00 As above + 8%",
+      "type": "financial"
+    },
+    {
+      "page": 24,
+      "text": "£1,032.01 and over As above + 1%",
+      "type": "financial"
+    },
+    {
+      "page": 25,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 25,
+      "text": "From April 2025, the voluntary Class 3 NIC rate will increase from £18.95 per week to £19.70",
+      "type": "financial"
+    },
+    {
+      "page": 25,
+      "text": "Treasury investment income is derived from the externally managed investment funds,",
+      "type": "financial"
+    },
+    {
+      "page": 25,
+      "text": "from the Isle of Man Steam Packet Group forecast to be £1 million from each for the financial",
+      "type": "financial"
+    },
+    {
+      "page": 25,
+      "text": "A small element of this income relates to miscellaneous Treasury income, for example, late",
+      "type": "financial"
+    },
+    {
+      "page": 26,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 26,
+      "text": "Income and Other Taxes 384,040 - (384,040)",
+      "type": "financial"
+    },
+    {
+      "page": 26,
+      "text": "a. Gross income and expenditure figures for 2025-26 include National Insurance Contributions NHS",
+      "type": "financial"
+    },
+    {
+      "page": 26,
+      "text": "allocation of £71 million.",
+      "type": "financial"
+    },
+    {
+      "page": 26,
+      "text": "d. Treasury figures include the Government Contingency budget totalling £19.7 million.",
+      "type": "financial"
+    },
+    {
+      "page": 27,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 27,
+      "text": "a) The NHS Allocation is shown as income into the DHSC, however this is not generated by the department directly. Table 36 shows the Gross Income and Expenditure of the DHSC in full.",
+      "type": "financial"
+    },
+    {
+      "page": 28,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 28,
+      "text": "EXPENDITURE - 2024-25 BUDGET VERSUS PROBABLE",
+      "type": "financial"
+    },
+    {
+      "page": 28,
+      "text": "£ '000 2024-25 Transfers Budget 2024-25",
+      "type": "financial"
+    },
+    {
+      "page": 28,
+      "text": "SURPLUS (Income over expenditure) 966 - 966 (13,691) (14,657)",
+      "type": "financial"
+    },
+    {
+      "page": 28,
+      "text": "5.2 2025-26 Budget - Overview",
+      "type": "financial"
+    },
+    {
+      "page": 28,
+      "text": "Government’s total expenditure after the use of reserves for 2025-26 is budgeted to be £1.388",
+      "type": "financial"
+    },
+    {
+      "page": 28,
+      "text": "Government is budgeted to be £1.3 million.",
+      "type": "financial"
+    },
+    {
+      "page": 28,
+      "text": "A general uplift to both pay and non-pay costs has been applied for the 2025-26 year within",
+      "type": "financial"
+    },
+    {
+      "page": 29,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 29,
+      "text": "As noted above, a general uplift of 2% has been applied to pay budgets for 2025-26. Further",
+      "type": "financial"
+    },
+    {
+      "page": 29,
+      "text": "Budget 395,667 12,261 45,896 35,990 489,814 60,372 550,186",
+      "type": "financial"
+    },
+    {
+      "page": 29,
+      "text": "Budget 2025-26 407,201 14,223 47,388 38,428 507,240 62,629 569,869",
+      "type": "financial"
+    },
+    {
+      "page": 30,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 30,
+      "text": "Across the indicative financial plan the employee costs uplift by an average of 2% across departments reflecting a stable inflationary",
+      "type": "financial"
+    },
+    {
+      "page": 31,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 31,
+      "text": "The level of additional revenue expenditure that will be required during 2025-26 is expected",
+      "type": "financial"
+    },
+    {
+      "page": 31,
+      "text": "to be around £40 million with further revenue expenditure being required each year into the",
+      "type": "financial"
+    },
+    {
+      "page": 31,
+      "text": "future. This expenditure is included within the 2025-26 budget and the indicative financial plan",
+      "type": "financial"
+    },
+    {
+      "page": 31,
+      "text": "Pension Costs 131 142 143 145 147 150 152",
+      "type": "financial"
+    },
+    {
+      "page": 31,
+      "text": "Revenue liability 40 46 40 40 40 39 38",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "Agency Income 49.4 43.4 43.4 43.0 42.5 42.1 41.7 41.3",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "Income 8.5 - - - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "Administration Costs 3.6 3.6 3.8 3.8 3.9 4.0 4.1 4.1",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "Investment Income 37.3 29.6 30.1 30.8 31.0 31.5 31.9 32.7",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "the year that are running at a higher level than the 2024-25 budget. The current year income",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "Expenditure on revenue funded benefits for 2024-25 is currently forecast to be approximately",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "£890,000 lower than budget. Some benefit categories have seen lower than budgeted levels",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "The annual uprating of benefits is expected to increase the spending in this area by £10.2",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "Pension, amounting to £4.9 million and £2.6 million respectively.",
+      "type": "financial"
+    },
+    {
+      "page": 32,
+      "text": "for the 2025-26 financial year, at a cost of approximately £100,000.",
+      "type": "financial"
+    },
+    {
+      "page": 33,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 33,
+      "text": "forecasts to be made. This revision in isolation results in the 2025-26 allocation being £6.3",
+      "type": "financial"
+    },
+    {
+      "page": 33,
+      "text": "million higher than the previous forecast of £54.7 million in the 2024-25 Pink Book.",
+      "type": "financial"
+    },
+    {
+      "page": 33,
+      "text": "allocated to the NHS following the reduction in the income tax rate from 22% to 21%.",
+      "type": "financial"
+    },
+    {
+      "page": 33,
+      "text": "Non-pay cost amounts have been increased for the 2025-26 financial year by 1% to partially",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "contingency has been set at £19.7 million for 2025-26 to include capacity for departmental",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "pressures and can be allocated to departmental budgets, subject to applications to access",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "contingency funding being scrutinised in close detail. £10 million of this contingency funding",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "In addition to the contingency funding held within the revenue budget there was £14.5 million",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "The current forecasts show that approximately £4 million of the Contingency Fund will be",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "utilised during 2024-25 following an additional £1.5 million being added to this fund during the",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "The balance to be carried forward at 1 April 2025 is estimated to be £12 million. This budget",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "includes an additional £5.5 million of funding for the Contingency Fund during 2025-26.",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "with minor timing variances. It is proposed to include a Capital Contingency Budget of £9.9",
+      "type": "financial"
+    },
+    {
+      "page": 34,
+      "text": "million for 2025-26. A Capital Projects Inflation Budget of £2 million is also included within the",
+      "type": "financial"
+    },
+    {
+      "page": 35,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 36,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 36,
+      "text": "into the CFR is above the current estimated delivery cost, however it is considered prudent to",
+      "type": "financial"
+    },
+    {
+      "page": 36,
+      "text": "Capital budgets for 2025-26 and for the period of the indicative financial plan have been",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "The Project Development Fund continues to be available and will be increased by a further £5",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "purchases) has been lower than budgeted for 2024-25. The projected overall spend for the",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "current year is £75.4 million compared to the overall budget of £101.3 million (excluding",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "projects that are funded outside of the CFR and CLF). The budget utilisation for 2024-25 is",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "6.3 2025-26 Budget",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "The total proposed Central Government funded Capital Programme for 2025-26 is £135.5",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "million (£87.4 million from the CFR and £48.1 million from the CLF).",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "Programme totals £508.4 million (£299.8 million from the CFR and £208.6 million from the",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "The CFR financed programme includes £53.4 million of proposed new funding across discrete",
+      "type": "financial"
+    },
+    {
+      "page": 37,
+      "text": "and rolling schemes for approval (£6.3 million for discrete schemes and £47.1 million in rolling",
+      "type": "financial"
+    },
+    {
+      "page": 38,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 38,
+      "text": "New approvals total £35.5 million and there are £12.6 million of brought forward approvals",
+      "type": "financial"
+    },
+    {
+      "page": 38,
+      "text": "estimated delivery budgeted, this continues to track below the full estimated cost of the capital",
+      "type": "financial"
+    },
+    {
+      "page": 38,
+      "text": "expenditure for 2025-26, in accordance with Section 3 of the Budget Order Paper, is shown",
+      "type": "financial"
+    },
+    {
+      "page": 39,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 39,
+      "text": "Total Cost 2025/26 2026/27 2027/28 2028/29 2029/30 Tynwald",
+      "type": "financial"
+    },
+    {
+      "page": 40,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 41,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 41,
+      "text": "Investment Income 1,496 1,526 1,556 1,587 1,619 1,651",
+      "type": "financial"
+    },
+    {
+      "page": 41,
+      "text": "TOTAL INCOME 11,554 16,984 20,294 21,408 23,217 23,983",
+      "type": "financial"
+    },
+    {
+      "page": 41,
+      "text": "TOTAL BUDGETED EXPENDITURE 75,409 135,450 111,736 109,132 78,072 74,081",
+      "type": "financial"
+    },
+    {
+      "page": 42,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 42,
+      "text": "Treasury to approve, where appropriate, the funding of scheme overspends up to £2,000,000.",
+      "type": "financial"
+    },
+    {
+      "page": 42,
+      "text": "are identified and this has not been included within the 2025-26 budget. This funding will be",
+      "type": "financial"
+    },
+    {
+      "page": 43,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 43,
+      "text": "The 2025-26 budget relies on the utilisation of £110.6 million of reserves, compared to an",
+      "type": "financial"
+    },
+    {
+      "page": 43,
+      "text": "estimated fund use of £98.4 million for the 2024-25 financial year. This can be used as a proxy",
+      "type": "financial"
+    },
+    {
+      "page": 43,
+      "text": "delivery basis of £60 million per year for the Capital Financing Reserve programme. Planning",
+      "type": "financial"
+    },
+    {
+      "page": 43,
+      "text": "contribution of £19 million from General Revenue to the Capital Financing Reserve, however",
+      "type": "financial"
+    },
+    {
+      "page": 43,
+      "text": "the budgeted spending is £60 million. This deficit reduces over the next few years until the",
+      "type": "financial"
+    },
+    {
+      "page": 43,
+      "text": "Capital Programme is fully funded from General Revenue in 2028-29.",
+      "type": "financial"
+    },
+    {
+      "page": 43,
+      "text": "Investment returns on externally invested reserves are forecast at around £40.2 million,",
+      "type": "financial"
+    },
+    {
+      "page": 44,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 44,
+      "text": "Internal Funds Expenditure Transfer to Operating Account 31.7 32.3 39.2 41.8 38.3 37.3 36.3 35.3",
+      "type": "financial"
+    },
+    {
+      "page": 44,
+      "text": "Housing Reserve Fund Expenditure Transfer to Operating Account - 2.7 2.7 4.7 4.7 4.0 2.7 2.7",
+      "type": "financial"
+    },
+    {
+      "page": 44,
+      "text": "General Revenue (Surplus)/Deficit 40.2 (1.0) 13.7 (1.3) (1.7) (1.1) (1.2) (2.4)",
+      "type": "financial"
+    },
+    {
+      "page": 44,
+      "text": "Capital Financing Reserve Expenditure (net External Res transfer) 73.9 26.0 0.2 55.0 48.0 60.0 60.0 60.0",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "without further recourse to Tynwald as part of the 2018-19 budget process. Through this",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "For the 2025-26 budget, the Treasury has recommended the following transfers to the internal",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Agriculture and Forestry Fund - £4 million in order to support the Isle of Man Meat",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Contingency Fund - £5.5 million to provide funding for unanticipated and unforeseen",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "£2.8 million is provided as a contribution from general revenue.",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Transformation Fund - £2.5 million to make funding available to finance initiatives",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "savings. A further £2.8 million is provided as a contribution from general revenue.",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Healthcare Transformation Fund – £4 million is proposed to be added to this fund in",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Legal Costs Reserve – A further £0.75 million is proposed to be transferred to",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Medical Indemnity Fund – £3 million top up is proposed to this fund in order to",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Project Development Fund – A further £5 million is proposed to be added to this fund",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Housing and Communities Fund – £1 million is to be transferred to this fund to",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "• Housing Deficiency Fund - £2 million is to be transferred to this newly created fund",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "to top up the £7.5 million being transferred from the DOI in relation to the Housing",
+      "type": "financial"
+    },
+    {
+      "page": 45,
+      "text": "The projected probable income and expenditure for 2024-25 in respect of each of the internally",
+      "type": "financial"
+    },
+    {
+      "page": 46,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 46,
+      "text": "TABLE 22 – Probable Income and Expenditure 2024-25",
+      "type": "financial"
+    },
+    {
+      "page": 46,
+      "text": "THE RESERVES - PROBABLE INCOME & EXPENDITURE 2024-25",
+      "type": "financial"
+    },
+    {
+      "page": 46,
+      "text": "Projected Income & Expenditure 2024-25",
+      "type": "financial"
+    },
+    {
+      "page": 46,
+      "text": "£'000 01/04/24 Account & Other Income Accounts Expenses 31/03/25",
+      "type": "financial"
+    },
+    {
+      "page": 46,
+      "text": "Legal Costs Reserve (1,733) 4,150 - (17) (300) - 2,100",
+      "type": "financial"
+    },
+    {
+      "page": 46,
+      "text": "Funds for Revenue reimbursement 199,387 16,650 2,000 1,995 (39,150) - 180,882",
+      "type": "financial"
+    },
+    {
+      "page": 47,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 47,
+      "text": "The projected income and expenditure for 2025-26 is presented in the table below.",
+      "type": "financial"
+    },
+    {
+      "page": 47,
+      "text": "TABLE 23 – Projected Income and Expenditure 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 47,
+      "text": "THE RESERVES - PROJECTED INCOME & EXPENDITURE 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 47,
+      "text": "£'000 01/04/25 Account & Other Income Accounts Expenses 31/03/26",
+      "type": "financial"
+    },
+    {
+      "page": 47,
+      "text": "Legal Costs Reserve 2,100 750 - 4 (500) - 2,354",
+      "type": "financial"
+    },
+    {
+      "page": 47,
+      "text": "Funds for Revenue reimbursement 180,882 27,750 13,137 379 (41,750) - 180,398",
+      "type": "financial"
+    },
+    {
+      "page": 48,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 48,
+      "text": "Legal Costs Reserve 500 500 500 500 500",
+      "type": "financial"
+    },
+    {
+      "page": 48,
+      "text": "Funds for Revenue reimbursement 41,750 38,250 37,250 36,250 35,250",
+      "type": "financial"
+    },
+    {
+      "page": 49,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 49,
+      "text": "This table shows the estimated revenue of the Treasury as provided by Customs & Excise,",
+      "type": "financial"
+    },
+    {
+      "page": 49,
+      "text": "(3,500) (3,500) Cost of Collection Adjustment (3,500) (3,500) (3,600) (3,700) (3,900)",
+      "type": "financial"
+    },
+    {
+      "page": 49,
+      "text": "600 600 Non-Revenue Receipts 600 600 600 600 600",
+      "type": "financial"
+    },
+    {
+      "page": 49,
+      "text": "313,400 313,932 Resident Income Tax 330,290 340,197 366,769 379,856 392,496",
+      "type": "financial"
+    },
+    {
+      "page": 49,
+      "text": "367,150 367,682 TOTAL INCOME TAX 384,040 407,104 435,362 449,247 462,724",
+      "type": "financial"
+    },
+    {
+      "page": 49,
+      "text": "£1 million respectively.",
+      "type": "financial"
+    },
+    {
+      "page": 50,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 50,
+      "text": "Base cost (1) Up-rating up-rating (7) Uprated cost",
+      "type": "financial"
+    },
+    {
+      "page": 50,
+      "text": "Income Support 36,500,000 2.2% 803,000 37,303,000",
+      "type": "financial"
+    },
+    {
+      "page": 50,
+      "text": "Income Based Jobseeker's Allowance 1,500,000 2.2% 33,000 1,533,000",
+      "type": "financial"
+    },
+    {
+      "page": 50,
+      "text": "General Revenue Benefits - Total 85,984,000 1,959,000 87,943,000",
+      "type": "financial"
+    },
+    {
+      "page": 50,
+      "text": "5. Starting amount includes extra £1.2m in relation to the uplifts in the income thresholds",
+      "type": "financial"
+    },
+    {
+      "page": 50,
+      "text": "6. Includes £100k uplift to cover the cost of increasing certain maxima",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "APPENDIX 3 – REVENUE EXPENDITURE IN DETAIL BY DEPARTMENT, OFFICE OR",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "NET EXPENDITURE (35) 2,057 30,920 27,678 3,242",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "Taxation Income 25 - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "Operating Income 27,347 27,370 27,678 28,508 29,363 30,244 31,152",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "Income (78) - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "TOTAL INCOME 27,294 27,370 27,678 28,508 29,363 30,244 31,152",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "Employee Costs 12,644 14,207 13,926 14,205 14,489 14,778 15,074",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "Infrastructure Costs 745 888 880 888 897 906 915",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "Transport Costs 1 - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "EXPENDITURE 27,259 29,427 30,920 31,369 31,825 32,287 32,758",
+      "type": "financial"
+    },
+    {
+      "page": 51,
+      "text": "NET EXPENDITURE (35) 2,057 3,242 2,861 2,462 2,043 1,606",
+      "type": "financial"
+    },
+    {
+      "page": 52,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 52,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 52,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 52,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 52,
+      "text": "2024-25 BUDGET 13,125 16,786 (28,691) 1,220",
+      "type": "financial"
+    },
+    {
+      "page": 52,
+      "text": "Budget adjustments - - 2,000 2,000",
+      "type": "financial"
+    },
+    {
+      "page": 52,
+      "text": "Income Uplift - - (920) (920)",
+      "type": "financial"
+    },
+    {
+      "page": 52,
+      "text": "2025-26 BUDGET 13,926 16,994 (27,678) 3,242",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "NET EXPENDITURE 132,135 141,572 161,253 11,419 149,834",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "Operating Income 8,959 9,810 10,657 10,977 11,306 11,645 11,995",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "Grant Income 5 28 11 11 11 11 12",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "Income 938 694 708 730 752 774 797",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "TOTAL INCOME 10,012 10,646 11,419 11,763 12,115 12,477 12,853",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "Employee Costs 107,429 115,425 117,798 120,153 122,556 125,007 127,507",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "Infrastructure Costs 8,079 8,199 8,355 8,439 8,523 8,608 8,694",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "Transport Costs 326 309 235 238 240 243 245",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "EXPENDITURE 142,147 152,218 161,253 165,044 169,395 173,815 176,803",
+      "type": "financial"
+    },
+    {
+      "page": 53,
+      "text": "NET EXPENDITURE 132,135 141,572 149,834 153,281 157,280 161,338 163,950",
+      "type": "financial"
+    },
+    {
+      "page": 54,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 54,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 54,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 54,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 54,
+      "text": "2024-25 BUDGET 112,546 40,105 (11,065) 141,586",
+      "type": "financial"
+    },
+    {
+      "page": 54,
+      "text": "Income Uplift - - (354) (354)",
+      "type": "financial"
+    },
+    {
+      "page": 54,
+      "text": "Budget adjustments 3,000 - - 3,000",
+      "type": "financial"
+    },
+    {
+      "page": 54,
+      "text": "2025-26 BUDGET 117,798 43,455 (11,419) 149,834",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "NET EXPENDITURE 17,969 19,273 24,203 4,760 19,443",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "Taxation Income 141 163 121 125 128 132 136",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "Operating Income 3,851 3,635 4,161 4,286 4,414 4,547 4,683",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "Income 43 30 88 91 94 96 99",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "TOTAL INCOME 4,392 4,192 4,760 4,904 5,050 5,201 5,357",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "Employee Costs 11,592 13,058 13,171 13,435 13,703 13,977 14,257",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "Infrastructure Costs 1,234 1,343 1,254 1,267 1,279 1,292 1,305",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "Transport Costs 155 67 59 59 60 61 61",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "TOTAL EXPENDITURE 22,361 23,465 24,203 24,505 24,812 25,125 25,444",
+      "type": "financial"
+    },
+    {
+      "page": 55,
+      "text": "NET EXPENDITURE 17,969 19,273 19,443 19,601 19,762 19,924 20,087",
+      "type": "financial"
+    },
+    {
+      "page": 56,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 56,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 56,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 56,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 56,
+      "text": "2024-25 BUDGET 12,848 11,004 (4,613) 19,239",
+      "type": "financial"
+    },
+    {
+      "page": 56,
+      "text": "Income Uplift - - (147) (147)",
+      "type": "financial"
+    },
+    {
+      "page": 56,
+      "text": "2025-26 BUDGET 13,171 11,032 (4,760) 19,443",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "NET EXPENDITURE 300,356 314,801 369,216 71,128 298,088",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "Taxation Income 53,712 52,669 71,128 73,532 75,136 66,540 68,244",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "Operating Income 4 154 - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "TOTAL INCOME 53,716 52,823 71,128 73,532 75,136 66,540 68,244",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "Employee Costs 2,484 2,888 3,843 3,919 3,998 4,078 4,159",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "Infrastructure Costs 3 3 3 3 3 3 3",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "EXPENDITURE 354,072 367,624 369,216 384,185 399,763 415,974 432,847",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "NET EXPENDITURE 300,356 314,801 298,088 310,653 324,627 349,434 364,603",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "2024-25 BUDGET 3,641 350,366 (52,793) 301,214",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "Income Uplift - - (18,335) (18,335)",
+      "type": "financial"
+    },
+    {
+      "page": 57,
+      "text": "2025-26 BUDGET 3,843 365,373 (71,128) 298,088",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "NET EXPENDITURE - - 17,977 17,977 -",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "Operating Income 13,910 15,420 16,276 16,602 16,934 17,273 17,618",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "Other Non-Trading Income 229 171 71 72 74 76 77",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "TOTAL INCOME 15,910 17,747 17,977 18,337 18,704 19,079 19,459",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "Employee Costs 218,639 230,715 239,721 249,900 260,517 271,589 283,136",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "Infrastructure Costs 2,458 2,200 2,111 2,154 2,197 2,241 2,286",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "Transport Costs 5,493 6,234 5,266 5,372 5,480 5,589 5,701",
+      "type": "financial"
+    },
+    {
+      "page": 58,
+      "text": "TOTAL EXPENDITURE 15,910 17,747 17,977 18,337 18,704 19,079 19,459",
+      "type": "financial"
+    },
+    {
+      "page": 59,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 59,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 59,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 59,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 59,
+      "text": "2024-25 BUDGET 231,709 (214,084) (17,625) -",
+      "type": "financial"
+    },
+    {
+      "page": 59,
+      "text": "Income Uplift - - (352) (352)",
+      "type": "financial"
+    },
+    {
+      "page": 59,
+      "text": "2025-26 BUDGET 239,721 (221,744) (17,977) -",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "NET EXPENDITURE 40,803 42,655 45,324 1,373 43,951",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Operating Income 944 1,157 964 993 1,023 1,053 1,085",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Income 329 310 296 305 315 324 334",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "TOTAL INCOME 1,340 1,468 1,373 1,414 1,457 1,500 1,546",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Employee Costs 36,700 39,120 39,231 40,014 40,814 41,630 42,463",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Infrastructure Costs 2,103 1,776 1,623 1,640 1,656 1,673 1,690",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Transport Costs 1 - - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "EXPENDITURE 42,143 44,123 45,324 46,169 47,030 47,908 48,804",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "NET EXPENDITURE 40,803 42,655 43,951 44,755 45,573 46,408 47,258",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "2024-25 BUDGET 38,213 5,954 (1,331) 42,836",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "Income Uplift - - (42) (42)",
+      "type": "financial"
+    },
+    {
+      "page": 60,
+      "text": "2025-26 BUDGET 39,231 6,093 (1,373) 43,951",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Flood and Costal Protection 1,394 1,533 1,548 11 1,537",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "NET EXPENDITURE 53,488 54,997 116,182 66,521 49,661",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Taxation Income 14,209 15,589 16,039 16,520 17,016 17,526 18,052",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Operating Income 44,070 45,690 43,286 44,585 45,922 47,300 48,719",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Income 3,153 3,541 4,153 4,277 4,405 4,537 4,673",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "TOTAL INCOME 64,426 67,384 66,521 68,517 70,572 72,689 74,869",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Employee Costs 47,077 51,796 52,927 53,987 55,066 56,168 57,291",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Infrastructure Costs 41,272 41,798 41,829 42,246 42,669 43,096 43,526",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "Transport Costs 10,496 10,230 6,363 6,426 6,491 6,556 6,621",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "EXPENDITURE 117,914 122,381 116,182 117,873 119,592 121,339 123,112",
+      "type": "financial"
+    },
+    {
+      "page": 61,
+      "text": "NET EXPENDITURE 53,488 54,997 49,661 49,356 49,020 48,650 48,243",
+      "type": "financial"
+    },
+    {
+      "page": 62,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 62,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 62,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 62,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 62,
+      "text": "2024-25 BUDGET 51,396 68,105 (64,458) 55,043",
+      "type": "financial"
+    },
+    {
+      "page": 62,
+      "text": "Income Uplift - - (2,063) (2,063)",
+      "type": "financial"
+    },
+    {
+      "page": 62,
+      "text": "2025-26 BUDGET 52,927 63,255 (66,521) 49,661",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "Income Tax Division 5,870 6,747 7,205 384,040 (376,835)",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "NET EXPENDITURE 451,394 406,426 487,851 1,198,565 (710,714)",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "Treasury Grants include £5.1 million for Manx National Heritage and £2.1 million for the Isle",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "Income Tax 324,915 367,682 384,040 407,104 435,362 449,247 462,724",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "Other Treasury Income 16,041 12,203 11,231 11,568 11,915 12,272 12,640",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "TOTAL INCOME 1,108,927 1,102,025 1,198,565 1,251,494 1,299,688 1,332,669 1,366,848",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "Employee Costs 19,525 23,833 26,046 26,614 27,194 27,787 28,394",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "Infrastructure Costs 8 9 9 9 9 9 9",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "TOTAL EXPENDITURE 451,394 406,426 487,851 512,000 522,124 532,658 543,183",
+      "type": "financial"
+    },
+    {
+      "page": 63,
+      "text": "NET EXPENDITURE (657,533) (695,599) (710,714) (739,494) (777,564) (800,011) (823,665)",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "2024-25 BUDGET 26,874 431,404 (1,151,543) (693,265)",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "Income Uplift - - (47,471) (47,471)",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "Revenue Benefits Uprating - 198 - 198",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "Budget Adjustments 471 5,894 449 6,814",
+      "type": "financial"
+    },
+    {
+      "page": 64,
+      "text": "2025-26 BUDGET 26,046 461,805 (1,198,565) (710,714)",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "NET EXPENDITURE 36,475 41,918 43,638 258 43,380",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "Taxation Income (1) - - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "Operating Income 1,748 131 135 139 143 148 152",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "Income 19 1 3 3 3 3 3",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "TOTAL INCOME 1,888 256 258 266 273 282 290",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "Employee Costs 24,529 25,271 27,097 27,638 28,191 28,755 29,330",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "Infrastructure Costs 213 180 175 178 179 181 183",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "Transport Costs 343 5 6 6 6 6 6",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "TOTAL EXPENDITURE 38,363 42,174 43,638 44,346 45,065 45,798 46,543",
+      "type": "financial"
+    },
+    {
+      "page": 65,
+      "text": "NET EXPENDITURE 36,475 41,918 43,380 44,080 44,792 45,516 46,253",
+      "type": "financial"
+    },
+    {
+      "page": 66,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 66,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 66,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 66,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 66,
+      "text": "2024-25 BUDGET 25,036 16,321 (317) 41,040",
+      "type": "financial"
+    },
+    {
+      "page": 66,
+      "text": "Income Uplift - - (8) (8)",
+      "type": "financial"
+    },
+    {
+      "page": 66,
+      "text": "Budget adjustments 135 (135) - -",
+      "type": "financial"
+    },
+    {
+      "page": 66,
+      "text": "2025-26 BUDGET 27,097 16,541 (258) 43,380",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "NET EXPENDITURE 51,595 59,948 59,392 3,047 56,345",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "Taxation Income 150 156 151 155 160 165 170",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "Operating Income 2,771 3,152 2,812 2,896 2,983 3,073 3,165",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "Income 8 96 9 9 9 10 10",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "TOTAL INCOME 3,037 3,477 3,047 3,138 3,232 3,330 3,430",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "Employee Costs 52,334 58,739 54,622 54,465 54,278 54,059 53,805",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "Infrastructure Costs 6 11 37 38 38 39 39",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "EXPENDITURE 54,632 63,425 59,392 59,258 59,094 58,899 58,668",
+      "type": "financial"
+    },
+    {
+      "page": 67,
+      "text": "NET EXPENDITURE 51,595 59,948 56,345 56,120 55,862 55,569 55,238",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "2024-25 BUDGET 55,334 4,721 (2,952) 57,103",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "Income Uplift - - (95) (95)",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "Budget adjustments 48 23 - 71",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "Employment Law Revenue Bid 528 7 - 535",
+      "type": "financial"
+    },
+    {
+      "page": 68,
+      "text": "2025-26 BUDGET 54,622 4,770 (3,047) 56,345",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "NET EXPENDITURE 5,018 5,234 5,602 11 5,591",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "TOTAL INCOME 49 49 11 11 11 12 12",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "Employee Costs 4,711 4,733 5,047 5,148 5,251 5,356 5,464",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "TOTAL EXPENDITURE 5,067 5,283 5,602 5,709 5,817 5,928 6,041",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "NET EXPENDITURE 5,018 5,234 5,591 5,698 5,806 5,916 6,029",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "2024-25 BUDGET 4,984 550 (10) 5,524",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "Income Uplift - - (1) (1)",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "2025-26 BUDGET 5,047 555 (11) 5,591",
+      "type": "financial"
+    },
+    {
+      "page": 69,
+      "text": "NET EXPENDITURE 4,711 4,733 5,047 5,148 5,251",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "£000 2023-24 2024-25 2025-26 2025-26 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "NET EXPENDITURE 1,382 2,217 20,816 17,439 3,377",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28 2028-29 2029-30",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Taxation Income 11,495 11,162 12,869 14,530 15,589 16,742 17,999",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Operating Income 2,301 2,097 2,228 2,325 2,449 2,583 2,727",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Income - 842 - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Grant Income 639 2,674 2,342 1,383 618 - -",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "TOTAL INCOME 14,435 16,775 17,439 18,238 18,656 19,325 20,726",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Employee Costs 12,270 15,364 16,888 17,223 17,568 17,919 18,279",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Infrastructure Costs 397 525 527 533 539 544 549",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "EXPENDITURE 15,817 18,992 20,816 21,193 21,577 21,969 22,367",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "NET EXPENDITURE 1,382 2,217 3,377 2,955 2,921 2,644 1,641",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Budget Movement from 2024-25 to 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "£000 Pay Non-Pay Income Budget",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "2024-25 BUDGET 16,119 3,725 (17,350) 2,494",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "Income Uplift - - (417) (417)",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "FSA budget adjustments 201 252 (453) -",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "GSC budget adjustments 244 (240) 781 785",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "FIU budget adjustments - 156 - 156",
+      "type": "financial"
+    },
+    {
+      "page": 70,
+      "text": "2025-26 BUDGET 16,888 3,928 (17,439) 3,377",
+      "type": "financial"
+    },
+    {
+      "page": 71,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 71,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Appendix 3 – Net Revenue Expenditure by Department, Office or Board",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Operating Income 156,966 150,589 162,385 164,256 166,159",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "TOTAL INCOME 156,966 150,589 162,385 164,256 166,159",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Employee Costs 25,781 25,403 27,969 28,529 29,099",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Infrastructure Costs 17,732 20,800 18,897 20,637 19,497",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Transport Costs 1,633 1,323 1,615 1,673 1,731",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "TOTAL EXPENDITURE 157,682 142,271 151,999 153,990 153,836",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "NET EXPENDITURE 716 (8,318) (10,386) (10,266) (12,323)",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "£000 2023-24 2024-25 2025-26 2026-27 2027-28",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Operating Income 21,764 21,226 20,965 19,226 19,125",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Non-Trading Income 942 1,060 915 770 625",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "TOTAL INCOME 22,706 22,286 21,880 19,996 19,750",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Employee Costs 10,744 10,430 10,790 10,612 10,826",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Infrastructure Costs 871 911 796 788 805",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "Transport Costs 1,884 2,038 2,344 2,405 2,538",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "TOTAL EXPENDITURE 19,060 18,494 19,089 17,263 17,676",
+      "type": "financial"
+    },
+    {
+      "page": 72,
+      "text": "NET (INCOME)/EXPENDITURE (2,580) (3,221) (2,266) (2,353) (1,741)",
+      "type": "financial"
+    },
+    {
+      "page": 73,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 73,
+      "text": "£000",
+      "type": "financial"
+    },
+    {
+      "page": 73,
+      "text": "£000 2025/26 2026/27* 2027/28* 2028/29* 2029/30* Tynwald",
+      "type": "financial"
+    },
+    {
+      "page": 74,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 74,
+      "text": "Cost 31 March Approval",
+      "type": "financial"
+    },
+    {
+      "page": 75,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 75,
+      "text": "Cost 31 March Approval",
+      "type": "financial"
+    },
+    {
+      "page": 76,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 76,
+      "text": "Heritage Rail Budget 2,250 2,250 2,250 2,250 2,250 2,250",
+      "type": "financial"
+    },
+    {
+      "page": 77,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 78,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 78,
+      "text": "Cost 31 March 31 March",
+      "type": "financial"
+    },
+    {
+      "page": 78,
+      "text": "FSA Infrastructure Costs 50 50 50 - - - - - -",
+      "type": "financial"
+    },
+    {
+      "page": 79,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 80,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 80,
+      "text": "£000 Cost 2025 2025/26 2026/27 2027/28 2028/29 2029/30 Further",
+      "type": "financial"
+    },
+    {
+      "page": 81,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 81,
+      "text": "Cost 31 March",
+      "type": "financial"
+    },
+    {
+      "page": 82,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 83,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 84,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 84,
+      "text": "£000",
+      "type": "financial"
+    },
+    {
+      "page": 85,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 85,
+      "text": "£000",
+      "type": "financial"
+    },
+    {
+      "page": 85,
+      "text": "Heritage Rail Budget 2,250 Projects to maintain and improve the heritage railways assets",
+      "type": "financial"
+    },
+    {
+      "page": 86,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 86,
+      "text": "£000",
+      "type": "financial"
+    },
+    {
+      "page": 86,
+      "text": "500 service related items ranging from £5,000 to £250,000",
+      "type": "financial"
+    },
+    {
+      "page": 86,
+      "text": "2,000 service related items ranging from £5,000 to £250,000",
+      "type": "financial"
+    },
+    {
+      "page": 86,
+      "text": "500 service related items ranging from £5,000 to £250,000",
+      "type": "financial"
+    },
+    {
+      "page": 86,
+      "text": "MCW - Public Transport This rolling scheme includes expenditure for maintenance and replacement of building, equipment and",
+      "type": "financial"
+    },
+    {
+      "page": 86,
+      "text": "MCW Housing Planned Works This capital budget is used to undertake essential works such as re-roofing, kitchen refurbishments,",
+      "type": "financial"
+    },
+    {
+      "page": 87,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 87,
+      "text": "£000",
+      "type": "financial"
+    },
+    {
+      "page": 87,
+      "text": "work ranges in value from £10,000 to £800,000, and includes major maintenance of minor or major",
+      "type": "financial"
+    },
+    {
+      "page": 87,
+      "text": "roads, up to a complete replacement. From 2018-19 the scheme included £100k p.a. for traffic lights",
+      "type": "financial"
+    },
+    {
+      "page": 87,
+      "text": "renewal and £500k p.a. for micro asphalt",
+      "type": "financial"
+    },
+    {
+      "page": 87,
+      "text": "work ranges in value from £30,000 to £300,000, and includes major maintenance of a structure, up to",
+      "type": "financial"
+    },
+    {
+      "page": 87,
+      "text": "Digital Projects Fund 5,000 Budget to fund digital projects across Government up to the value of £500,000. Any project above",
+      "type": "financial"
+    },
+    {
+      "page": 87,
+      "text": "£500,000 should be developed as a discrete scheme with a separate budget line in the Pink Book",
+      "type": "financial"
+    },
+    {
+      "page": 88,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 88,
+      "text": "As part of the 2016 budget, the Enterprise Development Fund was created with an initial £10m,",
+      "type": "financial"
+    },
+    {
+      "page": 88,
+      "text": "supporting the £50m Enterprise Development Scheme. The Scheme did not perform as",
+      "type": "financial"
+    },
+    {
+      "page": 88,
+      "text": "expected, with only £3m invested in the first two years and consequently in 2018, the",
+      "type": "financial"
+    },
+    {
+      "page": 88,
+      "text": "through its Long-Term Financial Plan into a sinking fund in order that the £260 million bond",
+      "type": "financial"
+    },
+    {
+      "page": 88,
+      "text": "issues can be repaid upon their maturity in 2030 (£75 million) and 2034 (£185 million).",
+      "type": "financial"
+    },
+    {
+      "page": 88,
+      "text": "This has been established to provide a fund into which repayments from General Revenue,",
+      "type": "financial"
+    },
+    {
+      "page": 89,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 90,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 90,
+      "text": "The ABPF was established as part of the 2017-18 budget on a one year trial basis. The reserve",
+      "type": "financial"
+    },
+    {
+      "page": 90,
+      "text": "unexpected circumstances. The Treasury has agreed to add £4 million in 2025-26 to continue",
+      "type": "financial"
+    },
+    {
+      "page": 90,
+      "text": "Established in 2016-17 with a £5 million injection from the Revenue Account’s Operating",
+      "type": "financial"
+    },
+    {
+      "page": 90,
+      "text": "proposed to add a further £5.5 million to this fund for the 2025-26 financial year.",
+      "type": "financial"
+    },
+    {
+      "page": 90,
+      "text": "It is proposed to add a further £2.5 million to this fund for the 2025-26 financial year.",
+      "type": "financial"
+    },
+    {
+      "page": 90,
+      "text": "In support of the Island’s Economic Strategy, the Treasury allocated £100 million to the ESF",
+      "type": "financial"
+    },
+    {
+      "page": 90,
+      "text": "approved a further transfer into the fund in 2025-26 of £4 million to ensure that there are",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "exceptional legal cases. The Treasury has approved a transfer of £0.75 million to the fund in",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "hospitals. A transfer of £3 million is recommended into the fund in 2025-26 in order to be able",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "This fund was established as part of the 2022-23 budget. Departments are able to make bids",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "business cases. A further £5 million is being transferred to this fund for 2025-26.",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "Communities Board. A further £1 million of funding is being allocated to the fund for 2025-26.",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "The HDF is being established as part of the 2025-26 budget. The fund will be used to fund the",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "Department of Infrastructure revenue budget, where this has been suffered in previous years.",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "This fund was established in 2022-23 with an initial balance of £25 million being transferred",
+      "type": "financial"
+    },
+    {
+      "page": 91,
+      "text": "from general reserves to support climate change initiatives on the Island. A further £11 million",
+      "type": "financial"
+    },
+    {
+      "page": 92,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    },
+    {
+      "page": 93,
+      "text": "Isle of Man Budget 2025-26",
+      "type": "financial"
+    }
+  ],
+  "departments": [
+    {
+      "page": 3,
+      "text": "5.1 2024-25 Performance – Departmental Income ............................................. 26"
+    },
+    {
+      "page": 4,
+      "text": "APPENDIX 3 – REVENUE EXPENDITURE IN DETAIL BY DEPARTMENT, OFFICE OR"
+    },
+    {
+      "page": 4,
+      "text": "A3.1 Department for Enterprise (DfE) – Financial Summary ......................................49"
+    },
+    {
+      "page": 4,
+      "text": "A3.2 Department of Education, Sport and Culture (DESC) – Financial Summary ..51"
+    },
+    {
+      "page": 4,
+      "text": "A3.3 Department of Environment, Food and Agriculture (DEFA) – Financial"
+    },
+    {
+      "page": 4,
+      "text": "A3.4 Department of Health and Social Care (DHSC) – Financial Summary .......... 55"
+    },
+    {
+      "page": 4,
+      "text": "A3.6 Department of Home Affairs (DHA) – Financial Summary ............................ 58"
+    },
+    {
+      "page": 4,
+      "text": "A3.7 Department of Infrastructure (DOI) – Financial Summary ............................. 59"
+    },
+    {
+      "page": 4,
+      "text": "A3.9 Cabinet Office – Financial Summary ............................................................ 63"
+    },
+    {
+      "page": 4,
+      "text": "A3.13 Inter-Departmental Transfers ....................................................................... 69"
+    },
+    {
+      "page": 5,
+      "text": "departments."
+    },
+    {
+      "page": 27,
+      "text": "DfE 1,220 (920) 273 156 2,000 - - - - - 513 3,242",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 27,
+      "text": "DESC 141,586 (354) 2,252 401 3,000 3,000 - - - - (51) 149,834",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 27,
+      "text": "DEFA 19,239 (147) 269 41 - - - - - - 41 19,443",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 27,
+      "text": "DHSC 301,214 - 76 7 - 4,309 - - (18,335) 10,690 127 298,088",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 27,
+      "text": "DHA 42,836 (42) 764 60 333 - - - - - - 43,951",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 27,
+      "text": "DOI 55,043 (2,063) 1,030 652 2,402 - - (7,537) - - 134 49,661",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 27,
+      "text": "a) The NHS Allocation is shown as income into the DHSC, however this is not generated by the department directly. Table 36 shows the Gross Income and Expenditure of the DHSC in full.",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 28,
+      "text": "The main adverse variance is within the Department of Health and Social Care, the majority",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 32,
+      "text": "(DHSC) 8.6 - - - - - - -",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 32,
+      "text": "to DHSC (8.6) - - - - - - -",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 35,
+      "text": "Isle of Man Sports (DESC) 501 - 21 480 501",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 35,
+      "text": "Arts Council (DESC) 539 - 99 440 539",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 38,
+      "text": "Department of Infrastructure, as they are responsible for the management and maintenance",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department for Enterprise 11,250 11,250 9,531 1,719 - - - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Education, Sport & Culture 1,932 1,632 143 1,789 - - - - 300",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Environment, Food & Agriculture 605 605 465 80 30 30 - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Health and Social Care 7,765 6,065 335 4,000 3,315 115 - - 1,700",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Home Affairs 3,383 3,383 1,995 1,338 50 - - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Infrastructure 109,894 105,731 87,802 14,375 6,972 538 149 58 4,163",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Education, Sport & Culture 525 525 525 525 525 525",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Environment, Food & Agriculture 495 520 - - - 495",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Health and Social Care 1,250 1,250 1,250 1,250 1,250 1,250",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Home Affairs 1,657 1,688 1,742 1,784 1,784 1,657",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 39,
+      "text": "Department of Infrastructure 32,921 29,114 29,114 29,114 29,114 32,921",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 45,
+      "text": "to top up the £7.5 million being transferred from the DOI in relation to the Housing",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 51,
+      "text": "A3.1 Department for Enterprise (DfE) – Financial Summary",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 51,
+      "text": "TABLE 27 – DfE – Net Expenditure by Division",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 51,
+      "text": "TABLE 28 – DfE – Income & Expenditure by Category",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 52,
+      "text": "DfE – Financial Summary (continued)",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 52,
+      "text": "TABLE 29 – DfE – Reconciliation from 2024-25",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 53,
+      "text": "A3.2 Department of Education, Sport and Culture (DESC) – Financial Summary",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 53,
+      "text": "TABLE 30 – DESC – Net Expenditure by Division",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 53,
+      "text": "TABLE 31 – DESC – Income & Expenditure by Category",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 54,
+      "text": "DESC – Financial Summary (continued)",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 54,
+      "text": "TABLE 32 – DESC – Reconciliation from 2024-25",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 55,
+      "text": "A3.3 Department of Environment, Food and Agriculture (DEFA) – Financial",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 55,
+      "text": "TABLE 33 – DEFA – Net Expenditure by Division",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 55,
+      "text": "Office of Fair Trading - 810 976 51 925",
+      "pattern": "Office\\s+of\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 55,
+      "text": "TABLE 34 – DEFA – Income & Expenditure by Category",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 56,
+      "text": "DEFA – Financial Summary (continued)",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 56,
+      "text": "TABLE 35 – DEFA – Reconciliation from 2024-25",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 57,
+      "text": "A3.4 Department of Health and Social Care (DHSC) – Financial Summary",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 57,
+      "text": "TABLE 36 – DHSC – Net Expenditure by Division",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 57,
+      "text": "DHSC Corporate Services 3,201 (4,556) 11,703 128 11,575",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 57,
+      "text": "TABLE 37 – DHSC – Income & Expenditure by Category",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 57,
+      "text": "TABLE 38 – DHSC – Reconciliation from 2024-25",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 60,
+      "text": "A3.6 Department of Home Affairs (DHA) – Financial Summary",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 60,
+      "text": "TABLE 42 – DHA – Net Expenditure by Division",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 60,
+      "text": "TABLE 43 – DHA – Income & Expenditure by Category",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 60,
+      "text": "TABLE 44 – DHA – Reconciliation from 2024-25",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 61,
+      "text": "A3.7 Department of Infrastructure (DOI) – Financial Summary",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 61,
+      "text": "TABLE 45 – DOI – Net Expenditure by Division",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 61,
+      "text": "TABLE 46 – DOI – Income & Expenditure by Category",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 62,
+      "text": "DOI – Financial Summary (continued)",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 62,
+      "text": "TABLE 47 – DOI – Reconciliation from 2024-25",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 65,
+      "text": "Office of Human Resources 6,650 8,299 9,024 135 8,889",
+      "pattern": "Office\\s+of\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 71,
+      "text": "AGC CO DOI DFE COT DEFA DESC DHSC TSY TCA",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 71,
+      "text": "DOI – Department of Infrastructure",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 71,
+      "text": "DFE – Department for Enterprise",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 71,
+      "text": "DEFA – Department of Environment, Food and Agriculture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 71,
+      "text": "DESC - Department of Education, Sport and Culture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 71,
+      "text": "DHSC - Department of Health and Social Care",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department for Enterprise 11,250 11,250 9,531 1,719 - - - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Education, Sport & Culture 1,932 1,632 143 1,789 - - - - 300",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Environment, Food & Agriculture 605 605 465 80 30 30 - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Health and Social Care 7,765 6,065 335 4,000 3,315 115 - - 1,700",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Home Affairs 3,383 3,383 1,995 1,338 50 - - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Infrastructure 109,894 105,731 87,802 14,375 6,972 538 149 58 4,163",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Education, Sport & Culture 525 525 525 525 525 525",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Environment, Food & Agriculture 495 520 - - - 495",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Health and Social Care 1,250 1,250 1,250 1,250 1,250 1,250",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Home Affairs 1,657 1,688 1,742 1,784 1,784 1,657",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 73,
+      "text": "Department of Infrastructure 32,921 29,114 29,114 29,114 29,114 32,921",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "DOI Network Migration 895 895 834 61 - - - - -",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 74,
+      "text": "Department for Enterprise",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department for Enterprise Total 11,250 11,250 9,531 1,719 - - - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Education, Sport & Culture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Education, Sport & Culture Total 1,932 1,632 143 1,789 - - - - 300",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Environment, Food & Agriculture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Environment, Food & Agriculture Total 605 605 465 80 30 30 - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Health and Social Care",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Health and Social Care Total 7,765 6,065 335 4,000 3,315 115 - - 1,700",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Home Affairs",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Home Affairs Total 3,383 3,383 1,995 1,338 50 - - - -",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 74,
+      "text": "Department of Infrastructure",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 75,
+      "text": "Department of Infrastructure (continued)",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 75,
+      "text": "Department of Infrastructure Total 109,894 105,731 87,802 14,375 6,972 538 149 58 4,163",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Education, Sport & Culture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Education, Sport & Culture Total 525 525 525 525 525 525",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Environment, Food & Agriculture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Environment, Food & Agriculture Total 495 520 - - - 495",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Health and Social Care",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Health and Social Care Total 1,250 1,250 1,250 1,250 1,250 1,250",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Home Affairs",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Home Affairs Total 1,657 1,688 1,742 1,784 1,784 1,657",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "Department of Infrastructure",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 76,
+      "text": "DHA Vehicle Acquisition 1,300 1,300 1,300 1,300 1,300 1,300",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 76,
+      "text": "MCW - DfE. 150 150 150 150 150 150",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 76,
+      "text": "MCW - DHA. 225 225 225 225 225 225",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 77,
+      "text": "Department of Infrastructure (continued)",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 77,
+      "text": "MCW - DHSC 500 500 500 500 500 500",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 77,
+      "text": "Department of Infrastructure Total 32,921 29,114 29,114 29,114 29,114 32,921",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 78,
+      "text": "Department for Enterprise",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 78,
+      "text": "Department of Education, Sport & Culture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 78,
+      "text": "Department of Health and Social Care",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 78,
+      "text": "Department of Infrastructure",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 81,
+      "text": "The following tables have been produced from information provided by the Department of Infrastructure for information only. It should be noted",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 83,
+      "text": "Department of Environment, Food & Agriculture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 83,
+      "text": "Department of Education, Sport & Culture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 83,
+      "text": "Department for Enterprise",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 83,
+      "text": "Department of Health and Social Care",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 83,
+      "text": "Department of Home Affairs",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 83,
+      "text": "Department of Infrastructure",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 84,
+      "text": "Department of Education, Sport & Culture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 84,
+      "text": "Department of Health and Social Care",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 84,
+      "text": "Department of Infrastructure",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 85,
+      "text": "Department of Education, Sport & Culture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 85,
+      "text": "Department of Environment, Food & Agriculture",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 85,
+      "text": "MCW - Rural Infrastructure 450 Minor capital works budget linked to assets under the management of DEFA",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 85,
+      "text": "Department of Health and Social Care",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 85,
+      "text": "Department of Home Affairs",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 85,
+      "text": "Department of Infrastructure",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 85,
+      "text": "DHA Vehicle Acquisition 1,300 Ongoing scheme for the replacement of vehicles on behalf of the Department of Home Affairs (including",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 86,
+      "text": "Department of Infrastructure (continued)",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 86,
+      "text": "MCW - DfE 150 A minor capital works budget for properties owned by the Department for Enterprise. DOI maintain and",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 86,
+      "text": "uphold the properties on behalf of the DfE under a Service Level Agreement",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 86,
+      "text": "MCW - DHA A minor capital works budget for properties owned by the Department for Home Affairs. DOI maintain",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 86,
+      "text": "225 and uphold the properties on behalf of the DHA under a Service Level Agreement",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 86,
+      "text": "MCW - DHSC This rolling scheme includes expenditure for maintenance and replacement of building and property",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 86,
+      "text": "electrical upgrades, central heating, window/door replacements and estate improvements to the DOI’s",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 87,
+      "text": "Department of Infrastructure (continued)",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 88,
+      "text": "Department for Enterprise (DfE) and the Scheme Managers agreed to part company.",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 88,
+      "text": "DfE revised the Scheme to manage it in house for existing applicants, and the Scheme has",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 90,
+      "text": "allows the Department of Education, Sport and Culture (DESC) to transfer year end",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 90,
+      "text": "underspends into the new financial year, as agreed with the Treasury. This provides DESC",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 90,
+      "text": "The AFF was originally established in 2007 to assist the Department of Environment, Food",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    },
+    {
+      "page": 90,
+      "text": "and Agriculture (DEFA) in providing funding for additional financial support to the agriculture",
+      "pattern": "\\b(?:DfE|DESC|DEFA|DHSC|DHA|DOI)\\b"
+    },
+    {
+      "page": 91,
+      "text": "Department of Infrastructure revenue budget, where this has been suffered in previous years.",
+      "pattern": "Department\\s+(?:of|for)\\s+[\\w\\s,&]+"
+    }
+  ],
+  "footnotes": [
+    {
+      "page": 6,
+      "text": "2. OVERALL FINANCIAL SUMMARY FOR REVENUE AND CAPITAL"
+    },
+    {
+      "page": 6,
+      "text": "2.1 Government Revenue Forecast 2025-26 to 2029-30"
+    },
+    {
+      "page": 6,
+      "text": "2.2 Government Capital Forecast 2025-26 to 2029-30"
+    },
+    {
+      "page": 7,
+      "text": "3. THE FIVE YEAR FINANCIAL PLAN"
+    },
+    {
+      "page": 7,
+      "text": "3.1 Summary"
+    },
+    {
+      "page": 8,
+      "text": "3.2 Economic Overview"
+    },
+    {
+      "page": 10,
+      "text": "3.3 Revenue Account"
+    },
+    {
+      "page": 13,
+      "text": "3.4 Operating Account"
+    },
+    {
+      "page": 13,
+      "text": "* The closed internal funds have been re-purposed into ongoing internal funds as part of the 2023-24 Budget. Media Development Fund is to be amalgamated into the Reserve Fund as first"
+    },
+    {
+      "page": 14,
+      "text": "3.5 Structural Deficit and Reserves Position"
+    },
+    {
+      "page": 16,
+      "text": "3.6 Capital Programme"
+    },
+    {
+      "page": 16,
+      "text": "4. It has been assumed that £60 million of capital spending will be delivered per year for CFR"
+    },
+    {
+      "page": 16,
+      "text": "3.6.1 Review of the Capital Programme"
+    },
+    {
+      "page": 16,
+      "text": "3.6.2 Capital Approval Process"
+    },
+    {
+      "page": 18,
+      "text": "1. Assumed capital spending per year from CLF and CFR projects going forward rather than full delivery of the entire capital programme detailed in Appendix 4."
+    },
+    {
+      "page": 19,
+      "text": "3.7 Use of Reserves"
+    },
+    {
+      "page": 20,
+      "text": "4. REVENUE - INCOME"
+    },
+    {
+      "page": 20,
+      "text": "4.1 2024-25 Performance – Treasury Income"
+    },
+    {
+      "page": 20,
+      "text": "4.2 2025-26 Budget Overview"
+    },
+    {
+      "page": 21,
+      "text": "4.3 2025-26 Budget Proposals"
+    },
+    {
+      "page": 21,
+      "text": "4.3.1 Customs & Immigration"
+    },
+    {
+      "page": 22,
+      "text": "4.3.2 Income Tax"
+    },
+    {
+      "page": 22,
+      "text": "* The Personal Allowance is reduced by £1 for every £2 that your income is in excess of £100,000 or £200,000"
+    },
+    {
+      "page": 22,
+      "text": "** For Fiscal Years commencing on or after 1 January 2025, a new Domestic Top-up Tax has been introduced"
+    },
+    {
+      "page": 25,
+      "text": "5.5."
+    },
+    {
+      "page": 25,
+      "text": "4.3.3 Departmental Fees and Charges"
+    },
+    {
+      "page": 25,
+      "text": "4.3.4 Investment Income"
+    },
+    {
+      "page": 26,
+      "text": "5. REVENUE - EXPENDITURE"
+    },
+    {
+      "page": 28,
+      "text": "5.1 2024-25 Performance – Departmental Income"
+    },
+    {
+      "page": 28,
+      "text": "5.2 2025-26 Budget - Overview"
+    },
+    {
+      "page": 29,
+      "text": "5.3 Pay Costs"
+    },
+    {
+      "page": 29,
+      "text": "1. Approved adjustments include movements within different pay codes and between pay and non-pay"
+    },
+    {
+      "page": 31,
+      "text": "5.4 Public Sector Pensions"
+    },
+    {
+      "page": 32,
+      "text": "5.5 National Insurance and Welfare Benefits"
+    },
+    {
+      "page": 32,
+      "text": "326.3 315.1 317.1 329.7 343.5 350.7 358.1 365.6"
+    },
+    {
+      "page": 32,
+      "text": "309.1 323.4 324.1 353.5 361.5 368.9 376.1 383.8"
+    },
+    {
+      "page": 33,
+      "text": "5.6 Non-Pay Costs"
+    },
+    {
+      "page": 34,
+      "text": "5.7 Contingency Funding"
+    },
+    {
+      "page": 35,
+      "text": "5.8 Grants Payable"
+    },
+    {
+      "page": 36,
+      "text": "6. THE CAPITAL PROGRAMME"
+    },
+    {
+      "page": 36,
+      "text": "6.1 Overview"
+    },
+    {
+      "page": 37,
+      "text": "6.2 2024-25 Performance"
+    },
+    {
+      "page": 37,
+      "text": "6.3 2025-26 Budget"
+    },
+    {
+      "page": 39,
+      "text": "* Italics are subject to future annual Tynwald Approval."
+    },
+    {
+      "page": 41,
+      "text": "6.4 The Five Year Capital Programme"
+    },
+    {
+      "page": 42,
+      "text": "6.5 Manx Development Corporation"
+    },
+    {
+      "page": 43,
+      "text": "7. THE RESERVES"
+    },
+    {
+      "page": 43,
+      "text": "7.1 Overview"
+    },
+    {
+      "page": 45,
+      "text": "7.2 External Reserves"
+    },
+    {
+      "page": 45,
+      "text": "7.3 Internal Reserves"
+    },
+    {
+      "page": 45,
+      "text": "7.4 2024-25 Reserves Performance"
+    },
+    {
+      "page": 47,
+      "text": "7.5 2025-26 Reserves Projected Income and Expenditure"
+    },
+    {
+      "page": 47,
+      "text": "Note: The balances of the externally managed investment funds are shown at book rather than market value."
+    },
+    {
+      "page": 48,
+      "text": "7.6 Reserves Projected Future Expenditure"
+    },
+    {
+      "page": 50,
+      "text": "1. Anticipated spend in 2025-26 before uprating"
+    },
+    {
+      "page": 50,
+      "text": "2. Basic pension increased by 4.1% per triple lock. Additional pension increased by 1.7%. Assumed 3.5% overall"
+    },
+    {
+      "page": 50,
+      "text": "3. Per UK triple lock"
+    },
+    {
+      "page": 50,
+      "text": "4. Higher rate mobility component to be uprated by 1.7%, same as in the UK all other components to be uprated by 2.2% per"
+    },
+    {
+      "page": 50,
+      "text": "5. Starting amount includes extra £1.2m in relation to the uplifts in the income thresholds"
+    },
+    {
+      "page": 50,
+      "text": "6. Includes £100k uplift to cover the cost of increasing certain maxima"
+    },
+    {
+      "page": 50,
+      "text": "7. All costs of uprating to the nearest whole thousand"
+    },
+    {
+      "page": 71,
+      "text": "Note:"
+    },
+    {
+      "page": 73,
+      "text": "* Italics are subject to future annual Tynwald Approval."
+    },
+    {
+      "page": 75,
+      "text": "*Final costs subject to confirmation and separate Tynwald vote"
+    },
+    {
+      "page": 77,
+      "text": "* Italics are subject to future annual Tynwald Approval."
+    },
+    {
+      "page": 79,
+      "text": "* Italics are subject to future annual Tynwald Approval."
+    },
+    {
+      "page": 79,
+      "text": "**Design and Feasibility work for the Energy Transition programme is included in the Project Development Fund approvals in Appendix 5. Further funding to be determined once there is certainty on"
+    }
+  ]
+}

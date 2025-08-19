@@ -1,0 +1,26 @@
+{
+  "id": "page_0073_table_02",
+  "page": 73,
+  "index": 1,
+  "type": "general",
+  "rows": 5,
+  "cols": 1,
+  "headers": [
+    "Total"
+  ],
+  "data": [
+    [
+      "Tynwald"
+    ],
+    [
+      "Approval to"
+    ],
+    [
+      "31 March"
+    ],
+    [
+      "2025"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:16:14.832552"
+}

@@ -60,3 +60,4 @@ page-old.tsx
 
 # Only keep data/source
 !/data/source/
+.vercel

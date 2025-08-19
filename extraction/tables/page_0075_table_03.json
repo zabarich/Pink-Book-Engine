@@ -1,0 +1,20 @@
+{
+  "id": "page_0075_table_03",
+  "page": 75,
+  "index": 2,
+  "type": "expenditure",
+  "rows": 3,
+  "cols": 1,
+  "headers": [
+    "Total"
+  ],
+  "data": [
+    [
+      "Estimated"
+    ],
+    [
+      "Cost"
+    ]
+  ],
+  "extracted_at": "2025-08-14T18:16:15.582122"
+}

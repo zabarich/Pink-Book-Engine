@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isle of Man Budget Explorer - Pink Book 2025-26</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --iom-red: #DC143C;
+            --iom-blue: #003087;
+            --iom-gold: #FFD700;
+            --text-primary: #1a1a1a;
+            --text-secondary: #5a5a5a;
+            --bg-light: #f8f9fa;
+            --bg-card: #ffffff;
+            --border-light: #e0e0e0;
+            --success-green: #10b981;
+            --info-blue: #3b82f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.5s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--iom-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--iom-blue);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero .description {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Key Metrics Dashboard */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--iom-blue);
+            transition: width 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .metric-card:hover::before {
+            width: 100%;
+            opacity: 0.05;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-change {
+            font-size: 0.875rem;
+            color: var(--success-green);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .metric-detail {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .metric-card:hover .metric-detail {
+            opacity: 1;
+        }
+
+        /* Visualizations Section */
+        .viz-section {
+            margin: 4rem 0;
+        }
+
+        .viz-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .viz-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .viz-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        /* Information Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .icon-revenue { background: rgba(59, 130, 246, 0.1); color: var(--info-blue); }
+        .icon-services { background: rgba(16, 185, 129, 0.1); color: var(--success-green); }
+        .icon-resilience { background: rgba(251, 191, 36, 0.1); color: #fbbf24; }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .info-card-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .info-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Facts Carousel */
+        .facts-carousel {
+            background: linear-gradient(135deg, var(--iom-blue), #0056b3);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fact {
+            text-align: center;
+            opacity: 0;
+            animation: fadeFact 15s infinite;
+            position: absolute;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .fact:nth-child(1) { animation-delay: 0s; }
+        .fact:nth-child(2) { animation-delay: 3s; }
+        .fact:nth-child(3) { animation-delay: 6s; }
+        .fact:nth-child(4) { animation-delay: 9s; }
+        .fact:nth-child(5) { animation-delay: 12s; }
+
+        .fact-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .fact-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            background: var(--iom-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #002569;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 48, 135, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--iom-blue);
+        }
+
+        /* Loading states */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: var(--iom-blue);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeFact {
+            0%, 20% { opacity: 0; }
+            25%, 95% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .viz-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Sparkline */
+        .sparkline {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">IOM</div>
+                <span style="font-weight: 600; font-size: 1.125rem;">Budget Explorer</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="workshop.html">Workshop Mode</a></li>
+                <li><a href="#about">About Pink Book</a></li>
+                <li><a href="#data">Download Data</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Isle of Man Budget Explorer</h1>
+            <p class="subtitle">Exploring the Pink Book 2025-26 Data</p>
+            <p class="description">
+                An interactive tool to understand the Isle of Man Government's finances, 
+                exploring £1.39 billion in revenue and expenditure across all departments and services.
+            </p>
+        </section>
+
+        <!-- Key Metrics Dashboard -->
+        <section class="metrics-grid">
+            <div class="metric-card" onclick="showDetail('revenue')">
+                <div class="metric-label">Total Revenue</div>
+                <div class="metric-value">£1.39bn</div>
+                <div class="metric-change">↑ 3.2% from 2024-25</div>
+                <div class="metric-detail">Click to explore revenue sources</div>
+            </div>
+            
+            <div class="metric-card" onclick="showDetail('expenditure')">
+                <div class="metric-label">Total Expenditure</div>
+                <div class="metric-value">£1.39bn</div>
+                <div class="metric-change">↑ 2.8% from 2024-25</div>
+                <div class="metric-detail">Click to see department breakdown</div>
+            </div>
+            
+            <div class="metric-card" onclick="showDetail('reserves')">
+                <div class="metric-label">General Reserves</div>
+                <div class="metric-value">£1.76bn</div>
+                <div class="metric-change">Strong position maintained</div>
+                <div class="metric-detail">Click for reserve details</div>
+            </div>
+            
+            <div class="metric-card" onclick="showDetail('population')">
+                <div class="metric-label">Population</div>
+                <div class="metric-value">84,069</div>
+                <div class="metric-change">2021 Census</div>
+                <div class="metric-detail">£16,500 per capita budget</div>
+            </div>
+            
+            <div class="metric-card" onclick="showDetail('gdp')">
+                <div class="metric-label">GDP Per Capita</div>
+                <div class="metric-value">£91,990</div>
+                <div class="metric-change">Among highest globally</div>
+                <div class="metric-detail">Click for economic indicators</div>
+            </div>
+            
+            <div class="metric-card" onclick="showDetail('employment')">
+                <div class="metric-label">Public Sector Staff</div>
+                <div class="metric-value">~7,000</div>
+                <div class="metric-change">16% of workforce</div>
+                <div class="metric-detail">Click for department breakdown</div>
+            </div>
+        </section>
+
+        <!-- Interactive Facts Carousel -->
+        <div class="facts-carousel">
+            <div class="fact">
+                <div class="fact-label">Did You Know?</div>
+                <div class="fact-value">98% of companies pay 0% corporation tax by design</div>
+            </div>
+            <div class="fact">
+                <div class="fact-label">Did You Know?</div>
+                <div class="fact-value">The Island has maintained reserves above £1.5bn for 5 years</div>
+            </div>
+            <div class="fact">
+                <div class="fact-label">Did You Know?</div>
+                <div class="fact-value">NHS allocation increased 30% to £71m this year</div>
+            </div>
+            <div class="fact">
+                <div class="fact-label">Did You Know?</div>
+                <div class="fact-value">VAT contributes £388m - our largest revenue source</div>
+            </div>
+            <div class="fact">
+                <div class="fact-label">Did You Know?</div>
+                <div class="fact-value">Capital programme invests £87.4m annually in infrastructure</div>
+            </div>
+        </div>
+
+        <!-- Visualizations Section -->
+        <section class="viz-section">
+            <h2 style="text-align: center; margin-bottom: 1rem; font-size: 2rem;">Understanding Our Finances</h2>
+            
+            <div class="viz-grid">
+                <!-- Revenue Chart -->
+                <div class="viz-card">
+                    <h3>Revenue Sources - Where Each Pound Comes From</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Expenditure Chart -->
+                <div class="viz-card">
+                    <h3>Department Spending - Investment in Services</h3>
+                    <div class="chart-container">
+                        <canvas id="expenditureChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Cards -->
+        <section class="info-cards">
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon icon-revenue">£</div>
+                    <h3>Understanding Our Revenue</h3>
+                </div>
+                <div class="info-card-content">
+                    <p>The Island's revenue comes from diverse sources, providing stability and resilience.</p>
+                    <ul class="info-list">
+                        <li>
+                            <span>VAT Revenue Sharing</span>
+                            <strong>£388m</strong>
+                        </li>
+                        <li>
+                            <span>Income Tax</span>
+                            <strong>£384m</strong>
+                        </li>
+                        <li>
+                            <span>National Insurance</span>
+                            <strong>£330m</strong>
+                        </li>
+                        <li>
+                            <span>Customs & Excise</span>
+                            <strong>£183m</strong>
+                        </li>
+                        <li>
+                            <span>Other Income</span>
+                            <strong>£104m</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon icon-services">📊</div>
+                    <h3>Investment in Services</h3>
+                </div>
+                <div class="info-card-content">
+                    <p>Public spending supports essential services for Island residents.</p>
+                    <ul class="info-list">
+                        <li>
+                            <span>Health & Social Care</span>
+                            <strong>£357m</strong>
+                        </li>
+                        <li>
+                            <span>Social Security</span>
+                            <strong>£460m</strong>
+                        </li>
+                        <li>
+                            <span>Education</span>
+                            <strong>£141m</strong>
+                        </li>
+                        <li>
+                            <span>Infrastructure</span>
+                            <strong>£116m</strong>
+                        </li>
+                        <li>
+                            <span>Capital Projects</span>
+                            <strong>£87m</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon icon-resilience">🛡️</div>
+                    <h3>Financial Resilience</h3>
+                </div>
+                <div class="info-card-content">
+                    <p>Strong reserves provide security and flexibility for the future.</p>
+                    <ul class="info-list">
+                        <li>
+                            <span>General Reserve</span>
+                            <strong>£1.76bn</strong>
+                        </li>
+                        <li>
+                            <span>NI Fund Balance</span>
+                            <strong>£850m</strong>
+                        </li>
+                        <li>
+                            <span>Reserve Coverage</span>
+                            <strong>15 months</strong>
+                        </li>
+                        <li>
+                            <span>Credit Rating</span>
+                            <strong>Aa3 Stable</strong>
+                        </li>
+                        <li>
+                            <span>Debt Level</span>
+                            <strong>Minimal</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reserves Gauge Visualization -->
+        <section class="viz-section">
+            <div class="viz-card" style="max-width: 600px; margin: 0 auto;">
+                <h3 style="text-align: center;">Reserve Levels - Financial Security</h3>
+                <div class="chart-container">
+                    <canvas id="reservesGauge"></canvas>
+                </div>
+                <p style="text-align: center; color: var(--text-secondary); margin-top: 1rem;">
+                    Reserves provide a strong foundation for economic stability and future investment
+                </p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Explore Scenarios</h2>
+            <p>What would you prioritize? Test different approaches to budgeting and see their impacts in real-time.</p>
+            <a href="workshop.html" class="btn-primary">Enter Workshop Mode →</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Data Source: Isle of Man Pink Book 2025-26 | Last Updated: August 2025</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+                This tool presents simplified visualizations of complex financial data. 
+                For complete details, please refer to the official Pink Book documentation.
+            </p>
+            <div class="footer-links">
+                <a href="https://www.gov.im/pink-book" target="_blank">Official Pink Book PDF</a>
+                <a href="#contact">Contact for Questions</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#accessibility">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Charts when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Revenue Donut Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['VAT', 'Income Tax', 'National Insurance', 'Customs & Excise', 'Other'],
+                    datasets: [{
+                        data: [388, 384, 330, 183, 104],
+                        backgroundColor: [
+                            '#3b82f6',
+                            '#10b981',
+                            '#f59e0b',
+                            '#8b5cf6',
+                            '#ef4444'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': £' + context.parsed + 'm';
+                                    }
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                    label += ' (' + percentage + '%)';
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    onClick: function(evt, item) {
+                        if (item.length > 0) {
+                            const index = item[0].index;
+                            const labels = ['VAT', 'Income Tax', 'National Insurance', 'Customs & Excise', 'Other'];
+                            showRevenueDetail(labels[index]);
+                        }
+                    }
+                }
+            });
+
+            // Expenditure Bar Chart
+            const expenditureCtx = document.getElementById('expenditureChart').getContext('2d');
+            new Chart(expenditureCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Health & Social Care', 'Treasury (Benefits)', 'Education', 'Infrastructure', 'Home Affairs', 'Other'],
+                    datasets: [{
+                        label: 'Budget (£m)',
+                        data: [357, 460, 141, 116, 85, 229],
+                        backgroundColor: '#003087',
+                        borderRadius: 8,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return '£' + context.parsed.x + 'm';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: true,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '£' + value + 'm';
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    onClick: function(evt, item) {
+                        if (item.length > 0) {
+                            const index = item[0].index;
+                            const departments = ['health', 'treasury', 'education', 'infrastructure', 'home-affairs', 'other'];
+                            showDepartmentDetail(departments[index]);
+                        }
+                    }
+                }
+            });
+
+            // Reserves Gauge
+            const reservesCtx = document.getElementById('reservesGauge').getContext('2d');
+            new Chart(reservesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['General Reserve', 'NI Fund', 'Target Minimum'],
+                    datasets: [{
+                        data: [1760, 850, 1000],
+                        backgroundColor: [
+                            '#10b981',
+                            '#3b82f6',
+                            '#e5e7eb'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    circumference: 180,
+                    rotation: 270,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': £' + context.parsed + 'm';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Interactive Functions
+        function showDetail(type) {
+            console.log('Showing detail for:', type);
+            // In a real implementation, this would open a modal or navigate to detailed view
+        }
+
+        function showRevenueDetail(source) {
+            console.log('Revenue detail:', source);
+            // Show detailed breakdown of revenue source
+        }
+
+        function showDepartmentDetail(dept) {
+            console.log('Department detail:', dept);
+            // Show detailed department spending
+        }
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation to metrics on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.metric-card, .info-card, .viz-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
