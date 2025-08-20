@@ -43,7 +43,7 @@ export const BudgetDataService = {
       const infrastructureIncome = revenueStreams.departmentalIncome?.breakdown?.infrastructure || 0;
       // Vehicle duty is approximately 24% of infrastructure income based on Pink Book
       return Math.round(infrastructureIncome * 0.241); // Returns ~16m from 66.5m
-    }
+    },
     departmentalIncome: () => revenueStreams.departmentalIncome?.total_revenue || 0,
     gamblingDuty: () => revenueStreams.customsAndExcise?.exciseDuties?.betting?.breakdown?.gambling_duty || 0,
     airportDuty: () => revenueStreams.customsAndExcise?.exciseDuties?.betting?.breakdown?.air_passenger_duty || 0,
