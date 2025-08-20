@@ -86,7 +86,8 @@ export const BudgetDataService = {
     statePension: () => transferPayments.ni_funded_benefits?.breakdown?.retirement_pension?.total_amount || 0,
     winterBonus: () => transferPayments.revenue_funded_benefits?.breakdown?.winter_bonus?.amount || 0,
     childBenefit: () => transferPayments.revenue_funded_benefits?.breakdown?.child_benefit?.amount || 0,
-    housingBenefit: () => transferPayments.nhs_transfers?.housing_benefit?.amount || 0,
+    // Note: Isle of Man doesn't have separate "housing benefit" - it's part of income support
+    housingBenefit: () => 0, // IoM uses income support instead of separate housing benefit
     niFundedBenefits: () => transferPayments.ni_funded_benefits?.total || 0,
     treasuryFundedBenefits: () => transferPayments.revenue_funded_benefits?.total || 0,
   },
@@ -95,13 +96,30 @@ export const BudgetDataService = {
   getReserves: {
     generalReserve: () => reservesFunds.general_reserve?.balance || 0,
     niFund: () => reservesFunds.ni_fund?.balance_2025_26 || 0,
-    housingReserve: () => reservesFunds.housing_reserve?.balance || 0,
-    insuranceFund: () => reservesFunds.insurance_fund?.balance || 0,
+    // Housing and insurance funds are in internal_funds.funds array
+    housingReserve: () => {
+      const housingFund = reservesFunds.internal_funds?.funds?.find(
+        (f: any) => f.name === 'Housing Reserve Fund'
+      );
+      return housingFund?.balance || 0;
+    },
+    insuranceFund: () => {
+      const insuranceFund = reservesFunds.internal_funds?.funds?.find(
+        (f: any) => f.name === 'Insurance and Compensation Fund'
+      );
+      return insuranceFund?.balance || 0;
+    },
     totalReserves: () => {
+      const housingFund = reservesFunds.internal_funds?.funds?.find(
+        (f: any) => f.name === 'Housing Reserve Fund'
+      );
+      const insuranceFund = reservesFunds.internal_funds?.funds?.find(
+        (f: any) => f.name === 'Insurance and Compensation Fund'
+      );
       return (reservesFunds.general_reserve?.balance || 0) +
              (reservesFunds.ni_fund?.balance_2025_26 || 0) +
-             (reservesFunds.housing_reserve?.balance || 0) +
-             (reservesFunds.insurance_fund?.balance || 0);
+             (housingFund?.balance || 0) +
+             (insuranceFund?.balance || 0);
     },
     drawdown: () => forwardLooking.baseline_projections?.find(
       (p: any) => p.year === "2025-26"
