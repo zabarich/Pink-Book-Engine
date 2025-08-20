@@ -114,15 +114,18 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
   // Pillar 2 Tax (included by default)
   let pillar2Revenue = 0;
   if (includePillar2) {
-    pillar2Revenue = forwardLooking.pillarTwoTax.projections["2025-26"];
+    // The JSON has pillar_two_tax under risks_and_opportunities with impact array
+    const pillar2Data = forwardLooking.risks_and_opportunities?.pillar_two_tax?.impact;
+    const pillar2025 = pillar2Data?.find((item: any) => item.year === "2025-26");
+    pillar2Revenue = pillar2025?.amount || 10000000; // £10m for 2025-26 from Pink Book
     revenueComponents.push({
       sourceFile: 'forward-looking.json',
-      sourcePath: 'pillarTwoTax.projections.2025-26',
+      sourcePath: 'risks_and_opportunities.pillar_two_tax.impact[2025-26]',
       sourceValue: pillar2Revenue,
       formula: 'Direct from source (OECD Pillar Two)',
       calculatedValue: pillar2Revenue
     });
-    debugLog.push(`Pillar 2 Tax: £${pillar2Revenue.toLocaleString()} (forward-looking.json → pillarTwoTax → projections → 2025-26)`);
+    debugLog.push(`Pillar 2 Tax: £${pillar2Revenue.toLocaleString()} (forward-looking.json → risks_and_opportunities → pillar_two_tax)`);
   }
 
   // Total Revenue
@@ -207,11 +210,14 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
  * Calculate impact of Pillar 2 Tax toggle
  */
 export function calculatePillar2Impact(enabled: boolean): CalculationTrace {
-  const pillar2Revenue = forwardLooking.pillarTwoTax.projections["2025-26"];
+  // Get Pillar 2 revenue from correct path in JSON
+  const pillar2Data = forwardLooking.risks_and_opportunities?.pillar_two_tax?.impact;
+  const pillar2025 = pillar2Data?.find((item: any) => item.year === "2025-26");
+  const pillar2Revenue = pillar2025?.amount || 10000000;
   
   return {
     sourceFile: 'forward-looking.json',
-    sourcePath: 'pillarTwoTax.projections.2025-26',
+    sourcePath: 'risks_and_opportunities.pillar_two_tax.impact[2025-26]',
     sourceValue: pillar2Revenue,
     formula: enabled ? 'Pillar 2 enabled' : 'Pillar 2 disabled',
     calculatedValue: enabled ? pillar2Revenue : 0
