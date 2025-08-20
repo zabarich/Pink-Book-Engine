@@ -78,7 +78,7 @@ export default function AdvancedOptionsPage() {
     total -= policies.freeTransport ? 3500000 : 0; // Additional subsidy needed
     
     // Heritage Railway savings from reduced days
-    const heritageRailBudget = capitalProgramme.projects?.infrastructure?.find(
+    const heritageRailBudget = capitalProgramme.projects_2025_26?.discrete_schemes?.by_department?.DOI?.projects?.find(
       (p: any) => p.name === 'Heritage Rail Budget'
     )?.amount || 2250000;
     // Reducing from 7 to 5 days saves approximately 2/7 of budget
@@ -743,7 +743,7 @@ export default function AdvancedOptionsPage() {
                       (policies.internalRentCharging ? 3000000 : 0) -
                       (policies.freeTransport ? 3500000 : 0) +
                       (policies.heritageRailDays === 5 ? Math.round(
-                        (capitalProgramme.projects?.infrastructure?.find(
+                        (capitalProgramme.projects_2025_26?.discrete_schemes?.by_department?.DOI?.projects?.find(
                           (p: any) => p.name === 'Heritage Rail Budget'
                         )?.amount || 2250000) * 2 / 7
                       ) : 0)

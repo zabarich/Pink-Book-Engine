@@ -244,7 +244,7 @@ export default function IntegratedWorkshopPage() {
     total -= advancedPolicies.freeTransport ? 3500000 : 0; // Policy estimate
     
     // Heritage Railway savings from reduced days
-    const heritageRailBudget = capitalProgramme.projects?.infrastructure?.find(
+    const heritageRailBudget = capitalProgramme.projects_2025_26?.discrete_schemes?.by_department?.DOI?.projects?.find(
       (p: any) => p.name === 'Heritage Rail Budget'
     )?.amount || 2250000;
     total += advancedPolicies.heritageRailDays === 5 ? Math.round(heritageRailBudget * 2 / 7) : 0;
