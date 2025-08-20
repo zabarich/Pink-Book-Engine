@@ -136,16 +136,34 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
   debugLog.push('\n=== EXPENDITURE CALCULATION ===');
 
   // Calculate departmental net expenditure from departments array
+  // CRITICAL: Treasury has negative net expenditure because it collects revenue
+  // We must exclude Treasury or use gross expenditure to avoid understating costs
   const deptNetExpenditure = departmentBudgets.departments
+    .filter((dept: any) => dept.name !== 'Treasury') // Exclude Treasury's negative net
     .reduce((sum: number, dept: any) => sum + (dept.net_expenditure || 0), 0);
+  
+  // Add Treasury's actual expenditure separately (using gross)
+  const treasuryDept = departmentBudgets.departments.find((d: any) => d.name === 'Treasury');
+  const treasuryExpenditure = treasuryDept?.gross_expenditure || 487900000;
+  
   expenditureComponents.push({
     sourceFile: 'department-budgets.json',
-    sourcePath: 'departments[].net_expenditure (sum)',
+    sourcePath: 'departments[].net_expenditure (excl Treasury)',
     sourceValue: deptNetExpenditure,
-    formula: 'Sum of all department net expenditures',
+    formula: 'Sum of department net expenditures (excluding Treasury)',
     calculatedValue: deptNetExpenditure
   });
-  debugLog.push(`Departmental Net Expenditure: £${deptNetExpenditure.toLocaleString()} (department-budgets.json → calculated from departments)`);
+  
+  expenditureComponents.push({
+    sourceFile: 'department-budgets.json',
+    sourcePath: 'Treasury.gross_expenditure',
+    sourceValue: treasuryExpenditure,
+    formula: 'Treasury gross expenditure (not net which is negative)',
+    calculatedValue: treasuryExpenditure
+  });
+  
+  debugLog.push(`Departmental Net Expenditure (excl Treasury): £${deptNetExpenditure.toLocaleString()}`);
+  debugLog.push(`Treasury Gross Expenditure: £${treasuryExpenditure.toLocaleString()}`);
 
   // Transfer Payments from transfer-payments.json
   const transferPaymentsTotal = transferPayments.metadata.total_transfer_payments;
@@ -169,17 +187,10 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
   });
   debugLog.push(`Capital Expenditure: £${capitalSpending.toLocaleString()} (department-budgets.json → summary → capital_expenditure)`);
 
-  // Reserves and Contingencies - calculate as the deficit/surplus
-  // Pink Book shows a £110.6m deficit for 2025-26 (drawdown from reserves)
-  const reservesContingencies = 110600000; // Known drawdown from Pink Book
-  expenditureComponents.push({
-    sourceFile: 'Pink Book deficit',
-    sourcePath: 'reserves_drawdown',
-    sourceValue: reservesContingencies,
-    formula: 'Reserves drawdown to balance budget',
-    calculatedValue: reservesContingencies
-  });
-  debugLog.push(`Reserves Drawdown: £${reservesContingencies.toLocaleString()} (Pink Book 2025-26 deficit)`);
+  // NOTE: Reserves drawdown is NOT expenditure - it's how the deficit is funded
+  // The £110.6m drawdown is the RESULT of revenue < expenditure, not part of expenditure
+  // Removing this from expenditure calculation
+  debugLog.push(`Note: £110.6m reserves drawdown is funding source for deficit, not expenditure`);
 
   // Total Expenditure
   const totalExpenditure = expenditureComponents.reduce((sum, comp) => sum + comp.calculatedValue, 0);

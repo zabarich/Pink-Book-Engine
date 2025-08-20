@@ -145,7 +145,7 @@ export const INITIAL_STATE = {
     other: 35040000
   },
   expenditure: {
-    total: 1460000000, // Corrected total from Pink Book
+    total: 1387759000, // Correct total from Pink Book 2025-26
     departments: {
       health: 298088000, // NET expenditure
       education: 149834000, // NET expenditure
