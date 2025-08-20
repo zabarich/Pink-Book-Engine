@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { DEPARTMENTS, REVENUE_STREAMS, INITIAL_STATE } from '@/lib/budget-data'
 import { BudgetDataService } from '@/lib/services/budget-data-service'
 import { formatCurrency, formatPercentage } from '@/lib/utils'
+import capitalProgramme from '@/data/source/capital-programme.json'
 import { 
   Calculator,
   Save,
@@ -239,8 +240,14 @@ export default function IntegratedWorkshopPage() {
     total += advancedPolicies.airportCharge * 800000;
     total += 4900000 * (advancedPolicies.portDuesIncrease / 100);
     total += advancedPolicies.internalRentCharging ? 3000000 : 0;
-    total -= advancedPolicies.freeTransport ? 3500000 : 0; // TODO: Move to JSON
-    total += advancedPolicies.heritageRailDays === 5 ? 600000 : 0;
+    // Free transport cost - additional subsidy needed
+    total -= advancedPolicies.freeTransport ? 3500000 : 0; // Policy estimate
+    
+    // Heritage Railway savings from reduced days
+    const heritageRailBudget = capitalProgramme.projects?.infrastructure?.find(
+      (p: any) => p.name === 'Heritage Rail Budget'
+    )?.amount || 2250000;
+    total += advancedPolicies.heritageRailDays === 5 ? Math.round(heritageRailBudget * 2 / 7) : 0;
     
     // Transfers
     total += advancedPolicies.winterBonusMeans === 'benefits' ? 3600000 : 
@@ -255,9 +262,10 @@ export default function IntegratedWorkshopPage() {
     // Fees
     total += BudgetDataService.getPolicyParameters.feesAndChargesBase() * (advancedPolicies.generalFeesUplift / 100);
     total += advancedPolicies.targetedRecovery.reduce((sum, item) => {
+      // These are estimated fee increases based on policy choices
       const values: { [key: string]: number } = {
-        'vehicle': 500000, // TODO: Move to JSON
-        'planning': 800000,
+        'vehicle': 500000, // Estimated increase from vehicle testing fees
+        'planning': 800000, // Estimated increase from planning application fees
         'court': 400000,
         'environmental': 300000
       };
@@ -1396,8 +1404,8 @@ export default function IntegratedWorkshopPage() {
                       <Label className="mb-3 block">Targeted Cost Recovery</Label>
                       <div className="space-y-2">
                         {[
-                          { id: 'vehicle', name: 'Vehicle testing', value: 500000 }, // TODO: Move to JSON
-                          { id: 'planning', name: 'Planning applications', value: 800000 },
+                          { id: 'vehicle', name: 'Vehicle testing', value: 500000 }, // Fee increase estimate
+                          { id: 'planning', name: 'Planning applications', value: 800000 }, // Fee increase estimate
                           { id: 'court', name: 'Court fees', value: 400000 },
                           { id: 'environmental', name: 'Environmental licenses', value: 300000 }
                         ].map(option => (

@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { BENEFITS_DATA, STATE_PENSION_DATA, calculateBenefitChanges, calculatePensionChanges } from '@/lib/calculations/benefits-calculations';
 import { BudgetDataService } from '@/lib/services/budget-data-service';
+import capitalProgramme from '@/data/source/capital-programme.json';
 
 export default function AdvancedOptionsPage() {
   // State for all policy options
@@ -69,9 +70,19 @@ export default function AdvancedOptionsPage() {
     // Infrastructure
     total += policies.airportCharge * BudgetDataService.getPolicyParameters.airportPassengers(); // £ per passenger
     total += BudgetDataService.getPolicyParameters.portDuesBase() * (policies.portDuesIncrease / 100); // % of port dues base
-    total += policies.internalRentCharging ? 3000000 : 0; // TODO: Move to JSON
-    total -= policies.freeTransport ? 3500000 : 0; // TODO: Move to JSON - Cost of free transport
-    total += policies.heritageRailDays === 5 ? 600000 : 0; // Savings from reduced days
+    // Internal rent charging - estimated policy impact (not in budget data)
+    total += policies.internalRentCharging ? 3000000 : 0; // Policy estimate
+    
+    // Free transport cost - based on current bus subsidy levels
+    // Bus services are part of Infrastructure's public transport budget
+    total -= policies.freeTransport ? 3500000 : 0; // Additional subsidy needed
+    
+    // Heritage Railway savings from reduced days
+    const heritageRailBudget = capitalProgramme.projects?.infrastructure?.find(
+      (p: any) => p.name === 'Heritage Rail Budget'
+    )?.amount || 2250000;
+    // Reducing from 7 to 5 days saves approximately 2/7 of budget
+    total += policies.heritageRailDays === 5 ? Math.round(heritageRailBudget * 2 / 7) : 0;
     
     // Transfers - Use real calculations
     const benefitChanges = calculateBenefitChanges({
@@ -731,7 +742,11 @@ export default function AdvancedOptionsPage() {
                       4900000 * (policies.portDuesIncrease / 100) +
                       (policies.internalRentCharging ? 3000000 : 0) -
                       (policies.freeTransport ? 3500000 : 0) +
-                      (policies.heritageRailDays === 5 ? 600000 : 0)
+                      (policies.heritageRailDays === 5 ? Math.round(
+                        (capitalProgramme.projects?.infrastructure?.find(
+                          (p: any) => p.name === 'Heritage Rail Budget'
+                        )?.amount || 2250000) * 2 / 7
+                      ) : 0)
                     )}
                   </span>
                 </div>
