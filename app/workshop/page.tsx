@@ -237,8 +237,8 @@ export default function IntegratedWorkshopPage() {
     let total = 0;
     
     // Infrastructure
-    total += advancedPolicies.airportCharge * 800000;
-    total += 4900000 * (advancedPolicies.portDuesIncrease / 100);
+    total += advancedPolicies.airportCharge * BudgetDataService.getPolicyParameters.airportPassengers();
+    total += BudgetDataService.getPolicyParameters.portDuesBase() * (advancedPolicies.portDuesIncrease / 100);
     total += advancedPolicies.internalRentCharging ? 3000000 : 0;
     // Free transport cost - additional subsidy needed
     total -= advancedPolicies.freeTransport ? 3500000 : 0; // Policy estimate
@@ -958,7 +958,7 @@ export default function IntegratedWorkshopPage() {
                         step={2}
                       />
                       <p className="text-xs text-gray-500 mt-1">
-                        Current: £4.6m | Additional: {formatCurrency(airportPassengerDuty * 850000)}
+                        Current: £4.6m | Additional: {formatCurrency(airportPassengerDuty * BudgetDataService.getPolicyParameters.airportPassengers())}
                       </p>
                     </div>
                   </div>
@@ -1143,7 +1143,7 @@ export default function IntegratedWorkshopPage() {
                             step={5}
                           />
                           <p className="text-xs text-gray-500 mt-1">
-                            Revenue: {formatCurrency(4900000 * (advancedPolicies.portDuesIncrease / 100))}
+                            Revenue: {formatCurrency(BudgetDataService.getPolicyParameters.portDuesBase() * (advancedPolicies.portDuesIncrease / 100))}
                           </p>
                         </div>
                         

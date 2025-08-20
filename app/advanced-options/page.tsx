@@ -217,11 +217,11 @@ export default function AdvancedOptionsPage() {
                       className="flex-1"
                     />
                     <span className="text-sm text-gray-500 w-20">
-                      +{formatCurrency(policies.airportCharge * 800000)}
+                      +{formatCurrency(policies.airportCharge * BudgetDataService.getPolicyParameters.airportPassengers())}
                     </span>
                   </div>
                   <p className="text-xs text-gray-600">
-                    New charge per passenger (800k passengers/year). UK airports charge £13-35.
+                    New charge per passenger (652k passengers/year - 2024 data). UK airports charge £13-35.
                   </p>
                 </div>
 
@@ -244,11 +244,11 @@ export default function AdvancedOptionsPage() {
                       className="flex-1"
                     />
                     <span className="text-sm text-gray-500 w-20">
-                      +{formatCurrency(4900000 * (policies.portDuesIncrease / 100))}
+                      +{formatCurrency(BudgetDataService.getPolicyParameters.portDuesBase() * (policies.portDuesIncrease / 100))}
                     </span>
                   </div>
                   <p className="text-xs text-gray-600">
-                    Increase from current £4.9m base. Still below UK port rates.
+                    Increase from current £5m base (~500 pleasure craft + 14-15 cruise ships). Still below UK port rates.
                   </p>
                 </div>
 
@@ -738,8 +738,8 @@ export default function AdvancedOptionsPage() {
                   <span className="text-gray-600">Infrastructure</span>
                   <span className="font-medium">
                     {formatCurrency(
-                      policies.airportCharge * 800000 +
-                      4900000 * (policies.portDuesIncrease / 100) +
+                      policies.airportCharge * BudgetDataService.getPolicyParameters.airportPassengers() +
+                      BudgetDataService.getPolicyParameters.portDuesBase() * (policies.portDuesIncrease / 100) +
                       (policies.internalRentCharging ? 3000000 : 0) -
                       (policies.freeTransport ? 3500000 : 0) +
                       (policies.heritageRailDays === 5 ? Math.round(
