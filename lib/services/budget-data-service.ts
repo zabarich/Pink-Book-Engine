@@ -77,7 +77,7 @@ export const BudgetDataService = {
       );
       return Math.round(totalGross * 0.365); // Approximately £507m
     },
-    capitalProgramme: () => capitalProgramme.metadata?.total_capital_budget || departmentBudgets.summary?.capital_expenditure || 0,
+    capitalProgramme: () => capitalProgramme.metadata?.total_2025_26 || 87400000,
   },
 
   // Transfer Payments Methods
