@@ -1,263 +1,239 @@
 {
   "metadata": {
     "source": "Isle of Man Pink Book 2025-26",
-    "extracted": "2025-08-14",
+    "extracted": "2025-08-20",
     "fiscal_year": "2025-26",
     "currency": "GBP",
-    "total_transfer_payments": 441492000
+    "total_transfer_payments": 440078000
   },
-  "statePension": {
-    "total_cost": 245000000,
-    "basic": {
-      "weekly": 176.45,
-      "annual": 9175.40,
-      "recipients": 15000,
-      "total": 137632500,
-      "description": "Basic State Pension"
-    },
-    "manx": {
-      "weekly": 251.30,
-      "annual": 13067.60,
-      "recipients": 8200,
-      "total": 107154320,
-      "description": "Manx State Pension (higher rate)"
-    },
-    "increases": {
-      "rate": 0.041,
-      "mechanism": "triple_lock",
-      "components": {
-        "inflation": 0.041,
-        "earnings": 0.038,
-        "minimum": 0.025
+  "ni_funded_benefits": {
+    "total": 278689000,
+    "source": "Pink Book p.50, Appendix 2",
+    "breakdown": {
+      "retirement_pension": {
+        "base_amount": 140000000,
+        "uprating": 4900000,
+        "total_amount": 144900000,
+        "uprating_rate": 0.035,
+        "description": "State Retirement Pension",
+        "source": "Pink Book p.50, line 11"
       },
-      "next_increase": "April 2025"
+      "manx_state_pension": {
+        "base_amount": 62500000,
+        "uprating": 2563000,
+        "total_amount": 65063000,
+        "uprating_rate": 0.041,
+        "description": "Manx supplementary pension",
+        "source": "Pink Book p.50, line 16"
+      },
+      "pension_supplements": {
+        "retirement_pension_supplement": 25000000,
+        "manx_pension_supplement": 10000000,
+        "incapacity_supplement": 190000,
+        "bereavement_supplement": 12000,
+        "widows_supplement": 9000,
+        "total": 35211000,
+        "description": "Various pension supplements",
+        "source": "Pink Book p.50, lines 13,17,21,24,26"
+      },
+      "incapacity_benefits": {
+        "long_term_incapacity": 11187000,
+        "short_term_incapacity": 2441000,
+        "total": 13628000,
+        "description": "Incapacity support benefits",
+        "source": "Pink Book p.50, lines 19-20"
+      },
+      "bereavement_benefits": {
+        "bereavement_support_payment": 971000,
+        "bereavement_allowances_legacy": 132000,
+        "widows_pension": 75000,
+        "total": 1178000,
+        "description": "Support for bereaved families",
+        "source": "Pink Book p.50, lines 22-23,25"
+      },
+      "maternity_family_benefits": {
+        "maternity_allowance": 4140000,
+        "adoption_allowance": 41000,
+        "paternity_allowance": 93000,
+        "guardians_allowance": 9000,
+        "total": 4283000,
+        "description": "Maternity and family support",
+        "source": "Pink Book p.50, lines 27,29-31"
+      },
+      "carers_allowance": {
+        "amount": 5008000,
+        "description": "Support for carers",
+        "source": "Pink Book p.50, line 32"
+      },
+      "industrial_injuries": {
+        "industrial_disablement_benefit": 814000,
+        "description": "Work-related injury compensation",
+        "source": "Pink Book p.50, line 33"
+      },
+      "unemployment_benefits": {
+        "contribution_based_jsa": 432000,
+        "redundancy_payments": 185000,
+        "insolvency_payments": 500000,
+        "total": 1117000,
+        "description": "Unemployment and redundancy support",
+        "source": "Pink Book p.50, lines 34-36"
+      },
+      "other_ni_benefits": {
+        "age_addition": 220000,
+        "retirement_pension_premium": 814000,
+        "old_persons_pension": 88000,
+        "nursing_care_contribution": 5265000,
+        "funeral_payments": 100000,
+        "christmas_bonus": 1000000,
+        "total": 7487000,
+        "description": "Various other NI-funded benefits",
+        "source": "Pink Book p.50, various lines"
+      }
     },
     "projections": [
-      {"year": "2026-27", "total": 254950000},
-      {"year": "2027-28", "total": 265400000},
-      {"year": "2028-29", "total": 276200000},
-      {"year": "2029-30", "total": 287500000}
-    ],
-    "demographics": {
-      "current_pensioners": 23200,
-      "new_pensioners_annual": 800,
-      "life_expectancy": 82
-    }
-  },
-  "benefits": {
-    "total_cost": 87943000,
-    "unemploymentBenefit": {
-      "jobseekers_allowance": {
-        "weekly_rate": 84.80,
-        "recipients": 450,
-        "annual_cost": 1985280
+      {
+        "year": "2026-27",
+        "amount": 284200000
       },
-      "description": "Support for those seeking work"
-    },
-    "incomeSupport": {
-      "average_weekly": 150.00,
-      "recipients": 2800,
-      "annual_cost": 21840000,
-      "components": {
-        "personal_allowance": 95.00,
-        "housing_costs": 35.00,
-        "disability_premium": 20.00
+      {
+        "year": "2027-28",
+        "amount": 289900000
+      },
+      {
+        "year": "2028-29",
+        "amount": 295600000
+      },
+      {
+        "year": "2029-30",
+        "amount": 301600000
       }
-    },
-    "disabilityAllowance": {
-      "total_recipients": 3500,
-      "annual_cost": 18500000,
-      "types": {
-        "disability_living_allowance": {
-          "recipients": 2000,
-          "average_weekly": 95.00,
-          "annual": 9880000
-        },
-        "attendance_allowance": {
-          "recipients": 1000,
-          "average_weekly": 101.75,
-          "annual": 5291000
-        },
-        "employed_person_allowance": {
-          "recipients": 500,
-          "average_weekly": 65.00,
-          "annual": 1690000
-        }
-      }
-    },
-    "childBenefit": {
-      "rate_first_child": 25.60,
-      "rate_other_children": 16.95,
-      "families": 8500,
-      "children": 14000,
-      "annual_cost": 12000000
-    },
-    "winterBonus": {
-      "amount": 400.00,
-      "recipients": 18000,
-      "annual_cost": 7200000,
-      "eligibility": "Pensioners and vulnerable groups",
-      "paid": "November"
-    },
-    "housingBenefit": {
-      "recipients": 3200,
-      "average_monthly": 450.00,
-      "annual_cost": 17280000,
-      "caps": {
-        "single": 500.00,
-        "couple": 650.00,
-        "family": 850.00
-      }
-    },
-    "nursingCare": {
-      "contribution": {
-        "weekly_rate": 226.00,
-        "recipients": 450,
-        "annual_cost": 5287800
-      }
-    },
-    "other_benefits": {
-      "christmas_bonus": 500000,
-      "funeral_payments": 350000,
-      "maternity_allowance": 1500000,
-      "carers_allowance": 2000000,
-      "budgeting_loans": 500000,
-      "total": 4850000
-    }
+    ]
   },
-  "publicSectorPensions": {
-    "total_annual_cost": 142921000,
-    "currentPensioners": 8500,
+  "revenue_funded_benefits": {
+    "total": 87943000,
+    "source": "Pink Book p.50, Appendix 2",
     "breakdown": {
-      "government_scheme": {
-        "members": 6000,
-        "annual_cost": 95000000,
-        "average_pension": 15833
+      "disability_benefits": {
+        "disability_living_allowance": 17562000,
+        "attendance_allowance": 6643000,
+        "severe_disablement_allowance": 407000,
+        "total": 24612000,
+        "description": "Support for disabled individuals",
+        "source": "Pink Book p.50, lines 40-42"
       },
-      "teachers": {
-        "members": 1500,
-        "annual_cost": 28000000,
-        "average_pension": 18667
+      "child_benefit": {
+        "amount": 13797000,
+        "description": "Universal child support",
+        "source": "Pink Book p.50, line 43"
       },
-      "police": {
-        "members": 400,
-        "annual_cost": 9500000,
-        "average_pension": 23750
+      "income_support": {
+        "amount": 37303000,
+        "description": "Means-tested income support",
+        "source": "Pink Book p.50, line 44"
       },
-      "fire": {
-        "members": 200,
-        "annual_cost": 4800000,
-        "average_pension": 24000
+      "employed_persons_allowance": {
+        "amount": 8534000,
+        "description": "In-work benefit support",
+        "source": "Pink Book p.50, line 48"
       },
-      "health": {
-        "members": 400,
-        "annual_cost": 5621000,
-        "average_pension": 14053
+      "jobseekers_allowance_income_based": {
+        "amount": 1533000,
+        "description": "Income-based unemployment support",
+        "source": "Pink Book p.50, line 49"
+      },
+      "winter_bonus": {
+        "amount": 914000,
+        "description": "Winter heating support",
+        "source": "Pink Book p.50, line 45"
+      },
+      "other_revenue_benefits": {
+        "exceptional_needs_grants": 200000,
+        "maternity_payments": 50000,
+        "tv_licences": 1000000,
+        "total": 1250000,
+        "description": "Various other revenue-funded benefits",
+        "source": "Pink Book p.50, lines 46-47,50"
+      }
+    }
+  },
+  "nhs_allocation_from_ni": {
+    "amount": 73400000,
+    "source": "Pink Book p.32, Table 16",
+    "description": "NI Fund contribution to NHS costs",
+    "note": "Updated from £71m to £73.4m per Pink Book correction",
+    "projections": [
+      {
+        "year": "2025-26",
+        "amount": 73400000
+      },
+      {
+        "year": "2026-27",
+        "amount": 73400000
+      },
+      {
+        "year": "2027-28",
+        "amount": 75000000
+      },
+      {
+        "year": "2028-29",
+        "amount": 76400000
+      },
+      {
+        "year": "2029-30",
+        "amount": 78100000
+      }
+    ]
+  },
+  "public_sector_pensions": {
+    "total": 0,
+    "source": "Pink Book p.67, Executive Government Budget",
+    "description": "Public Service Employees Pension Reserve handled through other budget lines",
+    "breakdown": {
+      "pension_reserve": {
+        "amount": 0,
+        "description": "Pension payments managed through departmental budgets",
+        "note": "Not included in transfer payments to avoid double counting"
       }
     },
-    "employer_contributions": {
-      "rate": 0.15,
-      "annual": 62629000
-    },
-    "employee_contributions": {
-      "rate": 0.065,
-      "annual": 39848000
-    },
-    "unfunded_liability": {
-      "current": 1250000000,
-      "projected_2030": 1450000000,
-      "funding_ratio": 0.72
-    },
-    "reform_measures": {
-      "new_scheme_2012": "Career average",
-      "retirement_age": 67,
-      "contribution_increases": "Phased 2020-2025"
+    "historical_comparison": {
+      "2023-24_actual": 40596000,
+      "2024-25_probable": 46199000,
+      "2025-26_budget": 0
     }
-  },
-  "nationalInsuranceFund": {
-    "total_expenditure": 353549000,
-    "breakdown": {
-      "state_pensions": 245000000,
-      "unemployment_benefit": 1985280,
-      "sickness_benefit": 8500000,
-      "maternity_allowance": 1500000,
-      "bereavement_benefits": 2000000,
-      "health_service_allocation": 71000000,
-      "administration": 8000000,
-      "other_ni_benefits": 16563720
-    },
-    "income": {
-      "contributions": 329742000,
-      "investment_income": 15000000,
-      "government_supplement": 8807000
-    },
-    "fund_balance": {
-      "current": 850000000,
-      "projected_2030": 1000000000,
-      "sustainability": "Sustainable beyond 2050"
-    }
-  },
-  "healthAllocation": {
-    "nhs_allocation": 71000000,
-    "source": "National Insurance Fund",
-    "percentage_of_ni": 0.201,
-    "increase_from_previous": 16300000,
-    "note": "Increased from £54.7m to £71m (30% increase)"
-  },
-  "economicSupport": {
-    "covid_legacy": {
-      "business_support_outstanding": 2000000,
-      "job_retention_final": 500000
-    },
-    "cost_of_living": {
-      "energy_support": 3000000,
-      "food_vouchers": 500000,
-      "council_tax_relief": 1500000
-    },
-    "total": 7500000
   },
   "summary": {
-    "state_pensions": 245000000,
-    "welfare_benefits": 87943000,
-    "public_sector_pensions": 142921000,
-    "ni_funded_payments": 353549000,
-    "health_allocation": 71000000,
-    "economic_support": 7500000,
-    "total_transfers": 441492000,
-    "as_percentage_of_budget": 0.318
-  },
-  "projections": {
-    "demographic_pressures": {
-      "aging_population": "2% annual increase",
-      "dependency_ratio": "Worsening to 2030",
-      "pension_costs": "Rising 4% annually"
-    },
-    "sustainability_measures": {
-      "retirement_age_increase": "68 by 2030",
-      "means_testing": "Under consideration",
-      "contribution_increases": "Planned 2026"
+    "ni_funded_benefits": 278689000,
+    "revenue_funded_benefits": 87943000,
+    "nhs_allocation": 73400000,
+    "public_pensions": 0,
+    "total": 440032000,
+    "as_percentage_of_revenue": 31.7,
+    "breakdown_by_type": {
+      "state_pensions": 209963000,
+      "working_age_benefits": 58977000,
+      "disability_benefits": 38240000,
+      "family_benefits": 18080000,
+      "healthcare_allocation": 73400000,
+      "public_sector_pensions": 0,
+      "other_support": 41372000
     }
   },
-  "workshop_scenarios": {
-    "reduce_winter_bonus": {
-      "current": 7200000,
-      "reduced_amount": 300,
-      "savings": 1800000
+  "key_pension_figures": {
+    "source": "Pink Book p.50, Appendix 2",
+    "retirement_pension": {
+      "base": 140000000,
+      "uprated": 144900000,
+      "description": "State Retirement Pension (base £140m)"
     },
-    "means_test_child_benefit": {
-      "threshold": 50000,
-      "affected_families": 2000,
-      "savings": 3000000
+    "manx_state_pension": {
+      "base": 62500000,
+      "uprated": 65063000,
+      "description": "Manx State Pension (base £62.5m)"
     },
-    "pension_age_to_68": {
-      "implementation": 2027,
-      "affected": 1200,
-      "annual_savings": 15000000
-    },
-    "benefit_cap": {
-      "cap_level": 25000,
-      "affected_households": 150,
-      "savings": 2000000
+    "total_state_pensions": {
+      "base": 202500000,
+      "uprated": 209963000,
+      "description": "Combined state pension payments"
     }
   }
 }

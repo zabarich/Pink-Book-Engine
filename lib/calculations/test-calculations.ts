@@ -138,7 +138,8 @@ console.log('TEST 9: Winter Bonus Means Testing')
 const winterBonusResult = calculateBenefitChanges({
   winterBonusMeansTest: 'benefits' // Only pay to those on benefits
 })
-const expectedWinterSaving = BENEFITS_DATA.winter_bonus.total_cost * 0.5
+// Updated: ~64% savings based on corrected calculation (36% on benefits)
+const expectedWinterSaving = BENEFITS_DATA.winter_bonus.total_cost * 0.64
 runTest(
   'Winter bonus means testing (benefits only)',
   expectedWinterSaving,

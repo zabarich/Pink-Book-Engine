@@ -1,20 +1,21 @@
 {
   "metadata": {
     "source": "Isle of Man Pink Book 2025-26",
-    "extracted": "2025-08-14",
+    "extracted": "2025-08-20",
     "fiscal_year": "2025-26",
     "currency": "GBP",
     "total_revenue": 1389024000
   },
   "incomeText": {
     "current": 384040000,
+    "source": "Pink Book p.49, Table 25",
     "bands": {
       "personal_allowance": {
         "threshold": 14500,
-        "rate": 0.00
+        "rate": 0.0
       },
       "standard": {
-        "rate": 0.10,
+        "rate": 0.1,
         "threshold": 14500,
         "upper_limit": 21000,
         "revenue": 165145000
@@ -32,19 +33,32 @@
       }
     },
     "components": {
-      "resident_income_tax": 330290000,
+      "resident_income_tax": 330250000,
       "company_tax": 23400000,
-      "non_resident_tax": 30350000
+      "non_resident_tax": 30400000
     },
     "projections": [
-      {"year": "2026-27", "amount": 407104000},
-      {"year": "2027-28", "amount": 435362000},
-      {"year": "2028-29", "amount": 449247000},
-      {"year": "2029-30", "amount": 462724000}
+      {
+        "year": "2026-27",
+        "amount": 407104000
+      },
+      {
+        "year": "2027-28",
+        "amount": 435362000
+      },
+      {
+        "year": "2028-29",
+        "amount": 449247000
+      },
+      {
+        "year": "2029-30",
+        "amount": 462724000
+      }
     ]
   },
   "nationalInsurance": {
     "total_revenue": 329742000,
+    "source": "Pink Book p.32, Table 16",
     "employee": {
       "rates": {
         "standard": 0.11,
@@ -68,17 +82,30 @@
       },
       "revenue": 32974000
     },
-    "fund_balance": 850000000,
-    "projected_fund_balance_2030": 1000000000,
+    "fund_balance": 992500000,
+    "projected_fund_balance_2026": 1012500000,
     "projections": [
-      {"year": "2026-27", "amount": 343517000},
-      {"year": "2027-28", "amount": 350693000},
-      {"year": "2028-29", "amount": 358070000},
-      {"year": "2029-30", "amount": 365563000}
+      {
+        "year": "2026-27",
+        "amount": 343517000
+      },
+      {
+        "year": "2027-28",
+        "amount": 350693000
+      },
+      {
+        "year": "2028-29",
+        "amount": 358070000
+      },
+      {
+        "year": "2029-30",
+        "amount": 365563000
+      }
     ]
   },
   "corporateTax": {
     "total_revenue": 23400000,
+    "source": "Pink Book p.49, Appendix 1",
     "zeroRate": {
       "companies": 7500,
       "revenue": 0,
@@ -94,121 +121,155 @@
       "revenue": 4680000,
       "description": "Large retailers with IoM profits >£500k"
     },
-    "projections": [
-      {"year": "2026-27", "amount": 32895000},
-      {"year": "2027-28", "amount": 30412000},
-      {"year": "2028-29", "amount": 31013000},
-      {"year": "2029-30", "amount": 31644000}
-    ]
-  },
-  "vat": {
-    "rate": 0.20,
-    "revenue": 388464000,
-    "shared_with_uk": true,
-    "fersa_rate": 0.0435,
-    "exemptions": [
-      "Food (most)",
-      "Children's clothing",
-      "Books and newspapers",
-      "Public transport",
-      "Healthcare",
-      "Education",
-      "Financial services"
-    ],
-    "projections": [
-      {"year": "2026-27", "amount": 402943000},
-      {"year": "2027-28", "amount": 415169000},
-      {"year": "2028-29", "amount": 426333000},
-      {"year": "2029-30", "amount": 438472000}
-    ]
-  },
-  "duties": {
-    "total": 85088000,
-    "vehicle": {
-      "amount": 16039000,
-      "description": "Vehicle duty collected by Department of Infrastructure",
-      "components": {
-        "annual_vehicle_duty": 14000000,
-        "first_registration": 2039000
-      }
-    },
-    "alcohol": {
-      "amount": 23739000,
-      "shared_with_uk": true,
+    "pillarTwo": {
+      "description": "Minimum 15% tax on large multinationals",
       "projections": [
-        {"year": "2026-27", "amount": 24115000},
-        {"year": "2027-28", "amount": 24496000}
+        {
+          "year": "2025-26",
+          "amount": 10000000
+        },
+        {
+          "year": "2026-27",
+          "amount": 25000000
+        },
+        {
+          "year": "2027-28",
+          "amount": 35000000
+        },
+        {
+          "year": "2028-29",
+          "amount": 35000000
+        },
+        {
+          "year": "2029-30",
+          "amount": 35000000
+        }
       ]
     },
-    "tobacco": {
-      "amount": 18000000,
-      "shared_with_uk": true,
-      "declining_trend": true
-    },
-    "fuel": {
-      "amount": 28500000,
-      "description": "Hydrocarbon Oil Duty",
-      "shared_with_uk": false,
-      "based_on": "actual_consumption"
-    },
-    "customs": {
-      "amount": 6600000,
-      "shared_with_uk": true
-    },
-    "gambling": {
-      "amount": 4500000,
-      "shared_with_uk": false,
-      "includes": ["online", "machine_games"]
-    },
-    "air_passenger": {
-      "amount": 4600000,
-      "shared_with_uk": false
-    },
-    "lottery": {
-      "amount": 1400000,
-      "shared_with_uk": false
-    },
-    "soft_drinks_levy": {
-      "amount": 649000,
-      "shared_with_uk": true
-    },
-    "collection_cost_adjustment": -3500000
+    "projections": [
+      {
+        "year": "2026-27",
+        "amount": 32895000
+      },
+      {
+        "year": "2027-28",
+        "amount": 30412000
+      },
+      {
+        "year": "2028-29",
+        "amount": 31013000
+      },
+      {
+        "year": "2029-30",
+        "amount": 31644000
+      }
+    ]
   },
-  "otherIncome": {
-    "total": 161842000,
-    "departmental_fees_charges": {
-      "amount": 150611000,
-      "description": "Fees and charges across all departments",
-      "major_sources": {
-        "infrastructure": 43286000,
-        "health": 18500000,
-        "home_affairs": 12000000,
-        "enterprise": 8500000
+  "customsAndExcise": {
+    "total_revenue": 473552000,
+    "source": "Pink Book p.49, Table 25",
+    "vat": {
+      "revenue": 388464000,
+      "rate": 0.2,
+      "description": "Standard VAT rate 20%"
+    },
+    "exciseDuties": {
+      "fuel": {
+        "revenue": 28500000,
+        "description": "Hydrocarbon oil duty"
+      },
+      "alcohol": {
+        "revenue": 23739000,
+        "beer": 8000000,
+        "wine": 7739000,
+        "spirits": 8000000
+      },
+      "tobacco": {
+        "revenue": 18000000,
+        "description": "Tobacco products duty"
+      },
+      "betting": {
+        "revenue": 10500000,
+        "description": "Betting, gaming and lottery duties",
+        "breakdown": {
+          "gambling_duty": 4500000,
+          "air_passenger_duty": 4600000,
+          "lottery_duty": 1400000
+        }
       }
     },
-    "fines_penalties": {
-      "amount": 850000,
-      "includes": ["court_fines", "parking_fines", "regulatory_penalties"]
+    "customsDuty": {
+      "revenue": 6600000,
+      "description": "Import duties"
     },
-    "investment_returns": {
-      "amount": 10578000,
-      "description": "Interest on reserves and investments",
-      "yield_rate": 0.006,
-      "based_on_reserves": 1760000000
-    },
-    "dividends": {
-      "steam_packet": 1000000,
-      "post_office": 1000000
-    },
-    "miscellaneous": 403000
+    "projections": [
+      {
+        "year": "2026-27",
+        "amount": 495210000
+      },
+      {
+        "year": "2027-28",
+        "amount": 514820000
+      },
+      {
+        "year": "2028-29",
+        "amount": 528900000
+      },
+      {
+        "year": "2029-30",
+        "amount": 543300000
+      }
+    ]
   },
-  "summary": {
-    "customs_excise_total": 473552000,
-    "income_tax_total": 384040000,
-    "national_insurance_total": 329742000,
-    "departmental_income_total": 150611000,
-    "other_treasury_income": 11231000,
-    "employee_pension_contributions": 39848000,
-    "grand_total": 1389024000
+  "departmentalIncome": {
+    "total_revenue": 190459000,
+    "source": "Pink Book p.26, Section 5.1",
+    "breakdown": {
+      "health_and_social_care": 71128000,
+      "infrastructure": 66521000,
+      "statutory_boards": 35416000,
+      "enterprise": 27678000,
+      "education_sport_culture": 11419000,
+      "environment_food_agriculture": 4760000,
+      "cabinet_office": 258000,
+      "executive_government": 3047000,
+      "home_affairs": 1373000,
+      "legislature": 11000
+    }
+  },
+  "otherRevenue": {
+    "investment_income": {
+      "revenue": 0,
+      "source": "Pink Book p.43, Section 7",
+      "description": "Returns on externally invested reserves",
+      "projections": [
+        {
+          "year": "2026-27",
+          "amount": 42000000
+        },
+        {
+          "year": "2027-28",
+          "amount": 43500000
+        },
+        {
+          "year": "2028-29",
+          "amount": 44500000
+        },
+        {
+          "year": "2029-30",
+          "amount": 45000000
+        }
+      ]
+    },
+    "fees_and_charges": {
+      "revenue": 11231000,
+      "source": "Pink Book p.49, Table 25",
+      "description": "Treasury fees, fines and miscellaneous income",
+      "breakdown": {
+        "interest_on_investments": 10578000,
+        "fines": 250000,
+        "miscellaneous": 403000
+      }
+    }
   }
 }

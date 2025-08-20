@@ -102,11 +102,12 @@ function InfoTooltip({ text }: { text: string }) {
 
 // NHS Levy Calculation Model
 const calculateNHSLevy = (rate: number, levyFreeAmount: number, individualCap: number) => {
-  const totalIncomeTaxBase = 384000000
+  // Use resident income tax base only (not companies or non-residents)
+  const residentIncomeTaxBase = 330250000 // £330.25m from Pink Book
   const averageIncome = 45000
   const taxpayerCount = 35000
   
-  const effectiveBase = totalIncomeTaxBase * (1 - levyFreeAmount / averageIncome)
+  const effectiveBase = residentIncomeTaxBase * (1 - levyFreeAmount / averageIncome)
   const uncappedRevenue = effectiveBase * (rate / 100)
   
   const cappedTaxpayers = taxpayerCount * 0.05
@@ -343,9 +344,10 @@ export default function IntegratedWorkshopPage() {
     const passengers = 850000
     newRevenue += airportPassengerDuty * passengers
     
-    // Gaming Duty
-    const gamingRevenue = 2000000000
-    newRevenue += gamingRevenue * (onlineGamingDuty / 100)
+    // Gaming Duty - based on current £4.5m gambling duty revenue
+    // Estimated taxable gaming base £225m (at current 2% effective rate)
+    const gamingTaxableBase = 225000000
+    newRevenue += gamingTaxableBase * (onlineGamingDuty / 100)
     
     // Add advanced policies impact
     // For revenue increases (positive impact)

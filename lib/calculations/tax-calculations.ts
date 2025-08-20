@@ -4,6 +4,12 @@
 // Income Tax Data Structure - Real Pink Book figures
 export const INCOME_TAX_DATA = {
   total_revenue: 384040000, // £384.04m from Pink Book
+  // Split by components as per Pink Book page 49
+  components: {
+    resident_income_tax: 330250000, // £330.25m - resident individuals
+    company_tax: 23400000, // £23.4m - company income tax
+    non_resident_tax: 30400000 // £30.4m - non-resident individuals
+  },
   standard_rate: {
     rate: 0.10,
     revenue: 165145000, // £165.145m
@@ -17,9 +23,7 @@ export const INCOME_TAX_DATA = {
     taxable_income: 786404762, // £786.4m calculated
     threshold: 21000,
     cap: 220000
-  },
-  company_tax: 23400000, // £23.4m
-  non_resident_tax: 30350000 // £30.35m
+  }
 };
 
 // National Insurance Data Structure - Real Pink Book figures

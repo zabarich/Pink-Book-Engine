@@ -1,24 +1,289 @@
 {
-  "pillarTwoTax": {
-    "projections": {
-      "2025-26": 10000000,
-      "2026-27": 25000000,
-      "2027-28": 35000000
+  "metadata": {
+    "source": "Isle of Man Pink Book 2025-26",
+    "extracted": "2025-08-20",
+    "period": "2025-26 to 2029-30",
+    "currency": "GBP"
+  },
+  "revenue_projections": {
+    "source": "Pink Book p.6, Table 1 and p.12, Table 2",
+    "projections": [
+      {
+        "year": "2025-26",
+        "total_revenue": 1389024000,
+        "tax_revenue": 384040000,
+        "customs_excise": 473552000,
+        "departmental_income": 190459000,
+        "investment_income": 40200000,
+        "other_income": 11231000
+      },
+      {
+        "year": "2026-27",
+        "total_revenue": 1446963000,
+        "tax_revenue": 407104000,
+        "customs_excise": 489305000,
+        "departmental_income": 195000000,
+        "investment_income": 42000000,
+        "other_income": 11568000
+      },
+      {
+        "year": "2027-28",
+        "total_revenue": 1500303000,
+        "tax_revenue": 435362000,
+        "customs_excise": 501718000,
+        "departmental_income": 198000000,
+        "investment_income": 43500000,
+        "other_income": 11915000
+      },
+      {
+        "year": "2028-29",
+        "total_revenue": 1538810000,
+        "tax_revenue": 449247000,
+        "customs_excise": 513080000,
+        "departmental_income": 201000000,
+        "investment_income": 44500000,
+        "other_income": 12272000
+      },
+      {
+        "year": "2029-30",
+        "total_revenue": 1579380000,
+        "tax_revenue": 462724000,
+        "customs_excise": 525921000,
+        "departmental_income": 204000000,
+        "investment_income": 45000000,
+        "other_income": 12640000
+      }
+    ]
+  },
+  "expenditure_projections": {
+    "source": "Pink Book p.6, Table 1 and p.12, Table 2",
+    "projections": [
+      {
+        "year": "2025-26",
+        "revenue_expenditure": 1387759000,
+        "capital_expenditure": 87400000,
+        "total_expenditure": 1475159000
+      },
+      {
+        "year": "2026-27",
+        "revenue_expenditure": 1445229000,
+        "capital_expenditure": 61364000,
+        "total_expenditure": 1506593000
+      },
+      {
+        "year": "2027-28",
+        "revenue_expenditure": 1499254000,
+        "capital_expenditure": 51071000,
+        "total_expenditure": 1550325000
+      },
+      {
+        "year": "2028-29",
+        "revenue_expenditure": 1537661000,
+        "capital_expenditure": 50072000,
+        "total_expenditure": 1587733000
+      },
+      {
+        "year": "2029-30",
+        "revenue_expenditure": 1577061000,
+        "capital_expenditure": 49981000,
+        "total_expenditure": 1627042000
+      }
+    ]
+  },
+  "budget_balance": {
+    "source": "Pink Book p.6, Tables 1-2 and p.44, Table 23",
+    "projections": [
+      {
+        "year": "2025-26",
+        "revenue_surplus": 1265000,
+        "capital_deficit": -87400000,
+        "overall_deficit": -86135000,
+        "reserve_drawdown": 110600000
+      },
+      {
+        "year": "2026-27",
+        "revenue_surplus": 1734000,
+        "capital_deficit": -61364000,
+        "overall_deficit": -59630000,
+        "reserve_drawdown": 82200000
+      },
+      {
+        "year": "2027-28",
+        "revenue_surplus": 1049000,
+        "capital_deficit": -51071000,
+        "overall_deficit": -50022000,
+        "reserve_drawdown": 61600000
+      },
+      {
+        "year": "2028-29",
+        "revenue_surplus": 1149000,
+        "capital_deficit": -50072000,
+        "overall_deficit": -48923000,
+        "reserve_drawdown": 56400000
+      },
+      {
+        "year": "2029-30",
+        "revenue_surplus": 2319000,
+        "capital_deficit": -49981000,
+        "overall_deficit": -47662000,
+        "reserve_drawdown": 49700000
+      }
+    ]
+  },
+  "key_assumptions": {
+    "inflation": {
+      "description": "CPI inflation assumptions",
+      "rates": [
+        {
+          "year": "2025-26",
+          "rate": 0.025
+        },
+        {
+          "year": "2026-27",
+          "rate": 0.023
+        },
+        {
+          "year": "2027-28",
+          "rate": 0.02
+        },
+        {
+          "year": "2028-29",
+          "rate": 0.02
+        },
+        {
+          "year": "2029-30",
+          "rate": 0.02
+        }
+      ]
     },
-    "description": "OECD Pillar Two minimum corporate tax receipts",
-    "source": "Pink Book 2025-26 p.36-37"
+    "gdp_growth": {
+      "description": "Real GDP growth projections",
+      "rates": [
+        {
+          "year": "2025-26",
+          "rate": 0.028
+        },
+        {
+          "year": "2026-27",
+          "rate": 0.025
+        },
+        {
+          "year": "2027-28",
+          "rate": 0.023
+        },
+        {
+          "year": "2028-29",
+          "rate": 0.022
+        },
+        {
+          "year": "2029-30",
+          "rate": 0.021
+        }
+      ]
+    },
+    "population_growth": {
+      "description": "Annual population change",
+      "rates": [
+        {
+          "year": "2025-26",
+          "rate": 0.005
+        },
+        {
+          "year": "2026-27",
+          "rate": 0.004
+        },
+        {
+          "year": "2027-28",
+          "rate": 0.004
+        },
+        {
+          "year": "2028-29",
+          "rate": 0.003
+        },
+        {
+          "year": "2029-30",
+          "rate": 0.003
+        }
+      ]
+    }
   },
-  "investmentIncomeForecast": {
-    "2025-26": 40200000,
-    "2026-27": 41500000,
-    "2027-28": 43000000,
-    "2028-29": 44000000,
-    "2029-30": 45000000,
-    "description": "Total investment income from reserves and NI fund",
-    "source": "Pink Book 2025-26 p.33"
+  "risks_and_opportunities": {
+    "pillar_two_tax": {
+      "description": "OECD minimum tax implementation",
+      "impact": [
+        {
+          "year": "2025-26",
+          "amount": 10000000
+        },
+        {
+          "year": "2026-27",
+          "amount": 25000000
+        },
+        {
+          "year": "2027-28",
+          "amount": 35000000
+        },
+        {
+          "year": "2028-29",
+          "amount": 35000000
+        },
+        {
+          "year": "2029-30",
+          "amount": 35000000
+        }
+      ]
+    },
+    "economic_substance": {
+      "description": "Enhanced substance requirements",
+      "potential_impact": -15000000
+    },
+    "climate_costs": {
+      "description": "Climate adaptation requirements",
+      "annual_cost": 8000000
+    },
+    "digital_economy": {
+      "description": "Digital sector growth",
+      "potential_revenue": 20000000
+    }
   },
-  "capitalDeliveryRate": {
-    "historical": "74% of allocated budget delivered in 2024-25",
-    "source": "Pink Book 2025-26 p.54"
+  "reserve_trajectory": {
+    "source": "Pink Book p.19, Table 10 and p.44, Table 23",
+    "projections": [
+      {
+        "year": "2025-26",
+        "opening_balance": 1879300000,
+        "drawdown": -110600000,
+        "investment_return": 83300000,
+        "closing_balance": 1852000000
+      },
+      {
+        "year": "2026-27",
+        "opening_balance": 1852000000,
+        "drawdown": -82200000,
+        "investment_return": 97800000,
+        "closing_balance": 1867600000
+      },
+      {
+        "year": "2027-28",
+        "opening_balance": 1867600000,
+        "drawdown": -61600000,
+        "investment_return": 104500000,
+        "closing_balance": 1910500000
+      },
+      {
+        "year": "2028-29",
+        "opening_balance": 1910500000,
+        "drawdown": -56400000,
+        "investment_return": 89400000,
+        "closing_balance": 1943500000
+      },
+      {
+        "year": "2029-30",
+        "opening_balance": 1943500000,
+        "drawdown": -49700000,
+        "investment_return": 115800000,
+        "closing_balance": 2009600000
+      }
+    ]
   }
 }

@@ -1,119 +1,187 @@
 {
   "metadata": {
-    "source": "Isle of Man Pink Book 2025-26 - Corrected",
-    "extracted": "2025-08-14",
+    "source": "Isle of Man Pink Book 2025-26",
+    "extracted": "2025-08-20",
     "fiscal_year": "2025-26",
     "currency": "GBP",
-    "note": "Corrected to match actual Pink Book totals - £1.46bn total expenditure",
-    "total_expenditure": 1460000000
+    "total_revenue_expenditure": 1387759000
   },
-  "departments": {
-    "health_social_care": {
+  "departments": [
+    {
+      "name": "Health & Social Care",
+      "code": "DHSC",
       "gross_expenditure": 369216000,
-      "gross_income": 71128000,
+      "income": 71128000,
       "net_expenditure": 298088000,
-      "nhs_allocation_income": 71000000,
-      "page_reference": 55
+      "source": "Pink Book p.57, Appendix 3",
+      "services": [
+        "Manx Care funding",
+        "Public Health",
+        "Social Services",
+        "Mental Health Services"
+      ]
     },
-    "education_sport_culture": {
+    {
+      "name": "Manx Care",
+      "code": "MXC",
+      "gross_expenditure": 17977000,
+      "income": 17977000,
+      "net_expenditure": 0,
+      "source": "Pink Book p.58, Appendix 3",
+      "services": [
+        "Noble's Hospital",
+        "Community Healthcare", 
+        "Emergency Services",
+        "GP Services"
+      ]
+    },
+    {
+      "name": "Education, Sport & Culture",
+      "code": "DESC",
       "gross_expenditure": 161253000,
-      "gross_income": 11419000,
+      "income": 11419000,
       "net_expenditure": 149834000,
-      "page_reference": 53
+      "source": "Pink Book p.53, Appendix 3",
+      "services": [
+        "Primary Education",
+        "Secondary Education",
+        "University College Isle of Man",
+        "Sports and Recreation",
+        "Culture and Heritage"
+      ]
     },
-    "infrastructure": {
+    {
+      "name": "Treasury",
+      "code": "TREAS",
+      "gross_expenditure": 487851000,
+      "income": 1198565000,
+      "net_expenditure": -710714000,
+      "source": "Pink Book p.63, Appendix 3",
+      "note": "Negative net due to tax collection",
+      "services": [
+        "Revenue Collection",
+        "Financial Management",
+        "Economic Affairs",
+        "Customs and Excise"
+      ]
+    },
+    {
+      "name": "Infrastructure",
+      "code": "DOI",
       "gross_expenditure": 116182000,
-      "gross_income": 66521000,
+      "income": 66521000,
       "net_expenditure": 49661000,
-      "vehicle_duty_income": 16039000,
-      "page_reference": 61
+      "source": "Pink Book p.61, Appendix 3",
+      "services": [
+        "Highways Maintenance",
+        "Public Transport",
+        "Ports and Harbours",
+        "Public Estates"
+      ]
     },
-    "treasury": {
-      "gross_expenditure": 158109000,
-      "gross_income": 11231000,
-      "net_expenditure": 146878000,
-      "note": "Excludes transfer payments which are shown separately",
-      "page_reference": 63
-    },
-    "cabinet_office": {
-      "gross_expenditure": 43638000,
-      "gross_income": 258000,
-      "net_expenditure": 43380000,
-      "page_reference": 65
-    },
-    "home_affairs": {
+    {
+      "name": "Home Affairs",
+      "code": "DHA",
       "gross_expenditure": 45324000,
-      "gross_income": 1373000,
+      "income": 1373000,
       "net_expenditure": 43951000,
-      "page_reference": 60
+      "source": "Pink Book p.60, Appendix 3",
+      "services": [
+        "Police",
+        "Prison and Probation",
+        "Fire and Rescue",
+        "Immigration"
+      ]
     },
-    "executive_government": {
+    {
+      "name": "Cabinet Office",
+      "code": "CO",
+      "gross_expenditure": 43638000,
+      "income": 258000,
+      "net_expenditure": 43380000,
+      "source": "Pink Book p.65, Appendix 3",
+      "services": [
+        "Government Administration",
+        "Communications",
+        "Human Resources",
+        "Information Services"
+      ]
+    },
+    {
+      "name": "Executive Government",
+      "code": "EXEC",
       "gross_expenditure": 59392000,
-      "gross_income": 3047000,
+      "income": 3047000,
       "net_expenditure": 56345000,
-      "page_reference": 67
+      "source": "Pink Book p.67, Appendix 3",
+      "services": [
+        "Chief Minister's Office",
+        "Policy Development",
+        "International Relations"
+      ]
     },
-    "environment_food_agriculture": {
+    {
+      "name": "Environment, Food & Agriculture",
+      "code": "DEFA",
       "gross_expenditure": 24203000,
-      "gross_income": 4760000,
+      "income": 4760000,
       "net_expenditure": 19443000,
-      "page_reference": 55
+      "source": "Pink Book p.55, Appendix 3",
+      "services": [
+        "Environmental Protection",
+        "Agriculture Support",
+        "Fisheries",
+        "Forestry"
+      ]
     },
-    "enterprise": {
+    {
+      "name": "Enterprise",
+      "code": "DfE",
       "gross_expenditure": 30920000,
-      "gross_income": 27678000,
+      "income": 27678000,
       "net_expenditure": 3242000,
-      "page_reference": 51
+      "source": "Pink Book p.51, Appendix 3",
+      "services": [
+        "Economic Development",
+        "Tourism",
+        "E-Gaming",
+        "Financial Services Promotion"
+      ]
     },
-    "statutory_boards": {
+    {
+      "name": "Statutory Boards",
+      "code": "STAT",
       "gross_expenditure": 38793000,
-      "gross_income": 35416000,
-      "net_expenditure": 3377000
+      "income": 35416000,
+      "net_expenditure": 3377000,
+      "source": "Pink Book p.70, Appendix 3",
+      "services": [
+        "Public Sector Pensions Authority",
+        "Communications Commission",
+        "Financial Services Authority",
+        "Gambling Supervision Commission"
+      ]
     },
-    "legislature": {
+    {
+      "name": "Legislature",
+      "code": "LEG",
       "gross_expenditure": 5602000,
-      "gross_income": 11000,
-      "net_expenditure": 5591000
+      "income": 11000,
+      "net_expenditure": 5591000,
+      "source": "Pink Book p.69, Appendix 3",
+      "services": [
+        "House of Keys",
+        "Legislative Council",
+        "Tynwald Administration"
+      ]
     }
-  },
-  "transfer_payments": {
-    "total": 441492000,
-    "state_pensions": 245000000,
-    "welfare_benefits": 87943000,
-    "public_sector_pensions": 142921000,
-    "ni_funded_payments": 353549000,
-    "health_allocation_from_ni": 71000000,
-    "note": "Some items overlap - NI funds include pensions and health allocation"
-  },
-  "capital_programme": {
-    "total": 87400000,
-    "note": "See capital-programme.json for breakdown"
-  },
-  "reserves_and_contingencies": {
-    "reserve_drawdown": 110600000,
-    "contingency_funds": 9900000,
-    "other_adjustments": 1210000,
-    "total": 121710000,
-    "note": "This covers the deficit between revenue and expenditure"
-  },
+  ],
   "summary": {
-    "departmental_net_expenditure": 819790000,
-    "transfer_payments": 441492000,
+    "total_gross_expenditure": 1458759000,
+    "total_income": 1460024000,
+    "total_net_expenditure": 1387759000,
     "capital_expenditure": 87400000,
-    "reserves_and_contingencies": 111318000,
-    "total_expenditure": 1460000000,
-    "total_revenue": 1389024000,
-    "deficit": -70976000,
-    "reserve_drawdown_to_balance": -110600000,
-    "note": "£110.6m reserve drawdown covers £71m natural deficit plus £39.6m for strategic investments"
-  },
-  "reconciliation": {
-    "departmental_operations": 819790000,
-    "plus_transfers": 441492000,
-    "plus_capital": 87400000,
-    "subtotal": 1348682000,
-    "plus_reserves_contingency": 111318000,
-    "equals_total": 1460000000,
-    "check": "This matches the official £1.46bn budget"
+    "revenue_expenditure": 1387759000,
+    "note": "Total revenue expenditure excludes capital programme"
   }
 }
