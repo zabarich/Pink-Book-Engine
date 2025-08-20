@@ -34,10 +34,10 @@ export const BudgetDataService = {
     vat: () => revenueStreams.customsAndExcise?.vat?.revenue || 0,
     nationalInsurance: () => revenueStreams.nationalInsurance?.total_revenue || 0,
     customsExcise: () => revenueStreams.customsAndExcise?.total_revenue || 0,
-    vehicleDuty: () => revenueStreams.duties?.vehicle?.amount || 0,
+    vehicleDuty: () => 16039000, // TODO: Add to JSON - known Pink Book value
     departmentalIncome: () => revenueStreams.departmentalIncome?.total_revenue || 0,
-    gamblingDuty: () => revenueStreams.duties?.gambling?.amount || 0,
-    airportDuty: () => revenueStreams.duties?.air_passenger?.amount || 0,
+    gamblingDuty: () => revenueStreams.customsAndExcise?.exciseDuties?.betting?.breakdown?.gambling_duty || 0,
+    airportDuty: () => revenueStreams.customsAndExcise?.exciseDuties?.betting?.breakdown?.air_passenger_duty || 0,
     feesAndCharges: () => revenueStreams.otherRevenue?.fees_and_charges?.revenue || 0,
   },
 
@@ -248,16 +248,14 @@ export const getRevenueStreamsFromJSON = () => {
     });
   }
   
-  // Vehicle Duty
-  if (revenueStreams.duties?.vehicle) {
-    streams.push({
-      name: 'Vehicle Duty',
-      amount: revenueStreams.duties.vehicle.amount,
-      color: '#06b6d4',
-      adjustable: true,
-      description: 'Annual vehicle duty and registration'
-    });
-  }
+  // Vehicle Duty - TODO: Add to JSON
+  streams.push({
+    name: 'Vehicle Duty',
+    amount: 16039000, // Known Pink Book value - TODO: Add to JSON
+    color: '#06b6d4',
+    adjustable: true,
+    description: 'Annual vehicle duty and registration'
+  });
   
   // Other Income
   const otherAmount = (revenueStreams.otherRevenue?.investment_income?.revenue || 0) +
