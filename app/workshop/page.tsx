@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { DEPARTMENTS, REVENUE_STREAMS, INITIAL_STATE } from '@/lib/budget-data'
+import { BudgetDataService } from '@/lib/services/budget-data-service'
 import { formatCurrency, formatPercentage } from '@/lib/utils'
 import { 
   Calculator,
@@ -103,7 +104,7 @@ function InfoTooltip({ text }: { text: string }) {
 // NHS Levy Calculation Model
 const calculateNHSLevy = (rate: number, levyFreeAmount: number, individualCap: number) => {
   // Use resident income tax base only (not companies or non-residents)
-  const residentIncomeTaxBase = 330250000 // £330.25m from Pink Book
+  const residentIncomeTaxBase = BudgetDataService.getTaxBases.residentIncomeTax() // From Pink Book
   const averageIncome = 45000
   const taxpayerCount = 35000
   
@@ -140,7 +141,7 @@ export default function IntegratedWorkshopPage() {
   const [corporateTaxRate, setCorporateTaxRate] = useState(0) // Standard rate
   const [bankingTaxRate, setBankingTaxRate] = useState(10) // Banking/Property rate
   const [retailerTaxRate, setRetailerTaxRate] = useState(20) // Large retailer rate
-  const [retailerThreshold, setRetailerThreshold] = useState(500000) // Threshold for large retailer rate
+  const [retailerThreshold, setRetailerThreshold] = useState(BudgetDataService.getThresholdsAndCaps.largeRetailerThreshold()) // Threshold for large retailer rate
   const [pillarTwoEnabled, setPillarTwoEnabled] = useState(true) // OECD Pillar Two (included by default)
   
   // VAT & Customs
@@ -238,12 +239,12 @@ export default function IntegratedWorkshopPage() {
     total += advancedPolicies.airportCharge * 800000;
     total += 4900000 * (advancedPolicies.portDuesIncrease / 100);
     total += advancedPolicies.internalRentCharging ? 3000000 : 0;
-    total -= advancedPolicies.freeTransport ? 3500000 : 0;
+    total -= advancedPolicies.freeTransport ? 3500000 : 0; // TODO: Move to JSON
     total += advancedPolicies.heritageRailDays === 5 ? 600000 : 0;
     
     // Transfers
     total += advancedPolicies.winterBonusMeans === 'benefits' ? 3600000 : 
-             advancedPolicies.winterBonusMeans === 'age75' ? 2000000 : 0;
+             advancedPolicies.winterBonusMeans === 'age75' ? (BudgetDataService.getTransferPayments.winterBonus() * 0.28) : 0;
     total += advancedPolicies.childBenefitTaper;
     total += advancedPolicies.housingBenefitCap;
     
@@ -252,10 +253,10 @@ export default function IntegratedWorkshopPage() {
     total += advancedPolicies.enterpriseGrants;
     
     // Fees
-    total += 150000000 * (advancedPolicies.generalFeesUplift / 100);
+    total += BudgetDataService.getPolicyParameters.feesAndChargesBase() * (advancedPolicies.generalFeesUplift / 100);
     total += advancedPolicies.targetedRecovery.reduce((sum, item) => {
       const values: { [key: string]: number } = {
-        'vehicle': 500000,
+        'vehicle': 500000, // TODO: Move to JSON
         'planning': 800000,
         'court': 400000,
         'environmental': 300000
@@ -337,16 +338,16 @@ export default function IntegratedWorkshopPage() {
     
     // Tourist Accommodation Levy
     // IoM Tourism: ~800k visitors × 2.5 average nights = 2M visitor nights
-    const visitorNights = 2000000
+    const visitorNights = BudgetDataService.getPolicyParameters.touristNights()
     newRevenue += touristAccommodationLevy * visitorNights
     
     // Airport Passenger Duty
-    const passengers = 850000
+    const passengers = BudgetDataService.getPolicyParameters.airportPassengers()
     newRevenue += airportPassengerDuty * passengers
     
     // Gaming Duty - based on current £4.5m gambling duty revenue
     // Estimated taxable gaming base £225m (at current 2% effective rate)
-    const gamingTaxableBase = 225000000
+    const gamingTaxableBase = BudgetDataService.getPolicyParameters.gamingTaxableBase()
     newRevenue += gamingTaxableBase * (onlineGamingDuty / 100)
     
     // Add advanced policies impact
@@ -374,7 +375,7 @@ export default function IntegratedWorkshopPage() {
     
     // Public sector pay
     // Pink Book 2025-26: Total employee costs £507m (page 89)
-    const payBill = 507000000
+    const payBill = BudgetDataService.getExpenditure.employeeCosts()
     const payIncrease = publicSectorPay === 'freeze' ? 0 : 
                        publicSectorPay === '1%' ? 0.01 :
                        publicSectorPay === '2%' ? 0.02 : 0.03
@@ -929,7 +930,7 @@ export default function IntegratedWorkshopPage() {
                         step={1}
                       />
                       <p className="text-xs text-gray-500 mt-1">
-                        Revenue: {formatCurrency(touristAccommodationLevy * 500000)}
+                        Revenue: {formatCurrency(touristAccommodationLevy * BudgetDataService.getPolicyParameters.touristNights() / 4)}
                       </p>
                     </div>
                     
@@ -1374,7 +1375,7 @@ export default function IntegratedWorkshopPage() {
                       <div className="flex justify-between items-center mb-2">
                         <Label>General Fees & Charges Uplift</Label>
                         <Badge variant="outline">
-                          £{(150000000 * advancedPolicies.generalFeesUplift / 100 / 1000000).toFixed(1)}m
+                          £{(BudgetDataService.getPolicyParameters.feesAndChargesBase() * advancedPolicies.generalFeesUplift / 100 / 1000000).toFixed(1)}m
                         </Badge>
                       </div>
                       <Slider
@@ -1395,7 +1396,7 @@ export default function IntegratedWorkshopPage() {
                       <Label className="mb-3 block">Targeted Cost Recovery</Label>
                       <div className="space-y-2">
                         {[
-                          { id: 'vehicle', name: 'Vehicle testing', value: 500000 },
+                          { id: 'vehicle', name: 'Vehicle testing', value: 500000 }, // TODO: Move to JSON
                           { id: 'planning', name: 'Planning applications', value: 800000 },
                           { id: 'court', name: 'Court fees', value: 400000 },
                           { id: 'environmental', name: 'Environmental licenses', value: 300000 }

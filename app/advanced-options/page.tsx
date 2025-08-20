@@ -28,6 +28,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { BENEFITS_DATA, STATE_PENSION_DATA, calculateBenefitChanges, calculatePensionChanges } from '@/lib/calculations/benefits-calculations';
+import { BudgetDataService } from '@/lib/services/budget-data-service';
 
 export default function AdvancedOptionsPage() {
   // State for all policy options
@@ -66,10 +67,10 @@ export default function AdvancedOptionsPage() {
     let total = 0;
     
     // Infrastructure
-    total += policies.airportCharge * 850000; // £ per passenger × 850k passengers (actual Pink Book figure)
-    total += 4900000 * (policies.portDuesIncrease / 100); // % of £4.9m base
-    total += policies.internalRentCharging ? 3000000 : 0;
-    total -= policies.freeTransport ? 3500000 : 0; // Cost of free transport
+    total += policies.airportCharge * BudgetDataService.getPolicyParameters.airportPassengers(); // £ per passenger
+    total += BudgetDataService.getPolicyParameters.portDuesBase() * (policies.portDuesIncrease / 100); // % of port dues base
+    total += policies.internalRentCharging ? 3000000 : 0; // TODO: Move to JSON
+    total -= policies.freeTransport ? 3500000 : 0; // TODO: Move to JSON - Cost of free transport
     total += policies.heritageRailDays === 5 ? 600000 : 0; // Savings from reduced days
     
     // Transfers - Use real calculations
@@ -101,7 +102,7 @@ export default function AdvancedOptionsPage() {
     total += payImpact[policies.publicSectorPay] || 0;
     
     // Fees
-    total += 150000000 * (policies.generalFeesUplift / 100);
+    total += BudgetDataService.getPolicyParameters.feesAndChargesBase() * (policies.generalFeesUplift / 100);
     total += policies.targetedRecovery.reduce((sum, item) => {
       const values: { [key: string]: number } = {
         'vehicle': 500000,
@@ -113,7 +114,7 @@ export default function AdvancedOptionsPage() {
     }, 0);
     
     // Capital
-    total += policies.capitalGating ? 22700000 : 0;
+    total += policies.capitalGating ? (BudgetDataService.getExpenditure.capitalProgramme() * 0.26) : 0; // 26% unspent historically
     total += policies.deferLowBCR;
     
     return total;
