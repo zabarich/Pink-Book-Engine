@@ -114,8 +114,11 @@ export const BudgetDataService = {
     population: () => null, // Not budget data - not in Pink Book
     gdp: () => null, // Not budget data - not in Pink Book
     publicSectorWorkers: () => null, // Not budget data - not in Pink Book
-    pensioners: () => 18000, // Approximate number of pensioners (not in JSON)
-    newPensionersAnnual: () => 500, // Approximate new pensioners per year (not in JSON),
+    // IMPORTANT: Pensioner counts are NOT in Pink Book (it's a budget document, not demographic data)
+    // These would need to come from IoM Social Security or Census data
+    // Setting to null - if needed for calculations, must get official data from proper source
+    pensioners: () => null, // NOT IN PINK BOOK - needs IoM Social Security data
+    newPensionersAnnual: () => null, // NOT IN PINK BOOK - needs IoM Social Security data
   },
 
   // Tax Bases for Calculations
