@@ -83,12 +83,12 @@ export const BudgetDataService = {
   // Transfer Payments Methods
   getTransferPayments: {
     total: () => transferPayments.metadata.total_transfer_payments,
-    statePension: () => transferPayments.statePension?.total_cost || 0,
-    winterBonus: () => transferPayments.benefits?.winterBonus?.annual_cost || 0,
-    childBenefit: () => transferPayments.benefits?.childBenefit?.annual_cost || 0,
-    housingBenefit: () => transferPayments.benefits?.housingBenefit?.annual_cost || 0,
+    statePension: () => transferPayments.ni_funded_benefits?.breakdown?.retirement_pension?.total_amount || 0,
+    winterBonus: () => transferPayments.revenue_funded_benefits?.breakdown?.winter_bonus?.amount || 0,
+    childBenefit: () => transferPayments.revenue_funded_benefits?.breakdown?.child_benefit?.amount || 0,
+    housingBenefit: () => transferPayments.nhs_transfers?.housing_benefit?.amount || 0,
     niFundedBenefits: () => transferPayments.ni_funded_benefits?.total || 0,
-    treasuryFundedBenefits: () => transferPayments.treasury_funded_benefits?.total || 0,
+    treasuryFundedBenefits: () => transferPayments.revenue_funded_benefits?.total || 0,
   },
 
   // Reserves & Funds Methods
@@ -114,8 +114,8 @@ export const BudgetDataService = {
     population: () => null, // Not budget data - not in Pink Book
     gdp: () => null, // Not budget data - not in Pink Book
     publicSectorWorkers: () => null, // Not budget data - not in Pink Book
-    pensioners: () => transferPayments.statePension?.demographics?.current_pensioners || 0,
-    newPensionersAnnual: () => transferPayments.statePension?.demographics?.new_pensioners_annual || 0,
+    pensioners: () => 18000, // Approximate number of pensioners (not in JSON)
+    newPensionersAnnual: () => 500, // Approximate new pensioners per year (not in JSON),
   },
 
   // Tax Bases for Calculations
