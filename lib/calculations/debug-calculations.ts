@@ -135,61 +135,31 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
   // EXPENDITURE CALCULATION
   debugLog.push('\n=== EXPENDITURE CALCULATION ===');
 
-  // Calculate departmental net expenditure from departments array
-  // CRITICAL: Treasury has negative net expenditure because it collects revenue
-  // We must exclude Treasury or use gross expenditure to avoid understating costs
-  const deptNetExpenditure = departmentBudgets.departments
-    .filter((dept: any) => dept.name !== 'Treasury') // Exclude Treasury's negative net
-    .reduce((sum: number, dept: any) => sum + (dept.net_expenditure || 0), 0);
+  // CRITICAL FIX: The Pink Book states total revenue expenditure is £1,387,759,000
+  // This is the COMPLETE figure including ALL departments and transfer payments
+  // Transfer payments are paid through Treasury, so they're included in Treasury's gross
+  // We should use the total from department-budgets.json metadata directly
   
-  // Add Treasury's actual expenditure separately (using gross)
-  const treasuryDept = departmentBudgets.departments.find((d: any) => d.name === 'Treasury');
-  const treasuryExpenditure = treasuryDept?.gross_expenditure || 487900000;
+  const totalRevenueExpenditure = departmentBudgets.metadata.total_revenue_expenditure;
   
   expenditureComponents.push({
     sourceFile: 'department-budgets.json',
-    sourcePath: 'departments[].net_expenditure (excl Treasury)',
-    sourceValue: deptNetExpenditure,
-    formula: 'Sum of department net expenditures (excluding Treasury)',
-    calculatedValue: deptNetExpenditure
+    sourcePath: 'metadata.total_revenue_expenditure',
+    sourceValue: totalRevenueExpenditure,
+    formula: 'Total revenue expenditure from Pink Book (includes all departments and transfers)',
+    calculatedValue: totalRevenueExpenditure
   });
   
-  expenditureComponents.push({
-    sourceFile: 'department-budgets.json',
-    sourcePath: 'Treasury.gross_expenditure',
-    sourceValue: treasuryExpenditure,
-    formula: 'Treasury gross expenditure (not net which is negative)',
-    calculatedValue: treasuryExpenditure
-  });
+  debugLog.push(`Total Revenue Expenditure: £${totalRevenueExpenditure.toLocaleString()} (department-budgets.json → metadata → total_revenue_expenditure)`);
+  debugLog.push(`This includes all department spending AND transfer payments (which flow through Treasury)`);
+
+  // NOTE: Capital expenditure is SEPARATE from revenue expenditure
+  // The Pink Book clearly states £1,387.8m is REVENUE expenditure only
+  // Capital programme (£87.4m) is tracked separately and should NOT be added here
+  debugLog.push(`Note: Capital Expenditure (£87.4m) is SEPARATE from revenue expenditure and not included`);
   
-  debugLog.push(`Departmental Net Expenditure (excl Treasury): £${deptNetExpenditure.toLocaleString()}`);
-  debugLog.push(`Treasury Gross Expenditure: £${treasuryExpenditure.toLocaleString()}`);
-
-  // Transfer Payments from transfer-payments.json
-  const transferPaymentsTotal = transferPayments.metadata.total_transfer_payments;
-  expenditureComponents.push({
-    sourceFile: 'transfer-payments.json',
-    sourcePath: 'metadata.total_transfer_payments',
-    sourceValue: transferPaymentsTotal,
-    formula: 'Total transfer payments (pensions + benefits)',
-    calculatedValue: transferPaymentsTotal
-  });
-  debugLog.push(`Transfer Payments: £${transferPaymentsTotal.toLocaleString()} (transfer-payments.json → metadata → total_transfer_payments)`);
-
-  // Capital Programme from capital-programme.json or department-budgets summary
-  const capitalSpending = departmentBudgets.summary?.capital_expenditure || capitalProgramme.metadata?.total_capital_budget || 87400000;
-  expenditureComponents.push({
-    sourceFile: 'department-budgets.json',
-    sourcePath: 'summary.capital_expenditure',
-    sourceValue: capitalSpending,
-    formula: 'Capital programme allocation',
-    calculatedValue: capitalSpending
-  });
-  debugLog.push(`Capital Expenditure: £${capitalSpending.toLocaleString()} (department-budgets.json → summary → capital_expenditure)`);
-
   // NOTE: Reserves drawdown is NOT expenditure - it's how the deficit is funded
   // The £110.6m drawdown is the RESULT of revenue < expenditure, not part of expenditure
-  // Removing this from expenditure calculation
   debugLog.push(`Note: £110.6m reserves drawdown is funding source for deficit, not expenditure`);
 
   // Total Expenditure
