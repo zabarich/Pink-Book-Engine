@@ -120,7 +120,7 @@ export const BudgetDataService = {
 
   // Tax Bases for Calculations
   getTaxBases: {
-    residentIncomeTax: () => revenueStreams.incomeText?.components?.resident_income_tax || 0
+    residentIncomeTax: () => revenueStreams.incomeText?.components?.resident_income_tax || 0,
     // Tax bases calculated from actual revenue and rates
     corporateTaxBase: () => {
       // Banking companies: £18.72m revenue at 10% rate = £187.2m base
@@ -135,7 +135,7 @@ export const BudgetDataService = {
       // Large retailers: £4.68m revenue at 20% rate = £23.4m base
       const retailRevenue = revenueStreams.corporateTax?.twentyPercent?.revenue || 0;
       return retailRevenue * 5; // Revenue divided by 0.2 rate
-    }
+    },
     vatBase: () => revenueStreams.customsAndExcise?.vat?.revenue || 0,
     niEmployeeBase: () => revenueStreams.nationalInsurance?.employee?.revenue || 0,
     niEmployerBase: () => revenueStreams.nationalInsurance?.employer?.revenue || 0,
