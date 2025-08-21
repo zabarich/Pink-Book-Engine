@@ -55,7 +55,7 @@ export const BudgetDataService = {
     total: () => departmentBudgets.metadata.total_revenue_expenditure,
     byDepartment: (deptName: string) => {
       const dept = departmentBudgets.departments.find((d: any) => d.name === deptName);
-      return dept?.net_expenditure || 0;
+      return dept?.gross_expenditure || 0; // Use gross for consistency
     },
     allDepartments: () => departmentBudgets.departments.map((d: any) => ({
       name: d.name,
@@ -243,14 +243,14 @@ export const BudgetDataService = {
 export const getDepartmentsFromJSON = () => {
   return departmentBudgets.departments.map((dept: any) => ({
     name: dept.name,
-    budget: dept.net_expenditure,
+    budget: dept.gross_expenditure, // Use gross for display
     gross: dept.gross_expenditure,
     income: dept.income,
     code: dept.code,
     services: dept.services || [],
     // UI properties with sensible defaults
     color: getColorForDepartment(dept.name),
-    minViable: Math.floor(dept.net_expenditure * 0.8), // 80% as minimum viable
+    minViable: Math.floor(dept.gross_expenditure * 0.8), // 80% as minimum viable based on gross
     description: dept.services?.join(', ') || ''
   }));
 };
