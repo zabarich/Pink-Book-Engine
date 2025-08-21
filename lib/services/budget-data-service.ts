@@ -121,7 +121,8 @@ export const BudgetDataService = {
              (housingFund?.balance || 0) +
              (insuranceFund?.balance || 0);
     },
-    drawdown: () => forwardLooking.baseline_projections?.find(
+    // Fixed: was baseline_projections, actual is budget_balance.projections
+    drawdown: () => forwardLooking.budget_balance?.projections?.find(
       (p: any) => p.year === "2025-26"
     )?.reserve_drawdown || 0,
   },
