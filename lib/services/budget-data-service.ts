@@ -55,6 +55,10 @@ export const BudgetDataService = {
     total: () => departmentBudgets.metadata.total_revenue_expenditure,
     byDepartment: (deptName: string) => {
       const dept = departmentBudgets.departments.find((d: any) => d.name === deptName);
+      // Treasury's gross in JSON includes £418m administered benefits - use operational budget only
+      if (deptName === 'Treasury') {
+        return 70000000; // £70m operational budget (excludes administered transfer payments)
+      }
       return dept?.gross_expenditure || 0; // Use gross for consistency
     },
     allDepartments: () => departmentBudgets.departments.map((d: any) => ({
@@ -241,18 +245,32 @@ export const BudgetDataService = {
 
 // Export type-safe department data
 export const getDepartmentsFromJSON = () => {
-  return departmentBudgets.departments.map((dept: any) => ({
-    name: dept.name,
-    budget: dept.gross_expenditure, // Use gross for display
-    gross: dept.gross_expenditure,
-    income: dept.income,
-    code: dept.code,
-    services: dept.services || [],
-    // UI properties with sensible defaults
-    color: getColorForDepartment(dept.name),
-    minViable: Math.floor(dept.gross_expenditure * 0.8), // 80% as minimum viable based on gross
-    description: dept.services?.join(', ') || ''
-  }));
+  return departmentBudgets.departments.map((dept: any) => {
+    // IMPORTANT: Treasury gross in JSON is £487.9m but includes £418m of administered benefits
+    // These are statutory payments (pensions, income support) not departmental operations  
+    // Only the £70m operational budget is adjustable via departmental efficiency
+    // Source: Pink Book CSV analysis (table_p063_01.csv) shows:
+    // - Operations: £70m (tax collection, customs, financial governance, contingency)
+    // - Administered: £418m (transfer payments just passing through)
+    // Ministers can only affect operations, not statutory benefits
+    const treasuryOperationalBudget = 70000000; // £70m actual Treasury operations
+    
+    const budget = dept.name === 'Treasury' ? treasuryOperationalBudget : dept.gross_expenditure;
+    const gross = dept.name === 'Treasury' ? treasuryOperationalBudget : dept.gross_expenditure;
+    
+    return {
+      name: dept.name,
+      budget: budget, // Use adjusted budget for Treasury
+      gross: gross,
+      income: dept.income,
+      code: dept.code,
+      services: dept.services || [],
+      // UI properties with sensible defaults
+      color: getColorForDepartment(dept.name),
+      minViable: Math.floor(budget * 0.8), // 80% as minimum viable based on adjusted budget
+      description: dept.services?.join(', ') || ''
+    };
+  });
 };
 
 // Helper function for department colors

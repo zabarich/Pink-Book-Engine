@@ -949,11 +949,7 @@ export default function IntegratedWorkshopPage() {
                           />
                           <div className="flex justify-between text-xs text-gray-500 mt-1">
                             <span>
-                              {dept.name === 'Treasury' ? (
-                                `Revenue Collection: ${formatCurrency(Math.abs(dept.budget))}`
-                              ) : (
-                                `Budget: ${formatCurrency(dept.budget)}`
-                              )}
+                              Budget: {formatCurrency(dept.budget)}
                             </span>
                             <span>Impact: {formatCurrency(dept.budget * (deptAdjustments[dept.name] / 100))}</span>
                           </div>
@@ -1293,11 +1289,7 @@ export default function IntegratedWorkshopPage() {
                               <div>
                                 <Label>{dept.name}</Label>
                                 <p className="text-xs text-gray-500">
-                                  {dept.name === 'Treasury' ? (
-                                    `Revenue Collection: ${formatCurrency(Math.abs(dept.budget))}`
-                                  ) : (
-                                    `Budget: ${formatCurrency(dept.budget)}`
-                                  )}
+                                  Budget: {formatCurrency(dept.budget)}
                                 </p>
                               </div>
                               <span className="text-sm font-medium">
