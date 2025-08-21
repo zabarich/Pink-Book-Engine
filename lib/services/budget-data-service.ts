@@ -23,8 +23,8 @@ export const BudgetDataService = {
       const deptIncome = revenueStreams.departmentalIncome?.total_revenue || 0;
       const otherRevenue = (revenueStreams.otherRevenue?.investment_income?.revenue || 0) + 
                           (revenueStreams.otherRevenue?.fees_and_charges?.revenue || 0);
-      // Pension contributions are included in departmental income
-      const pensionContributions = 0; // Included in departmental income totals
+      // Pension contributions are separate in the Pink Book
+      const pensionContributions = revenueStreams.summary?.employee_pension_contributions || 39848000;
       const pillar2 = forwardLooking.risks_and_opportunities?.pillar_two_tax?.impact?.find(
         (item: any) => item.year === "2025-26"
       )?.amount || 0;

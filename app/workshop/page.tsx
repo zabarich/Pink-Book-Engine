@@ -171,6 +171,7 @@ export default function IntegratedWorkshopPage() {
   // Department Adjustments - ALL Departments
   const [deptAdjustments, setDeptAdjustments] = useState<Record<string, number>>({
     'Health & Social Care': 0,
+    'Manx Care': 0,
     'Education, Sport & Culture': 0,
     'Infrastructure': 0,
     'Home Affairs': 0,
@@ -602,6 +603,7 @@ export default function IntegratedWorkshopPage() {
     setOnlineGamingDuty(0)
     setDeptAdjustments({
       'Health & Social Care': 0,
+      'Manx Care': 0,
       'Education, Sport & Culture': 0,
       'Infrastructure': 0,
       'Home Affairs': 0,
@@ -647,32 +649,6 @@ export default function IntegratedWorkshopPage() {
     })
   }
   
-  // Preset scenarios
-  const applyScenario = (scenario: string) => {
-    switch (scenario) {
-      case 'balanced2030':
-        setIncomeTaxRate(22)
-        setSharedServices(5)
-        setPublicSectorPay('1%')
-        break
-      case 'lowTax':
-        setIncomeTaxRate(18)
-        setStandardTaxRate(8)
-        setCorporateTaxRate(0)
-        setSharedServices(10)
-        break
-      case 'highService':
-        setIncomeTaxRate(25)
-        setVatRate(22)
-        setNhsLevyRate(2)
-        break
-      case 'find50m':
-        setSharedServices(7)
-        setPublicSectorPay('freeze')
-        setAdvancedPolicies(prev => ({ ...prev, heritageRailDays: 5, generalFeesUplift: 5 }))
-        break
-    }
-  }
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -798,31 +774,6 @@ export default function IntegratedWorkshopPage() {
               <div>
                 <h2 className="text-lg font-semibold text-blue-900">Basic Control Mode</h2>
                 <p className="text-sm text-blue-700">Core revenue and expenditure adjustments with immediate impact</p>
-              </div>
-            </div>
-            
-            {/* Quick Scenarios */}
-            <div>
-              <h3 className="text-lg font-semibold mb-3">Quick Scenarios</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {[
-                  { id: 'balanced2030', name: 'Balanced 2030', icon: '⚖️', desc: 'Achieve balance by 2030' },
-                  { id: 'lowTax', name: 'Low Tax Island', icon: '💰', desc: 'Minimize tax burden' },
-                  { id: 'highService', name: 'High Service', icon: '🏥', desc: 'Maximize public services' },
-                  { id: 'find50m', name: 'Find £50m', icon: '🎯', desc: 'Quick savings target' }
-                ].map(scenario => (
-                  <Card 
-                    key={scenario.id}
-                    className="cursor-pointer hover:shadow-md transition-shadow"
-                    onClick={() => applyScenario(scenario.id)}
-                  >
-                    <CardContent className="p-4 text-center">
-                      <div className="text-2xl mb-2">{scenario.icon}</div>
-                      <p className="font-medium text-sm">{scenario.name}</p>
-                      <p className="text-xs text-gray-500 mt-1">{scenario.desc}</p>
-                    </CardContent>
-                  </Card>
-                ))}
               </div>
             </div>
             
@@ -997,7 +948,13 @@ export default function IntegratedWorkshopPage() {
                             step={1}
                           />
                           <div className="flex justify-between text-xs text-gray-500 mt-1">
-                            <span>Budget: {formatCurrency(dept.budget)}</span>
+                            <span>
+                              {dept.name === 'Treasury' ? (
+                                `Revenue Collection: ${formatCurrency(Math.abs(dept.budget))}`
+                              ) : (
+                                `Budget: ${formatCurrency(dept.budget)}`
+                              )}
+                            </span>
                             <span>Impact: {formatCurrency(dept.budget * (deptAdjustments[dept.name] / 100))}</span>
                           </div>
                         </div>
@@ -1336,7 +1293,11 @@ export default function IntegratedWorkshopPage() {
                               <div>
                                 <Label>{dept.name}</Label>
                                 <p className="text-xs text-gray-500">
-                                  Budget: {formatCurrency(dept.budget)}
+                                  {dept.name === 'Treasury' ? (
+                                    `Revenue Collection: ${formatCurrency(Math.abs(dept.budget))}`
+                                  ) : (
+                                    `Budget: ${formatCurrency(dept.budget)}`
+                                  )}
                                 </p>
                               </div>
                               <span className="text-sm font-medium">

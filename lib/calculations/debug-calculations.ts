@@ -98,18 +98,17 @@ export function calculateBaselineBudget(includePillar2: boolean = true): BudgetC
   });
   debugLog.push(`Other Treasury Income: £${otherRevenue.toLocaleString()} (revenue-streams.json → otherRevenue → calculated)`);
   
-  // Employee Pension Contributions - Pink Book known value
-  // Note: This should be added to the appropriate section of revenue-streams.json
-  // For now, using the known Pink Book value of £10.07m
-  const pensionContributions = 10070000; // £10.07m from Pink Book
+  // Employee Pension Contributions - From Pink Book summary
+  // These are listed separately in the revenue-streams.json summary
+  const pensionContributions = revenueStreams.summary?.employee_pension_contributions || 39848000; // £39.8m from Pink Book
   revenueComponents.push({
-    sourceFile: 'Pink Book (hardcoded - should be in JSON)',
-    sourcePath: 'employee_pension_contributions',
+    sourceFile: 'revenue-streams.json',
+    sourcePath: 'summary.employee_pension_contributions',
     sourceValue: pensionContributions,
-    formula: 'Known value from Pink Book',
+    formula: 'Direct from Pink Book summary',
     calculatedValue: pensionContributions
   });
-  debugLog.push(`Employee Pension Contributions: £${pensionContributions.toLocaleString()} (Pink Book value - should be added to JSON)`);
+  debugLog.push(`Employee Pension Contributions: £${pensionContributions.toLocaleString()} (revenue-streams.json → summary → employee_pension_contributions)`);
 
   // Pillar 2 Tax (included by default)
   let pillar2Revenue = 0;
