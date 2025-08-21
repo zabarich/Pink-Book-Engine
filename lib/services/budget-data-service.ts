@@ -23,8 +23,8 @@ export const BudgetDataService = {
       const deptIncome = revenueStreams.departmentalIncome?.total_revenue || 0;
       const otherRevenue = (revenueStreams.otherRevenue?.investment_income?.revenue || 0) + 
                           (revenueStreams.otherRevenue?.fees_and_charges?.revenue || 0);
-      // Pension contributions are separate in the Pink Book
-      const pensionContributions = revenueStreams.summary?.employee_pension_contributions || 39848000;
+      // Pension contributions already included in validated Pink Book data
+      const pensionContributions = 0; // Already embedded in departmental income or other revenue
       const pillar2 = forwardLooking.risks_and_opportunities?.pillar_two_tax?.impact?.find(
         (item: any) => item.year === "2025-26"
       )?.amount || 0;
