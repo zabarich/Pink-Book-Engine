@@ -8,31 +8,36 @@
   },
   "departments": [
     {
-      "name": "Health & Social Care",
-      "code": "DHSC",
-      "gross_expenditure": 369216000,
-      "income": 71128000,
-      "net_expenditure": 298088000,
-      "source": "Pink Book p.57, Appendix 3",
+      "name": "Manx Care",
+      "code": "MXC",
+      "gross_expenditure": 357500000,
+      "income": 0,
+      "net_expenditure": 357500000,
+      "source": "Pink Book p.57-58, DHSC Mandate/Subvention",
       "services": [
-        "Manx Care funding",
-        "Public Health",
-        "Social Services",
-        "Mental Health Services"
+        "Noble's Hospital",
+        "Primary Healthcare",
+        "UK Referrals",
+        "Mental Health Services",
+        "Adult Services",
+        "Child & Families",
+        "Community Healthcare",
+        "Emergency Services"
       ]
     },
     {
-      "name": "Manx Care",
-      "code": "MXC",
-      "gross_expenditure": 17977000,
-      "income": 17977000,
-      "net_expenditure": 0,
-      "source": "Pink Book p.58, Appendix 3",
+      "name": "Health & Social Care",
+      "code": "DHSC",
+      "gross_expenditure": 11700000,
+      "income": 71128000,
+      "net_expenditure": -59428000,
+      "source": "Pink Book p.57, DHSC Operations",
+      "note": "Department operations only; Manx Care subvention shown separately",
       "services": [
-        "Noble's Hospital",
-        "Community Healthcare", 
-        "Emergency Services",
-        "GP Services"
+        "DHSC Corporate Services",
+        "Public Health Policy",
+        "Regulatory Functions",
+        "Health Strategy"
       ]
     },
     {
@@ -177,11 +182,11 @@
     }
   ],
   "summary": {
-    "total_gross_expenditure": 1458759000,
-    "total_income": 1460024000,
+    "total_gross_expenditure": 1798282000,
+    "total_income": 1442047000,
     "total_net_expenditure": 1387759000,
     "capital_expenditure": 87400000,
     "revenue_expenditure": 1387759000,
-    "note": "Total revenue expenditure excludes capital programme"
+    "note": "Total revenue expenditure excludes capital programme; DHSC/Manx Care shown separately"
   }
 }

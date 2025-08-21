@@ -889,7 +889,7 @@ export default function IntegratedWorkshopPage() {
                         step={1}
                       />
                       <p className="text-xs text-gray-500 mt-1">
-                        Revenue: {formatCurrency(touristAccommodationLevy * BudgetDataService.getPolicyParameters.touristNights() / 4)}
+                        Revenue: {formatCurrency(touristAccommodationLevy * BudgetDataService.getPolicyParameters.touristNights())}
                       </p>
                     </div>
                     
