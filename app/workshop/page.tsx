@@ -257,7 +257,7 @@ export default function IntegratedWorkshopPage() {
   
   // Capital Programme Adjustments state (Phase 9)
   const [capitalAdjustments, setCapitalAdjustments] = useState({
-    selectedDeferrals: [], // Array of project objects to defer
+    selectedDeferrals: [] as string[], // Array of project IDs to defer
     heritageRailCut: false, // Cut Heritage Rail capital budget
     climateAcceleration: false, // Accelerate climate spending (costs £20m)
     housingInvestment: false // Emergency housing investment (costs £30m)
@@ -265,8 +265,8 @@ export default function IntegratedWorkshopPage() {
   
   
   // Phase 10: Scenario management state
-  const [savedScenarios, setSavedScenarios] = useState([])
-  const [comparisonScenario, setComparisonScenario] = useState(null)
+  const [savedScenarios, setSavedScenarios] = useState<any[]>([])
+  const [comparisonScenario, setComparisonScenario] = useState<any>(null)
   const [scenarioName, setScenarioName] = useState('')
   
   // Computed values for scenario saving (using existing state)
@@ -345,41 +345,51 @@ export default function IntegratedWorkshopPage() {
     if (serviceCuts.healthEfficiency > 0) {
       const manxCare = departmentBudgets.departments.find(d => d.code === 'MXC')
       const dhsc = departmentBudgets.departments.find(d => d.code === 'DHSC')
-      // Combined health budget: Manx Care net minus DHSC income offset
-      const healthBudget = manxCare.net_expenditure + Math.abs(dhsc.net_expenditure)
-      expenditureReduction += healthBudget * (serviceCuts.healthEfficiency / 100)
+      if (manxCare && dhsc) {
+        // Combined health budget: Manx Care net minus DHSC income offset
+        const healthBudget = manxCare.net_expenditure + Math.abs(dhsc.net_expenditure)
+        expenditureReduction += healthBudget * (serviceCuts.healthEfficiency / 100)
+      }
     }
     
     // Education cuts - Use DESC net expenditure from JSON
     if (serviceCuts.educationCuts > 0) {
       const desc = departmentBudgets.departments.find(d => d.code === 'DESC')
-      expenditureReduction += desc.net_expenditure * (serviceCuts.educationCuts / 100)
+      if (desc) {
+        expenditureReduction += desc.net_expenditure * (serviceCuts.educationCuts / 100)
+      }
     }
     
     // Infrastructure cuts
     if (serviceCuts.heritageRail) {
       // Heritage Railway operating budget from DOI verified components
       const doi = departmentBudgets.departments.find(d => d.code === 'DOI')
-      const railwayBudget = doi.verified_components.isle_of_man_railways
-      // 20% reduction for 5-day operation (reduce from 7 to 5 days)
-      expenditureReduction += railwayBudget * 0.2
+      if (doi?.verified_components?.isle_of_man_railways) {
+        const railwayBudget = doi.verified_components.isle_of_man_railways
+        // 20% reduction for 5-day operation (reduce from 7 to 5 days)
+        expenditureReduction += railwayBudget * 0.2
+      }
     }
     
     if (serviceCuts.busServices) {
       // Bus services operating budget from DOI verified components
       const doi = departmentBudgets.departments.find(d => d.code === 'DOI')
-      const busBudget = doi.verified_components.transport_services_division
-      // 25% service reduction
-      expenditureReduction += busBudget * 0.25
+      if (doi?.verified_components?.transport_services_division) {
+        const busBudget = doi.verified_components.transport_services_division
+        // 25% service reduction
+        expenditureReduction += busBudget * 0.25
+      }
     }
     
     // Culture cuts
     if (serviceCuts.artsCouncil) {
       // Culture division budget from DESC verified components
       const desc = departmentBudgets.departments.find(d => d.code === 'DESC')
-      const cultureBudget = desc.verified_components.culture_division
-      // 50% cut to culture/arts funding
-      expenditureReduction += cultureBudget * 0.5
+      if (desc?.verified_components?.culture_division) {
+        const cultureBudget = desc.verified_components.culture_division
+        // 50% cut to culture/arts funding
+        expenditureReduction += cultureBudget * 0.5
+      }
     }
     
     // Museums removed - part of culture division already counted above
@@ -502,7 +512,7 @@ export default function IntegratedWorkshopPage() {
   
   // Get deferrable projects from capital programme (Phase 9)
   const deferrableProjects = useMemo(() => {
-    const projects = []
+    const projects: Array<{id: string, name: string, amount: number, department: string}> = []
     // Get discrete projects from all departments
     Object.entries(capitalProgramme.projects_2025_26.discrete_schemes.by_department).forEach(([deptCode, dept]) => {
       dept.projects.forEach(project => {
@@ -556,11 +566,12 @@ export default function IntegratedWorkshopPage() {
     revenue: INITIAL_STATE.revenue.total,
     expenditure: INITIAL_STATE.expenditure.total,
     balance: INITIAL_STATE.balance.surplus,
-    warnings: [] as string[]
+    warnings: [] as string[],
+    sustainabilityScore: 100
   })
   
   // Phase 10: Save current scenario
-  const saveScenario = (nameOverride) => {
+  const saveScenario = (nameOverride?: string) => {
     const name = nameOverride || scenarioName
     if (!name || !name.trim()) {
       alert('Please enter a scenario name')
@@ -600,7 +611,7 @@ export default function IntegratedWorkshopPage() {
   }
   
   // Phase 10: Load scenario
-  const loadScenario = (scenario) => {
+  const loadScenario = (scenario: any) => {
     const { state } = scenario
     // Load tax rates
     if (state.taxRates) {
@@ -653,9 +664,11 @@ export default function IntegratedWorkshopPage() {
       ]),
       [''],
       ['SERVICE CUTS'],
-      ['Culture Division', serviceCuts.cultureDivision ? 'Yes' : 'No'],
-      ['Transport Services', serviceCuts.transportServices ? 'Yes' : 'No'],
+      ['Arts Council', serviceCuts.artsCouncil ? 'Yes' : 'No'],
+      ['Bus Services', serviceCuts.busServices ? 'Yes' : 'No'],
       ['Heritage Railway', serviceCuts.heritageRail ? 'Yes' : 'No'],
+      ['Health Efficiency', `${serviceCuts.healthEfficiency}%`],
+      ['Education Cuts', `${serviceCuts.educationCuts}%`],
       [''],
       ['EFFICIENCY SAVINGS'],
       ['Shared Services', efficiencyMeasures.sharedServices ? 'Yes' : 'No'],
@@ -852,7 +865,8 @@ export default function IntegratedWorkshopPage() {
       revenue: newRevenue,
       expenditure: newExpenditure,
       balance: newRevenue - newExpenditure,
-      warnings
+      warnings,
+      sustainabilityScore: 100 // TODO: Calculate based on reserves and deficit
     })
   }, [
     incomeTaxRate, standardTaxRate, corporateTaxRate, vatRate,
