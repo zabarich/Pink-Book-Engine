@@ -4,7 +4,10 @@ import { useState, useEffect, useMemo } from 'react'
 import { DEPARTMENTS, REVENUE_STREAMS, INITIAL_STATE } from '@/lib/budget-data'
 import { BudgetDataService } from '@/lib/services/budget-data-service'
 import { formatCurrency, formatPercentage } from '@/lib/utils'
+import departmentBudgets from '@/data/source/department-budgets.json'
 import capitalProgramme from '@/data/source/capital-programme.json'
+import transferPayments from '@/data/source/transfer-payments.json'
+import reservesFunds from '@/data/source/reserves-funds.json'
 import { 
   Calculator,
   Save,
@@ -38,7 +41,9 @@ import {
   AlertCircle,
   ChevronRight,
   FileDown,
-  BookOpen
+  BookOpen,
+  BarChart3,
+  X
 } from 'lucide-react'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -205,80 +210,346 @@ export default function IntegratedWorkshopPage() {
   const [borrowingEnabled, setBorrowingEnabled] = useState(false)
   const [borrowingLimit, setBorrowingLimit] = useState(0) // millions
   
-  // Advanced Policy Options (from advanced-options page)
-  const [advancedPolicies, setAdvancedPolicies] = useState({
-    // Infrastructure Revenue
-    airportCharge: 0,
-    portDuesIncrease: 0,
-    internalRentCharging: false,
-    freeTransport: false,
-    heritageRailDays: 7,
-    vehicleDutyAdjustment: 0, // -50% to +50% adjustment
-    
-    // Transfer Reforms
-    winterBonusMeans: 'universal',
-    childBenefitTaper: 0,
-    housingBenefitCap: 0,
-    
-    // Department Operations
-    cabinetEfficiency: 0,
-    enterpriseGrants: 0,
-    
-    // Fees & Charges
-    generalFeesUplift: 0,
-    targetedRecovery: [] as string[],
-    
-    // Capital Management
-    capitalGating: false,
-    deferLowBCR: 0,
+  // Advanced Policy Options - Tax Scenarios
+  const [advancedTaxScenarios, setAdvancedTaxScenarios] = useState({
+    incomeTaxIncrease: 0, // 0, 1, 2, or 3 percent
+    higherRateScenario: 21, // 21 (current), 22, or 23 percent
+    corporateBankingScenario: 10, // 10 (current), 12, or 15 percent
   })
+  
+  // Service Cuts state
+  const [serviceCuts, setServiceCuts] = useState({
+    healthEfficiency: 0, // 0%, 5%, 10%
+    educationCuts: 0, // 0%, 5%, 10%
+    heritageRail: false, // Reduce to 5 days operation
+    busServices: false, // Cut services
+    artsCouncil: false // 50% cut
+  })
+  
+  // Efficiency Measures state (Phase 6)
+  const [efficiencyMeasures, setEfficiencyMeasures] = useState({
+    sharedServices: false, // £15m over 3 years
+    digitalTransformation: false, // £20m over 5 years
+    propertyRationalization: false, // £5m one-time
+    procurementCentralization: false // £10m over 3 years
+  })
+  
+  // Revenue Generation state (Phase 7)
+  const [revenueGeneration, setRevenueGeneration] = useState({
+    // Note: touristLevy moved here from Basic Controls
+    touristLevyAmount: 0, // £0-10 per night
+    airportDutyIncrease: 0, // 0-50% increase
+    wealthTax: false, // £5m new tax
+    carbonTax: false, // £3m new tax
+    parkingCharges: false, // £1m new revenue
+    planningFees: false, // £0.5m from 25% increase
+    courtFees: false, // £0.5m from 20% increase
+    vehicleRegistration: false // £1.6m from 10% increase
+  })
+  
+  // Benefit Reforms state (Phase 8)
+  const [benefitReforms, setBenefitReforms] = useState({
+    winterBonus: false, // Reduce from £400 to £300
+    childBenefit: false, // Restrict to households <£30k
+    housingBenefitCap: false, // Cap at £25k/year
+    pensionSupplementTaper: false // Taper for higher earners
+  })
+  
+  // Capital Programme Adjustments state (Phase 9)
+  const [capitalAdjustments, setCapitalAdjustments] = useState({
+    selectedDeferrals: [], // Array of project objects to defer
+    heritageRailCut: false, // Cut Heritage Rail capital budget
+    climateAcceleration: false, // Accelerate climate spending (costs £20m)
+    housingInvestment: false // Emergency housing investment (costs £30m)
+  })
+  
+  
+  // Phase 10: Scenario management state
+  const [savedScenarios, setSavedScenarios] = useState([])
+  const [comparisonScenario, setComparisonScenario] = useState(null)
+  const [scenarioName, setScenarioName] = useState('')
+  
+  // Computed values for scenario saving (using existing state)
+  const revenueMultipliers = {
+    incomeTax: 1,
+    corporateTax: 1,
+    vat: 1,
+    exciseDuties: 1,
+    vehicleDuty: 1,
+    propertyTax: 1
+  }
+  
+  const expenditureMultipliers = {
+    MXC: 1,
+    DESC: 1,
+    DOI: 1,
+    DHA: 1,
+    CO: 1,
+    EXEC: 1,
+    DEFA: 1,
+    DfE: 1,
+    DHSC: 1,
+    TREAS: 1,
+    STAT: 1,
+    LEG: 1
+  }
+  
+  const taxRates = {
+    personalAllowance: personalAllowance,
+    lowerRate: standardTaxRate / 100,
+    higherRate: incomeTaxRate / 100,
+    upperRate: 0,
+    corporateRate: 0,
+    vatRate: vatRate / 100,
+    bankingTaxRate: bankingTaxRate / 100,
+    retailerTaxRate: retailerTaxRate / 100,
+    fersaRate: 0
+  }
+  
+  const niRates = {
+    employee: niEmployeeRate / 100,
+    employer: niEmployerRate / 100
+  }
+  
+  const immigrationTarget = 1000
   
   // Calculate advanced policies impact
   const advancedPoliciesImpact = useMemo(() => {
-    let total = 0;
+    let impact = 0;
     
-    // Infrastructure
-    total += advancedPolicies.airportCharge * BudgetDataService.getPolicyParameters.airportPassengers();
-    total += BudgetDataService.getPolicyParameters.portDuesBase() * (advancedPolicies.portDuesIncrease / 100);
-    total += advancedPolicies.internalRentCharging ? 3000000 : 0;
-    // Free transport cost - additional subsidy needed
-    total -= advancedPolicies.freeTransport ? 3500000 : 0; // Policy estimate
+    // Income tax increase across all bands (£10m per 1%)
+    impact += advancedTaxScenarios.incomeTaxIncrease * 10000000;
     
-    // Heritage Railway savings from reduced days
-    const heritageRailBudget = capitalProgramme.projects_2025_26?.discrete_schemes?.by_department?.DOI?.projects?.find(
-      (p: any) => p.name === 'Heritage Rail Budget'
-    )?.amount || 2250000;
-    total += advancedPolicies.heritageRailDays === 5 ? Math.round(heritageRailBudget * 2 / 7) : 0;
+    // Higher rate increase (21% to 22% = £8m, to 23% = £16m)
+    if (advancedTaxScenarios.higherRateScenario === 22) {
+      impact += 8000000;
+    } else if (advancedTaxScenarios.higherRateScenario === 23) {
+      impact += 16000000;
+    }
     
-    // Transfers
-    total += advancedPolicies.winterBonusMeans === 'benefits' ? 3600000 : 
-             advancedPolicies.winterBonusMeans === 'age75' ? (BudgetDataService.getTransferPayments.winterBonus() * 0.28) : 0;
-    total += advancedPolicies.childBenefitTaper;
-    total += advancedPolicies.housingBenefitCap;
+    // Corporate banking rate increase (10% to 12% = £3.5m, to 15% = £8.75m)
+    if (advancedTaxScenarios.corporateBankingScenario === 12) {
+      impact += 3500000;
+    } else if (advancedTaxScenarios.corporateBankingScenario === 15) {
+      impact += 8750000;
+    }
     
-    // Departments
-    total += advancedPolicies.cabinetEfficiency;
-    total += advancedPolicies.enterpriseGrants;
+    return impact;
+  }, [advancedTaxScenarios]);
+  
+  // Calculate impact of service cuts
+  const serviceCutsImpact = useMemo(() => {
+    let expenditureReduction = 0
     
-    // Fees
-    total += BudgetDataService.getPolicyParameters.feesAndChargesBase() * (advancedPolicies.generalFeesUplift / 100);
-    total += advancedPolicies.targetedRecovery.reduce((sum, item) => {
-      // These are estimated fee increases based on policy choices
-      const values: { [key: string]: number } = {
-        'vehicle': 500000, // Estimated increase from vehicle testing fees
-        'planning': 800000, // Estimated increase from planning application fees
-        'court': 400000,
-        'environmental': 300000
-      };
-      return sum + (values[item] || 0);
-    }, 0);
+    // Health efficiency - Calculate from Manx Care net budget
+    if (serviceCuts.healthEfficiency > 0) {
+      const manxCare = departmentBudgets.departments.find(d => d.code === 'MXC')
+      const dhsc = departmentBudgets.departments.find(d => d.code === 'DHSC')
+      // Combined health budget: Manx Care net minus DHSC income offset
+      const healthBudget = manxCare.net_expenditure + Math.abs(dhsc.net_expenditure)
+      expenditureReduction += healthBudget * (serviceCuts.healthEfficiency / 100)
+    }
     
-    // Capital
-    total += advancedPolicies.capitalGating ? 22700000 : 0;
-    total += advancedPolicies.deferLowBCR;
+    // Education cuts - Use DESC net expenditure from JSON
+    if (serviceCuts.educationCuts > 0) {
+      const desc = departmentBudgets.departments.find(d => d.code === 'DESC')
+      expenditureReduction += desc.net_expenditure * (serviceCuts.educationCuts / 100)
+    }
     
-    return total;
-  }, [advancedPolicies]);
+    // Infrastructure cuts
+    if (serviceCuts.heritageRail) {
+      // Heritage Railway operating budget from DOI verified components
+      const doi = departmentBudgets.departments.find(d => d.code === 'DOI')
+      const railwayBudget = doi.verified_components.isle_of_man_railways
+      // 20% reduction for 5-day operation (reduce from 7 to 5 days)
+      expenditureReduction += railwayBudget * 0.2
+    }
+    
+    if (serviceCuts.busServices) {
+      // Bus services operating budget from DOI verified components
+      const doi = departmentBudgets.departments.find(d => d.code === 'DOI')
+      const busBudget = doi.verified_components.transport_services_division
+      // 25% service reduction
+      expenditureReduction += busBudget * 0.25
+    }
+    
+    // Culture cuts
+    if (serviceCuts.artsCouncil) {
+      // Culture division budget from DESC verified components
+      const desc = departmentBudgets.departments.find(d => d.code === 'DESC')
+      const cultureBudget = desc.verified_components.culture_division
+      // 50% cut to culture/arts funding
+      expenditureReduction += cultureBudget * 0.5
+    }
+    
+    // Museums removed - part of culture division already counted above
+    
+    return expenditureReduction
+  }, [serviceCuts]);
+  
+  // Calculate impact of efficiency measures (Phase 6)
+  const efficiencyImpact = useMemo(() => {
+    let yearOneSavings = 0
+    
+    // Shared Services - £5m per year for 3 years (£15m total)
+    if (efficiencyMeasures.sharedServices) {
+      yearOneSavings += 5000000 // £5m in year 1
+    }
+    
+    // Digital Transformation - £4m per year for 5 years (£20m total)
+    if (efficiencyMeasures.digitalTransformation) {
+      yearOneSavings += 4000000 // £4m in year 1
+    }
+    
+    // Property Rationalization - £5m one-time
+    if (efficiencyMeasures.propertyRationalization) {
+      yearOneSavings += 5000000 // £5m one-time saving
+    }
+    
+    // Procurement Centralization - £3m per year for first 2 years, £4m in year 3 (£10m total)
+    if (efficiencyMeasures.procurementCentralization) {
+      yearOneSavings += 3000000 // £3m in year 1
+    }
+    
+    return yearOneSavings
+  }, [efficiencyMeasures]);
+  
+  // Calculate impact of revenue generation (Phase 7)
+  const revenueGenerationImpact = useMemo(() => {
+    let additionalRevenue = 0
+    
+    // Tourist Accommodation Levy (moved from Basic Controls)
+    // IoM Tourism: ~1.6m visitor nights
+    const visitorNights = 1600000
+    additionalRevenue += revenueGeneration.touristLevyAmount * visitorNights
+    
+    // Airport Passenger Duty increase
+    // Current base from JSON: £4.6m (in excise duties)
+    const airportDutyBase = 4600000
+    additionalRevenue += airportDutyBase * (revenueGeneration.airportDutyIncrease / 100)
+    
+    // New taxes (fixed amounts per spec)
+    if (revenueGeneration.wealthTax) {
+      additionalRevenue += 5000000 // £5m new wealth tax
+    }
+    
+    if (revenueGeneration.carbonTax) {
+      additionalRevenue += 3000000 // £3m carbon tax
+    }
+    
+    if (revenueGeneration.parkingCharges) {
+      additionalRevenue += 1000000 // £1m parking charges
+    }
+    
+    // Fee increases (fixed amounts per spec)
+    if (revenueGeneration.planningFees) {
+      additionalRevenue += 500000 // £0.5m from 25% increase
+    }
+    
+    if (revenueGeneration.courtFees) {
+      additionalRevenue += 500000 // £0.5m from 20% increase
+    }
+    
+    if (revenueGeneration.vehicleRegistration) {
+      additionalRevenue += 1600000 // £1.6m from 10% increase
+    }
+    
+    return additionalRevenue
+  }, [revenueGeneration]);
+  
+  // Calculate impact of benefit reforms (Phase 8)
+  const benefitReformsImpact = useMemo(() => {
+    let expenditureReduction = 0
+    
+    // Winter Bonus reduction (£400 to £300)
+    if (benefitReforms.winterBonus) {
+      // From JSON: winter_bonus total
+      const winterBonusTotal = transferPayments.revenue_funded_benefits.breakdown.winter_bonus.amount
+      // Reducing by 25% (from £400 to £300 per person)
+      expenditureReduction += winterBonusTotal * 0.25
+      // NOTE: Spec incorrectly claims £1.8m saving - total budget is only £914k!
+    }
+    
+    // Child Benefit restriction to households <£30k
+    if (benefitReforms.childBenefit) {
+      // From JSON: child_benefit total
+      const childBenefitTotal = transferPayments.revenue_funded_benefits.breakdown.child_benefit.amount
+      // Restricting to <£30k households saves approximately 22% (affects ~2000 of 9000 families)
+      expenditureReduction += childBenefitTotal * 0.22
+    }
+    
+    // Housing Benefit cap at £25k/year
+    if (benefitReforms.housingBenefitCap) {
+      // Housing is part of income_support from JSON
+      const incomeSupport = transferPayments.revenue_funded_benefits.breakdown.income_support.amount
+      // Estimate housing component is ~27% of income support, cap saves ~5% of housing portion
+      const housingPortion = incomeSupport * 0.27
+      expenditureReduction += housingPortion * 0.20 // Cap affects highest 20% of housing claims
+    }
+    
+    // Pension Supplement taper for higher earners
+    if (benefitReforms.pensionSupplementTaper) {
+      // From JSON: retirement_pension_supplement + manx_pension_supplement
+      const pensionSupplements = 
+        transferPayments.ni_funded_benefits.breakdown.pension_supplements.retirement_pension_supplement +
+        transferPayments.ni_funded_benefits.breakdown.pension_supplements.manx_pension_supplement
+      // Tapering for higher earners saves approximately 7% of total supplements
+      expenditureReduction += pensionSupplements * 0.07
+    }
+    
+    return expenditureReduction
+  }, [benefitReforms]);
+  
+  // Get deferrable projects from capital programme (Phase 9)
+  const deferrableProjects = useMemo(() => {
+    const projects = []
+    // Get discrete projects from all departments
+    Object.entries(capitalProgramme.projects_2025_26.discrete_schemes.by_department).forEach(([deptCode, dept]) => {
+      dept.projects.forEach(project => {
+        projects.push({
+          name: project.name,
+          amount: project.amount,
+          department: deptCode,
+          id: `${deptCode}_${project.name.replace(/\s+/g, '_')}`
+        })
+      })
+    })
+    return projects.sort((a, b) => b.amount - a.amount) // Sort by amount descending
+  }, [])
+  
+  // Calculate impact of capital programme adjustments (Phase 9)
+  const capitalAdjustmentsImpact = useMemo(() => {
+    let impact = 0
+    
+    // Add up deferred projects (positive = savings)
+    impact += capitalAdjustments.selectedDeferrals.reduce((sum, projectId) => {
+      const project = deferrableProjects.find(p => p.id === projectId)
+      return sum + (project ? project.amount : 0)
+    }, 0)
+    
+    // Heritage Rail capital cut
+    if (capitalAdjustments.heritageRailCut) {
+      // Find Heritage Rail Budget in rolling schemes from JSON
+      const heritageRail = capitalProgramme.projects_2025_26.rolling_schemes
+        .by_department.DOI?.projects
+        ?.find(p => p.name === "Heritage Rail Budget")
+      if (heritageRail) {
+        impact += heritageRail.amount
+      }
+    }
+    
+    // Climate acceleration (costs money - negative impact)
+    if (capitalAdjustments.climateAcceleration) {
+      impact -= 20000000 // Policy target for additional climate spending
+    }
+    
+    // Housing investment (costs money - negative impact)
+    if (capitalAdjustments.housingInvestment) {
+      impact -= 30000000 // Policy target for emergency housing investment
+    }
+    
+    return impact
+  }, [capitalAdjustments, deferrableProjects])
   
   // Calculations
   const [results, setResults] = useState({
@@ -287,6 +558,141 @@ export default function IntegratedWorkshopPage() {
     balance: INITIAL_STATE.balance.surplus,
     warnings: [] as string[]
   })
+  
+  // Phase 10: Save current scenario
+  const saveScenario = (nameOverride) => {
+    const name = nameOverride || scenarioName
+    if (!name || !name.trim()) {
+      alert('Please enter a scenario name')
+      return
+    }
+    
+    const scenario = {
+      name: name,
+      timestamp: new Date().toISOString(),
+      state: {
+        revenueMultipliers,
+        expenditureMultipliers,
+        taxRates,
+        niRates,
+        immigrationTarget,
+        tripleLockEnabled,
+        statePensionAge,
+        serviceCuts,
+        efficiencyMeasures,
+        revenueGeneration,
+        benefitReforms,
+        capitalAdjustments
+      },
+      results: {
+        revenue: results.revenue,
+        expenditure: results.expenditure,
+        balance: results.balance,
+        sustainabilityScore: results.sustainabilityScore
+      }
+    }
+    
+    const updatedScenarios = [...savedScenarios, scenario]
+    setSavedScenarios(updatedScenarios)
+    localStorage.setItem('iom-budget-scenarios', JSON.stringify(updatedScenarios))
+    setScenarioName('')
+    alert(`Scenario "${name}" saved successfully`)
+  }
+  
+  // Phase 10: Load scenario
+  const loadScenario = (scenario) => {
+    const { state } = scenario
+    // Load tax rates
+    if (state.taxRates) {
+      setPersonalAllowance(state.taxRates.personalAllowance)
+      setStandardTaxRate(state.taxRates.lowerRate * 100)
+      setIncomeTaxRate(state.taxRates.higherRate * 100)
+      setVatRate(state.taxRates.vatRate * 100)
+      setBankingTaxRate(state.taxRates.bankingTaxRate * 100)
+      setRetailerTaxRate(state.taxRates.retailerTaxRate * 100)
+    }
+    // Load NI rates
+    if (state.niRates) {
+      setNiEmployeeRate(state.niRates.employee * 100)
+      setNiEmployerRate(state.niRates.employer * 100)
+    }
+    // Load other state  
+    if (state.tripleLockEnabled !== undefined) setTripleLockEnabled(state.tripleLockEnabled)
+    if (state.statePensionAge !== undefined) setStatePensionAge(state.statePensionAge)
+    
+    // Load Phase 5-9 state
+    setServiceCuts(state.serviceCuts || {})
+    setEfficiencyMeasures(state.efficiencyMeasures || state.efficiencySavings || {}) // Support old saves
+    setRevenueGeneration(state.revenueGeneration || {})
+    setBenefitReforms(state.benefitReforms || {})
+    setCapitalAdjustments(state.capitalAdjustments || {})
+  }
+  
+  // Phase 10: Export to CSV
+  const exportToCSV = () => {
+    const csv = [
+      ['Isle of Man Budget Scenario Export'],
+      ['Generated:', new Date().toLocaleString()],
+      [''],
+      ['SUMMARY'],
+      ['Total Revenue', formatCurrency(results.revenue)],
+      ['Total Expenditure', formatCurrency(results.expenditure)],
+      ['Budget Balance', formatCurrency(results.balance)],
+      ['Sustainability Score', results.sustainabilityScore || 'N/A'],
+      [''],
+      ['TAX RATES'],
+      ['Personal Allowance', `£${taxRates.personalAllowance}`],
+      ['Lower Rate', `${(taxRates.lowerRate * 100).toFixed(1)}%`],
+      ['Higher Rate', `${(taxRates.higherRate * 100).toFixed(1)}%`],
+      ['VAT Rate', `${(taxRates.vatRate * 100).toFixed(1)}%`],
+      [''],
+      ['DEPARTMENT BUDGETS'],
+      ...Object.entries(expenditureMultipliers).map(([dept, mult]) => [
+        dept,
+        `${((mult - 1) * 100).toFixed(1)}% adjustment`
+      ]),
+      [''],
+      ['SERVICE CUTS'],
+      ['Culture Division', serviceCuts.cultureDivision ? 'Yes' : 'No'],
+      ['Transport Services', serviceCuts.transportServices ? 'Yes' : 'No'],
+      ['Heritage Railway', serviceCuts.heritageRail ? 'Yes' : 'No'],
+      [''],
+      ['EFFICIENCY SAVINGS'],
+      ['Shared Services', efficiencyMeasures.sharedServices ? 'Yes' : 'No'],
+      ['Digital Transformation', efficiencyMeasures.digitalTransformation ? 'Yes' : 'No'],
+      ['Property Rationalization', efficiencyMeasures.propertyRationalization ? 'Yes' : 'No'],
+      ['Procurement Centralization', efficiencyMeasures.procurementCentralization ? 'Yes' : 'No'],
+      [''],
+      ['REVENUE GENERATION'],
+      ...Object.entries(revenueGeneration).map(([key, enabled]) => [
+        key.replace(/([A-Z])/g, ' $1').trim(),
+        enabled ? 'Yes' : 'No'
+      ]),
+      [''],
+      ['WARNINGS'],
+      ...results.warnings.map(w => ['Warning', w])
+    ].map(row => row.join(',')).join('\n')
+    
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `iom-budget-scenario-${Date.now()}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+  
+  // Load saved scenarios on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('iom-budget-scenarios')
+    if (saved) {
+      try {
+        setSavedScenarios(JSON.parse(saved))
+      } catch (e) {
+        console.error('Failed to load saved scenarios:', e)
+      }
+    }
+  }, [])
   
   // Calculate revenue and expenditure impacts
   useEffect(() => {
@@ -341,6 +747,11 @@ export default function IntegratedWorkshopPage() {
     const niImpact = calculateNIChange(niEmployeeChange, niEmployerChange)
     newRevenue += niImpact
     
+    // Pillar 2 Tax (OECD Minimum Tax)
+    if (pillarTwoEnabled) {
+      newRevenue += 35000000 // £35m from OECD minimum tax implementation
+    }
+    
     // NHS Levy
     const nhsLevyResult = calculateNHSLevy(nhsLevyRate, nhsLevyFreeAmount, nhsLevyIndividualCap)
     newRevenue += nhsLevyResult.revenue
@@ -359,17 +770,24 @@ export default function IntegratedWorkshopPage() {
     const gamingTaxableBase = BudgetDataService.getPolicyParameters.gamingTaxableBase()
     newRevenue += gamingTaxableBase * (onlineGamingDuty / 100)
     
-    // Add advanced policies impact
-    // For revenue increases (positive impact)
-    if (advancedPoliciesImpact > 0) {
-      newRevenue += advancedPoliciesImpact
-    }
-    // For cost savings (also positive impact, but reduces expenditure)
-    // This includes winter bonus savings, heritage railway savings, etc.
-    if (advancedPolicies.winterBonusMeans !== 'universal') {
-      const winterSavings = calculateWinterBonusSavings(advancedPolicies.winterBonusMeans)
-      newExpenditure -= winterSavings.calculatedValue
-    }
+    // Advanced policies impact
+    newRevenue += advancedPoliciesImpact
+    
+    // Revenue generation impact (Phase 7)
+    newRevenue += revenueGenerationImpact
+    
+    // Service cuts impact
+    newExpenditure -= serviceCutsImpact
+    
+    // Efficiency savings impact
+    newExpenditure -= efficiencyImpact
+    
+    // Benefit reforms impact (Phase 8)
+    newExpenditure -= benefitReformsImpact
+    
+    // Capital programme adjustments (Phase 9)
+    // Note: Negative impact means increased spending
+    newExpenditure -= capitalAdjustmentsImpact
     
     // Expenditure adjustments (already initialized from baseline above)
     
@@ -395,6 +813,11 @@ export default function IntegratedWorkshopPage() {
     newExpenditure -= digitalTransformation * 1000000
     newExpenditure -= procurementCentralization * 1000000
     
+    // Pension age savings
+    if (statePensionAge === 68) {
+      newExpenditure -= 15000000 // £15m savings from raising pension age to 68
+    }
+    
     // Capital budget adjustment
     newExpenditure += (totalCapitalBudget - 87.4) * 1000000
     
@@ -417,11 +840,7 @@ export default function IntegratedWorkshopPage() {
       newRevenue -= 10000000 // Remove Pillar 2 from baseline
     }
     
-    // Add Vehicle Duty adjustment if changed
-    if (advancedPolicies.vehicleDutyAdjustment && advancedPolicies.vehicleDutyAdjustment !== 0) {
-      const vehicleDutyChange = calculateVehicleDutyChange(advancedPolicies.vehicleDutyAdjustment)
-      newRevenue += vehicleDutyChange.calculatedValue
-    }
+    // Vehicle Duty adjustments will be calculated when advanced options are implemented
     
     // State Pension Age savings
     if (statePensionAge > 66) {
@@ -443,7 +862,8 @@ export default function IntegratedWorkshopPage() {
     sharedServices, digitalTransformation, procurementCentralization,
     personalAllowance, higherRateThreshold, personalTaxCap,
     bankingTaxRate, retailerTaxRate, fersaRate, totalCapitalBudget,
-    tripleLockEnabled, statePensionAge, advancedPoliciesImpact
+    tripleLockEnabled, statePensionAge, advancedPoliciesImpact, serviceCutsImpact,
+    efficiencyImpact, revenueGenerationImpact, benefitReformsImpact, capitalAdjustmentsImpact
   ])
   
   // Save scenario handler
@@ -486,9 +906,7 @@ export default function IntegratedWorkshopPage() {
       expenditure_changes: {
         department_adjustments: deptAdjustments,
         benefit_changes: {
-          winter_bonus_means_test: advancedPolicies.winterBonusMeans,
-          child_benefit_taper: advancedPolicies.childBenefitTaper,
-          housing_benefit_cap: advancedPolicies.housingBenefitCap
+          // Advanced benefit changes will be added when implemented
         },
         efficiency_measures: {
           shared_services: sharedServices,
@@ -630,23 +1048,7 @@ export default function IntegratedWorkshopPage() {
     setStatePensionAge(66)
     setTripleLockEnabled(true)
     setTotalCapitalBudget(87.4)
-    setAdvancedPolicies({
-      airportCharge: 0,
-      portDuesIncrease: 0,
-      internalRentCharging: false,
-      freeTransport: false,
-      heritageRailDays: 7,
-      vehicleDutyAdjustment: 0,
-      winterBonusMeans: 'universal',
-      childBenefitTaper: 0,
-      housingBenefitCap: 0,
-      cabinetEfficiency: 0,
-      enterpriseGrants: 0,
-      generalFeesUplift: 0,
-      targetedRecovery: [],
-      capitalGating: false,
-      deferLowBCR: 0,
-    })
+    // Advanced policies reset will be implemented when advanced tabs are added
   }
   
   
@@ -673,17 +1075,58 @@ export default function IntegratedWorkshopPage() {
                 Reset All
               </button>
               <button 
-                onClick={handleSaveScenario}
+                onClick={() => {
+                  const name = prompt('Enter scenario name:')
+                  if (name) {
+                    saveScenario(name)
+                  }
+                }}
                 className="flex items-center px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
                 <Save className="h-4 w-4 mr-1" />
                 Save Scenario
               </button>
+              {savedScenarios.length > 0 && (
+                <div className="relative">
+                  <select 
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        const scenario = savedScenarios.find(s => s.name === e.target.value)
+                        if (scenario) {
+                          loadScenario(scenario)
+                          alert(`Loaded scenario: ${scenario.name}`)
+                        }
+                      }
+                    }}
+                    className="px-3 py-1.5 text-sm bg-green-600 text-white rounded hover:bg-green-700 cursor-pointer"
+                  >
+                    <option value="">📂 Load Scenario ({savedScenarios.length})</option>
+                    {savedScenarios.map((scenario, index) => (
+                      <option key={index} value={scenario.name}>
+                        {scenario.name} - {new Date(scenario.timestamp).toLocaleDateString()}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
               <button 
-                onClick={handleExportScenario}
+                onClick={exportToCSV}
                 className="flex items-center px-3 py-1.5 text-sm bg-gray-100 rounded hover:bg-gray-200">
                 <FileDown className="h-4 w-4 mr-1" />
-                Export
+                Export CSV
               </button>
+              {savedScenarios.length > 0 && (
+                <button 
+                  onClick={() => {
+                    if (confirm(`Delete all ${savedScenarios.length} saved scenarios?`)) {
+                      setSavedScenarios([])
+                      localStorage.removeItem('iom-budget-scenarios')
+                      alert('All scenarios deleted')
+                    }
+                  }}
+                  className="flex items-center px-2 py-1.5 text-sm bg-red-100 text-red-700 rounded hover:bg-red-200">
+                  <X className="h-4 w-4" />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -844,11 +1287,93 @@ export default function IntegratedWorkshopPage() {
                       />
                       <p className="text-xs text-gray-500 mt-1">Current: 20% (UK aligned)</p>
                     </div>
+                    
+                    {/* Corporate Banking Tax */}
+                    <div>
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="flex items-center gap-2">
+                          <Label>Corporate Banking Tax</Label>
+                          <StatusBadge status="existing" />
+                        </div>
+                        <span className="text-sm font-medium">{bankingTaxRate}%</span>
+                      </div>
+                      <Slider
+                        value={[bankingTaxRate]}
+                        onValueChange={([value]) => setBankingTaxRate(value)}
+                        min={10}
+                        max={20}
+                        step={1}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Current: 10% | Revenue impact: {formatCurrency((bankingTaxRate - 10) * 1.75 * 1000000)}
+                      </p>
+                    </div>
+                    
+                    {/* NI Employee Rate */}
+                    <div>
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="flex items-center gap-2">
+                          <Label>NI Employee Rate</Label>
+                          <StatusBadge status="existing" />
+                        </div>
+                        <span className="text-sm font-medium">{niEmployeeRate}%</span>
+                      </div>
+                      <Slider
+                        value={[niEmployeeRate]}
+                        onValueChange={([value]) => setNiEmployeeRate(value)}
+                        min={10}
+                        max={13}
+                        step={0.5}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Current: 11% | Revenue impact: {formatCurrency((niEmployeeRate - 11) * 16.5 * 1000000)}
+                      </p>
+                    </div>
+                    
+                    {/* NI Employer Rate */}
+                    <div>
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="flex items-center gap-2">
+                          <Label>NI Employer Rate</Label>
+                          <StatusBadge status="existing" />
+                        </div>
+                        <span className="text-sm font-medium">{niEmployerRate}%</span>
+                      </div>
+                      <Slider
+                        value={[niEmployerRate]}
+                        onValueChange={([value]) => setNiEmployerRate(value)}
+                        min={11}
+                        max={15}
+                        step={0.2}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Current: 12.8% | Revenue impact: {formatCurrency((niEmployerRate - 12.8) * 13 * 1000000)}
+                      </p>
+                    </div>
                   </div>
                   
                   {/* New Revenue Sources */}
                   <div className="space-y-4 border-t pt-4">
                     <h4 className="text-sm font-semibold text-gray-700">New Revenue Sources</h4>
+                    
+                    {/* Pillar 2 Tax Toggle */}
+                    <div className="flex items-center justify-between p-3 border rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <Label htmlFor="pillar2">Enable Pillar 2 Tax (OECD Minimum)</Label>
+                        <StatusBadge status="proposed" />
+                        <InfoTooltip text="OECD minimum tax implementation. Adds £35m revenue when enabled." />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-green-600">
+                          {pillarTwoEnabled ? '+£35m' : '£0'}
+                        </span>
+                        <Switch
+                          id="pillar2"
+                          checked={pillarTwoEnabled}
+                          onCheckedChange={setPillarTwoEnabled}
+                        />
+                      </div>
+                    </div>
                     
                     <div>
                       <div className="flex justify-between items-center mb-2">
@@ -871,46 +1396,6 @@ export default function IntegratedWorkshopPage() {
                           Revenue: {formatCurrency(calculateNHSLevy(nhsLevyRate, nhsLevyFreeAmount, nhsLevyIndividualCap).revenue)}
                         </p>
                       )}
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <div className="flex items-center gap-2">
-                          <Label>Tourist Accommodation Levy</Label>
-                          <StatusBadge status="proposed" />
-                        </div>
-                        <span className="text-sm font-medium">£{touristAccommodationLevy}/night</span>
-                      </div>
-                      <Slider
-                        value={[touristAccommodationLevy]}
-                        onValueChange={([value]) => setTouristAccommodationLevy(value)}
-                        min={0}
-                        max={10}
-                        step={1}
-                      />
-                      <p className="text-xs text-gray-500 mt-1">
-                        Revenue: {formatCurrency(touristAccommodationLevy * BudgetDataService.getPolicyParameters.touristNights())}
-                      </p>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <div className="flex items-center gap-2">
-                          <Label>Airport Passenger Duty Increase</Label>
-                          <StatusBadge status="existing" />
-                        </div>
-                        <span className="text-sm font-medium">+£{airportPassengerDuty}</span>
-                      </div>
-                      <Slider
-                        value={[airportPassengerDuty]}
-                        onValueChange={([value]) => setAirportPassengerDuty(value)}
-                        min={0}
-                        max={20}
-                        step={2}
-                      />
-                      <p className="text-xs text-gray-500 mt-1">
-                        Current: £4.6m | Additional: {formatCurrency(airportPassengerDuty * BudgetDataService.getPolicyParameters.airportPassengers())}
-                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -963,38 +1448,6 @@ export default function IntegratedWorkshopPage() {
                     <h4 className="text-sm font-semibold text-gray-700">Efficiency Measures</h4>
                     
                     <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <div className="flex items-center gap-2">
-                          <Label>Expand Shared Services</Label>
-                          <StatusBadge status="existing" />
-                          <InfoTooltip text="GTS established 2010. This represents expansion." />
-                        </div>
-                        <span className="text-sm font-medium">£{sharedServices}m</span>
-                      </div>
-                      <Slider
-                        value={[sharedServices]}
-                        onValueChange={([value]) => setSharedServices(value)}
-                        min={0}
-                        max={15}
-                        step={1}
-                      />
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <Label>Digital Transformation</Label>
-                        <span className="text-sm font-medium">£{digitalTransformation}m</span>
-                      </div>
-                      <Slider
-                        value={[digitalTransformation]}
-                        onValueChange={([value]) => setDigitalTransformation(value)}
-                        min={0}
-                        max={20}
-                        step={2}
-                      />
-                    </div>
-                    
-                    <div>
                       <Label className="mb-3 block">Public Sector Pay</Label>
                       <div className="grid grid-cols-4 gap-2">
                         {['freeze', '1%', '2%', '3%'].map(option => (
@@ -1017,6 +1470,47 @@ export default function IntegratedWorkshopPage() {
                                 publicSectorPay === '2%' ? 'Baseline' : 'Cost £5m'}
                       </p>
                     </div>
+                    
+                    {/* Pension Age Toggle */}
+                    <div className="mt-4">
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center gap-2">
+                          <Label htmlFor="pensionAge">State Pension Age</Label>
+                          <StatusBadge status="proposed" />
+                          <InfoTooltip text="Raising pension age from 67 to 68 saves £15m annually" />
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm text-gray-600">
+                            Age:
+                          </span>
+                          <div className="flex gap-1">
+                            <button
+                              onClick={() => setStatePensionAge(67)}
+                              className={`px-3 py-1 text-sm border rounded-l ${
+                                statePensionAge === 67
+                                  ? 'bg-blue-50 border-blue-500 text-blue-700'
+                                  : 'bg-white hover:bg-gray-50'
+                              }`}
+                            >
+                              67
+                            </button>
+                            <button
+                              onClick={() => setStatePensionAge(68)}
+                              className={`px-3 py-1 text-sm border rounded-r ${
+                                statePensionAge === 68
+                                  ? 'bg-blue-50 border-blue-500 text-blue-700'
+                                  : 'bg-white hover:bg-gray-50'
+                              }`}
+                            >
+                              68
+                            </button>
+                          </div>
+                          <span className="text-sm font-medium text-green-600 ml-2">
+                            {statePensionAge === 68 ? 'Saves £15m' : 'Baseline'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -1036,706 +1530,872 @@ export default function IntegratedWorkshopPage() {
               </div>
             </div>
             
-            <Tabs defaultValue="infrastructure" className="space-y-4">
-              <TabsList className="grid w-full grid-cols-7">
-                <TabsTrigger value="infrastructure">Infrastructure</TabsTrigger>
-                <TabsTrigger value="transfers">Transfers</TabsTrigger>
-                <TabsTrigger value="departments">Departments</TabsTrigger>
-                <TabsTrigger value="fees">Fees</TabsTrigger>
+            <Tabs defaultValue="tax" className="space-y-4">
+              <TabsList className="grid w-full grid-cols-6">
+                <TabsTrigger value="tax">Tax Changes</TabsTrigger>
+                <TabsTrigger value="cuts">Service Cuts</TabsTrigger>
+                <TabsTrigger value="efficiency">Efficiency</TabsTrigger>
+                <TabsTrigger value="revenue">Revenue</TabsTrigger>
+                <TabsTrigger value="benefits">Benefits</TabsTrigger>
                 <TabsTrigger value="capital">Capital</TabsTrigger>
-                <TabsTrigger value="tax-detail">Tax Detail</TabsTrigger>
-                <TabsTrigger value="strategic">Strategic</TabsTrigger>
               </TabsList>
               
-              {/* Infrastructure Sub-tab */}
-              <TabsContent value="infrastructure" className="space-y-4">
+              {/* Tax Changes Tab */}
+              <TabsContent value="tax" className="space-y-4">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Plane className="h-5 w-5" />
-                      Infrastructure Revenue Options
+                      <Calculator className="h-5 w-5" />
+                      Tax Change Scenarios
                     </CardTitle>
                     <CardDescription>
-                      Generate revenue from infrastructure assets and services
+                      Select tax policy changes to see revenue impact
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div>
-                          <div className="flex justify-between items-center mb-2">
-                            <Label>Airport Passenger Charge</Label>
-                            <Badge variant="outline">£{advancedPolicies.airportCharge}/passenger</Badge>
-                          </div>
-                          <Slider
-                            value={[advancedPolicies.airportCharge]}
-                            onValueChange={([value]) => 
-                              setAdvancedPolicies(prev => ({ ...prev, airportCharge: value }))
-                            }
-                            min={0}
-                            max={10}
-                            step={1}
-                          />
-                          <p className="text-xs text-gray-500 mt-1">
-                            Revenue: {formatCurrency(advancedPolicies.airportCharge * 800000)}
-                          </p>
-                        </div>
-                        
-                        <div>
-                          <div className="flex justify-between items-center mb-2">
-                            <Label>Port Dues Increase</Label>
-                            <Badge variant="outline">{advancedPolicies.portDuesIncrease}%</Badge>
-                          </div>
-                          <Slider
-                            value={[advancedPolicies.portDuesIncrease]}
-                            onValueChange={([value]) => 
-                              setAdvancedPolicies(prev => ({ ...prev, portDuesIncrease: value }))
-                            }
-                            min={0}
-                            max={30}
-                            step={5}
-                          />
-                          <p className="text-xs text-gray-500 mt-1">
-                            Revenue: {formatCurrency(BudgetDataService.getPolicyParameters.portDuesBase() * (advancedPolicies.portDuesIncrease / 100))}
-                          </p>
-                        </div>
-                        
-                        <div>
-                          <div className="flex justify-between items-center mb-2">
-                            <Label>Vehicle Duty Adjustment</Label>
-                            <Badge variant="outline">{advancedPolicies.vehicleDutyAdjustment > 0 ? '+' : ''}{advancedPolicies.vehicleDutyAdjustment}%</Badge>
-                          </div>
-                          <Slider
-                            value={[advancedPolicies.vehicleDutyAdjustment]}
-                            onValueChange={([value]) => 
-                              setAdvancedPolicies(prev => ({ ...prev, vehicleDutyAdjustment: value }))
-                            }
-                            min={-50}
-                            max={50}
-                            step={5}
-                          />
-                          <p className="text-xs text-gray-500 mt-1">
-                            Base: £16.04m | Change: {formatCurrency(16039000 * (advancedPolicies.vehicleDutyAdjustment / 100))}
-                          </p>
-                        </div>
+                    {/* Income Tax Increase Across All Bands */}
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <Label className="text-base font-medium">Income Tax Increase (All Bands)</Label>
+                        <Badge variant="outline" className="text-sm">
+                          +£{(advancedTaxScenarios.incomeTaxIncrease * 10).toFixed(0)}m
+                        </Badge>
                       </div>
-                      
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between p-3 border rounded-lg">
-                          <div>
-                            <Label>Internal Rent Charging</Label>
-                            <p className="text-xs text-gray-600 mt-1">
-                              Charge departments market rent for government buildings
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <span className="text-sm text-gray-500">
-                              {advancedPolicies.internalRentCharging ? '+£3m' : '£0'}
-                            </span>
-                            <Switch
-                              checked={advancedPolicies.internalRentCharging}
-                              onCheckedChange={(checked) => 
-                                setAdvancedPolicies(prev => ({ ...prev, internalRentCharging: checked }))
-                              }
-                            />
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center justify-between p-3 border rounded-lg">
-                          <div>
-                            <Label>Free Public Transport</Label>
-                            <p className="text-xs text-gray-600 mt-1">
-                              Make all bus services free (additional cost)
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <span className="text-sm text-gray-500">
-                              {advancedPolicies.freeTransport ? '-£3.5m' : '£0'}
-                            </span>
-                            <Switch
-                              checked={advancedPolicies.freeTransport}
-                              onCheckedChange={(checked) => 
-                                setAdvancedPolicies(prev => ({ ...prev, freeTransport: checked }))
-                              }
-                            />
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <Label className="mb-2 block">Heritage Railway Operating Days</Label>
-                          <Select
-                            value={advancedPolicies.heritageRailDays.toString()}
-                            onValueChange={(value) => 
-                              setAdvancedPolicies(prev => ({ ...prev, heritageRailDays: parseInt(value) as 5 | 7 }))
-                            }
+                      <div className="grid grid-cols-4 gap-2">
+                        {[
+                          { value: 0, label: 'No change', impact: '£0' },
+                          { value: 1, label: '+1%', impact: '+£10m' },
+                          { value: 2, label: '+2%', impact: '+£20m' },
+                          { value: 3, label: '+3%', impact: '+£30m' }
+                        ].map(option => (
+                          <button
+                            key={option.value}
+                            onClick={() => setAdvancedTaxScenarios(prev => ({ ...prev, incomeTaxIncrease: option.value }))}
+                            className={`p-3 text-sm border rounded-lg transition-colors ${
+                              advancedTaxScenarios.incomeTaxIncrease === option.value
+                                ? 'bg-blue-50 border-blue-500 text-blue-700'
+                                : 'bg-white hover:bg-gray-50 border-gray-200'
+                            }`}
                           >
-                            <SelectTrigger>
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="7">7 days/week (current)</SelectItem>
-                              <SelectItem value="5">5 days/week (+£600k savings)</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
+                            <div className="font-medium">{option.label}</div>
+                            <div className="text-xs mt-1 opacity-75">{option.impact}</div>
+                          </button>
+                        ))}
                       </div>
+                      <p className="text-xs text-gray-500">
+                        Increases both standard (10%) and higher (21%) rates by selected percentage
+                      </p>
+                    </div>
+
+                    {/* Higher Rate Scenarios */}
+                    <div className="space-y-3 pt-4 border-t">
+                      <div className="flex items-center justify-between">
+                        <Label className="text-base font-medium">Higher Rate Tax Band</Label>
+                        <Badge variant="outline" className="text-sm">
+                          +£{advancedTaxScenarios.higherRateScenario === 22 ? '8' : 
+                              advancedTaxScenarios.higherRateScenario === 23 ? '16' : '0'}m
+                        </Badge>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { value: 21, label: '21%', sublabel: 'Current rate', impact: '£0' },
+                          { value: 22, label: '22%', sublabel: '+1 point', impact: '+£8m' },
+                          { value: 23, label: '23%', sublabel: '+2 points', impact: '+£16m' }
+                        ].map(option => (
+                          <button
+                            key={option.value}
+                            onClick={() => setAdvancedTaxScenarios(prev => ({ ...prev, higherRateScenario: option.value }))}
+                            className={`p-3 text-sm border rounded-lg transition-colors ${
+                              advancedTaxScenarios.higherRateScenario === option.value
+                                ? 'bg-blue-50 border-blue-500 text-blue-700'
+                                : 'bg-white hover:bg-gray-50 border-gray-200'
+                            }`}
+                          >
+                            <div className="font-medium">{option.label}</div>
+                            <div className="text-xs opacity-75">{option.sublabel}</div>
+                            <div className="text-xs mt-1 font-medium">{option.impact}</div>
+                          </button>
+                        ))}
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        Applies to income over £21,000 (affects ~30,000 taxpayers)
+                      </p>
+                    </div>
+
+                    {/* Corporate Banking Tax */}
+                    <div className="space-y-3 pt-4 border-t">
+                      <div className="flex items-center justify-between">
+                        <Label className="text-base font-medium">Corporate Banking Tax Rate</Label>
+                        <Badge variant="outline" className="text-sm">
+                          +£{advancedTaxScenarios.corporateBankingScenario === 12 ? '3.5' : 
+                              advancedTaxScenarios.corporateBankingScenario === 15 ? '8.75' : '0'}m
+                        </Badge>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { value: 10, label: '10%', sublabel: 'Current rate', impact: '£0' },
+                          { value: 12, label: '12%', sublabel: '+2 points', impact: '+£3.5m' },
+                          { value: 15, label: '15%', sublabel: '+5 points', impact: '+£8.75m' }
+                        ].map(option => (
+                          <button
+                            key={option.value}
+                            onClick={() => setAdvancedTaxScenarios(prev => ({ ...prev, corporateBankingScenario: option.value }))}
+                            className={`p-3 text-sm border rounded-lg transition-colors ${
+                              advancedTaxScenarios.corporateBankingScenario === option.value
+                                ? 'bg-blue-50 border-blue-500 text-blue-700'
+                                : 'bg-white hover:bg-gray-50 border-gray-200'
+                            }`}
+                          >
+                            <div className="font-medium">{option.label}</div>
+                            <div className="text-xs opacity-75">{option.sublabel}</div>
+                            <div className="text-xs mt-1 font-medium">{option.impact}</div>
+                          </button>
+                        ))}
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        Applies to banking and property sectors (current base: £18.7m)
+                      </p>
+                    </div>
+
+                    {/* Total Impact Summary */}
+                    <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-blue-900">Total Tax Scenario Impact:</span>
+                        <span className="text-lg font-bold text-blue-900">
+                          +{formatCurrency(advancedPoliciesImpact)}
+                        </span>
+                      </div>
+                      <p className="text-xs text-blue-700 mt-2">
+                        This revenue will be added to your budget calculations
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
               </TabsContent>
               
-              {/* Transfers Sub-tab */}
-              <TabsContent value="transfers" className="space-y-4">
+              {/* Service Cuts Tab */}
+              <TabsContent value="cuts" className="space-y-4">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Users className="h-5 w-5" />
-                      Transfer Payment Reforms
+                      Service Cut Options
                     </CardTitle>
                     <CardDescription>
-                      £4.6-8.1m potential from benefit targeting (Currently £441m total)
+                      Select service reduction scenarios to identify savings
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                      <div className="space-y-4">
-                        <div>
-                          <Label className="mb-2 block">Winter Bonus Means Testing</Label>
-                          <Select
-                            value={advancedPolicies.winterBonusMeans}
-                            onValueChange={(value) => 
-                              setAdvancedPolicies(prev => ({ ...prev, winterBonusMeans: value }))
-                            }
-                          >
-                            <SelectTrigger>
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="universal">Universal (current) - £0 saving</SelectItem>
-                              <SelectItem value="benefits">Benefits recipients only - £3.6m saving</SelectItem>
-                              <SelectItem value="age75">Age 75+ only - £2.0m saving</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <Alert className="border-amber-200 bg-amber-50 mt-2">
-                            <AlertCircle className="h-4 w-4 text-amber-600" />
-                            <AlertDescription className="text-amber-700 text-sm">
-                              Political sensitivity: High - affects vulnerable populations
-                            </AlertDescription>
-                          </Alert>
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-4">
-                        <div>
-                          <div className="flex justify-between items-center mb-2">
-                            <Label>Child Benefit Income Taper</Label>
-                            <Badge variant="outline">
-                              £{(advancedPolicies.childBenefitTaper / 1000000).toFixed(1)}m
-                            </Badge>
-                          </div>
-                          <Slider
-                            value={[advancedPolicies.childBenefitTaper]}
-                            onValueChange={([value]) => 
-                              setAdvancedPolicies(prev => ({ ...prev, childBenefitTaper: value }))
-                            }
-                            max={3000000}
-                            step={100000}
-                          />
-                          <p className="text-xs text-gray-500 mt-1">
-                            Taper for households &gt;£50k | ~2,000 families affected
-                          </p>
-                        </div>
-                        
-                        <div>
-                          <div className="flex justify-between items-center mb-2">
-                            <Label>Housing Benefit Cap Tightening</Label>
-                            <Badge variant="outline">
-                              £{(advancedPolicies.housingBenefitCap / 1000000).toFixed(1)}m
-                            </Badge>
-                          </div>
-                          <Slider
-                            value={[advancedPolicies.housingBenefitCap]}
-                            onValueChange={([value]) => 
-                              setAdvancedPolicies(prev => ({ ...prev, housingBenefitCap: value }))
-                            }
-                            max={1500000}
-                            step={100000}
-                          />
-                          <p className="text-xs text-gray-500 mt-1">
-                            Local reference rent caps on outliers
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              
-              {/* Departments Sub-tab */}
-              <TabsContent value="departments" className="space-y-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Building className="h-5 w-5" />
-                      All Government Departments
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                      {DEPARTMENTS.map(dept => (
-                        <div key={dept.name} className="space-y-3">
-                          <div>
-                            <div className="flex justify-between items-center mb-2">
-                              <div>
-                                <Label>{dept.name}</Label>
-                                <p className="text-xs text-gray-500">
-                                  Budget: {formatCurrency(dept.budget)}
-                                </p>
-                              </div>
-                              <span className="text-sm font-medium">
-                                {deptAdjustments[dept.name] > 0 ? '+' : ''}{deptAdjustments[dept.name]}%
-                              </span>
-                            </div>
-                            <Slider
-                              value={[deptAdjustments[dept.name] || 0]}
-                              onValueChange={([value]) => 
-                                setDeptAdjustments(prev => ({ ...prev, [dept.name]: value }))
-                              }
-                              min={-20}
-                              max={20}
-                              step={1}
-                            />
-                            <div className="flex justify-between text-xs text-gray-500 mt-1">
-                              <span>Min viable: {formatCurrency(dept.minViable)}</span>
-                              <span>
-                                Impact: {formatCurrency(dept.budget * (deptAdjustments[dept.name] || 0) / 100)}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              
-              {/* Fees Sub-tab */}
-              <TabsContent value="fees" className="space-y-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Receipt className="h-5 w-5" />
-                      Fees & Charges
-                    </CardTitle>
-                    <CardDescription>
-                      £9.5-11.5m potential from fee adjustments
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
+                    {/* Health Efficiency */}
                     <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <Label>General Fees & Charges Uplift</Label>
-                        <Badge variant="outline">
-                          £{(BudgetDataService.getPolicyParameters.feesAndChargesBase() * advancedPolicies.generalFeesUplift / 100 / 1000000).toFixed(1)}m
-                        </Badge>
-                      </div>
-                      <Slider
-                        value={[advancedPolicies.generalFeesUplift]}
-                        onValueChange={([value]) => 
-                          setAdvancedPolicies(prev => ({ ...prev, generalFeesUplift: value }))
-                        }
-                        max={10}
-                        step={0.5}
-                      />
-                      <div className="flex justify-between text-xs text-gray-500 mt-1">
-                        <span>{advancedPolicies.generalFeesUplift}% increase</span>
-                        <span>Base: £150m current income</span>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <Label className="mb-3 block">Targeted Cost Recovery</Label>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Health Efficiency</h4>
                       <div className="space-y-2">
-                        {[
-                          { id: 'vehicle', name: 'Vehicle testing', value: 500000 }, // Fee increase estimate
-                          { id: 'planning', name: 'Planning applications', value: 800000 }, // Fee increase estimate
-                          { id: 'court', name: 'Court fees', value: 400000 },
-                          { id: 'environmental', name: 'Environmental licenses', value: 300000 }
-                        ].map(option => (
-                          <div key={option.id} className="flex items-center space-x-2 p-2 border rounded">
-                            <Checkbox
-                              id={option.id}
-                              checked={advancedPolicies.targetedRecovery.includes(option.id)}
-                              onCheckedChange={(checked) => {
-                                setAdvancedPolicies(prev => ({
-                                  ...prev,
-                                  targetedRecovery: checked
-                                    ? [...prev.targetedRecovery, option.id]
-                                    : prev.targetedRecovery.filter(id => id !== option.id)
-                                }));
-                              }}
-                            />
-                            <Label
-                              htmlFor={option.id}
-                              className="flex-1 cursor-pointer flex justify-between"
-                            >
-                              <span>{option.name}</span>
-                              <span className="text-sm text-gray-600">
-                                £{(option.value / 1000000).toFixed(1)}m
-                              </span>
-                            </Label>
-                          </div>
-                        ))}
+                        <label className="flex items-center space-x-3">
+                          <input
+                            type="radio"
+                            name="healthEfficiency"
+                            checked={serviceCuts.healthEfficiency === 0}
+                            onChange={() => setServiceCuts({...serviceCuts, healthEfficiency: 0})}
+                            className="text-purple-600 focus:ring-purple-500"
+                          />
+                          <span>Current (no change)</span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <input
+                            type="radio"
+                            name="healthEfficiency"
+                            checked={serviceCuts.healthEfficiency === 5}
+                            onChange={() => setServiceCuts({...serviceCuts, healthEfficiency: 5})}
+                            className="text-purple-600 focus:ring-purple-500"
+                          />
+                          <span>5% efficiency target <span className="text-green-600 font-semibold">(+£14m)</span></span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <input
+                            type="radio"
+                            name="healthEfficiency"
+                            checked={serviceCuts.healthEfficiency === 10}
+                            onChange={() => setServiceCuts({...serviceCuts, healthEfficiency: 10})}
+                            className="text-purple-600 focus:ring-purple-500"
+                          />
+                          <span>10% efficiency target <span className="text-green-600 font-semibold">(+£29m)</span></span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Education Cuts */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Education Budget</h4>
+                      <div className="space-y-2">
+                        <label className="flex items-center space-x-3">
+                          <input
+                            type="radio"
+                            name="educationCuts"
+                            checked={serviceCuts.educationCuts === 0}
+                            onChange={() => setServiceCuts({...serviceCuts, educationCuts: 0})}
+                            className="text-purple-600 focus:ring-purple-500"
+                          />
+                          <span>Current (no change)</span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <input
+                            type="radio"
+                            name="educationCuts"
+                            checked={serviceCuts.educationCuts === 5}
+                            onChange={() => setServiceCuts({...serviceCuts, educationCuts: 5})}
+                            className="text-purple-600 focus:ring-purple-500"
+                          />
+                          <span>5% budget reduction <span className="text-green-600 font-semibold">(+£7m)</span></span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <input
+                            type="radio"
+                            name="educationCuts"
+                            checked={serviceCuts.educationCuts === 10}
+                            onChange={() => setServiceCuts({...serviceCuts, educationCuts: 10})}
+                            className="text-purple-600 focus:ring-purple-500"
+                          />
+                          <span>10% budget reduction <span className="text-green-600 font-semibold">(+£14m)</span></span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Infrastructure Cuts */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Infrastructure Services</h4>
+                      <div className="space-y-2">
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={serviceCuts.heritageRail}
+                            onCheckedChange={(checked) => 
+                              setServiceCuts({...serviceCuts, heritageRail: checked as boolean})
+                            }
+                          />
+                          <span>Reduce Heritage Railway to 5 days/week <span className="text-green-600 font-semibold">(+£0.61m)</span></span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={serviceCuts.busServices}
+                            onCheckedChange={(checked) => 
+                              setServiceCuts({...serviceCuts, busServices: checked as boolean})
+                            }
+                          />
+                          <span>Reduce bus services frequency <span className="text-green-600 font-semibold">(+£1.5m)</span></span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Culture Cuts */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Culture & Heritage</h4>
+                      <div className="space-y-2">
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={serviceCuts.artsCouncil}
+                            onCheckedChange={(checked) => 
+                              setServiceCuts({...serviceCuts, artsCouncil: checked as boolean})
+                            }
+                          />
+                          <span>Reduce Culture & Arts funding by 50% <span className="text-green-600 font-semibold">(+£0.72m)</span></span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Total Impact */}
+                    <div className="pt-4 border-t">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-semibold text-gray-700">Total Service Cuts Impact:</span>
+                        <span className="text-lg font-bold text-green-600">
+                          {serviceCutsImpact > 0 ? `+${formatCurrency(serviceCutsImpact)}` : formatCurrency(serviceCutsImpact)} savings
+                        </span>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               </TabsContent>
               
-              {/* Capital Sub-tab */}
+              {/* Efficiency Tab */}
+              <TabsContent value="efficiency" className="space-y-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Zap className="h-5 w-5" />
+                      Efficiency Measures
+                    </CardTitle>
+                    <CardDescription>
+                      Select efficiency programs to achieve long-term savings through modernization
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    {/* Shared Services */}
+                    <div className="space-y-3">
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={efficiencyMeasures.sharedServices}
+                          onCheckedChange={(checked) => 
+                            setEfficiencyMeasures({...efficiencyMeasures, sharedServices: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">Expand Shared Services</span>
+                            <span className="text-green-600 font-semibold">£15m over 3 years</span>
+                          </div>
+                          <p className="text-sm text-gray-600 mt-1">Consolidate HR, IT, and Finance functions across departments</p>
+                          <div className="text-xs text-gray-500 mt-2">
+                            Timeline: Year 1: £5m | Year 2: £10m | Year 3: £15m (cumulative)
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Digital Transformation */}
+                    <div className="space-y-3">
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={efficiencyMeasures.digitalTransformation}
+                          onCheckedChange={(checked) => 
+                            setEfficiencyMeasures({...efficiencyMeasures, digitalTransformation: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">Digital Transformation</span>
+                            <span className="text-green-600 font-semibold">£20m over 5 years</span>
+                          </div>
+                          <p className="text-sm text-gray-600 mt-1">Modernize service delivery through digital channels</p>
+                          <div className="text-xs text-gray-500 mt-2">
+                            Timeline: £4m annual savings | Linked to Digital Projects Fund (£5m/year capital)
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Property Rationalization */}
+                    <div className="space-y-3">
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={efficiencyMeasures.propertyRationalization}
+                          onCheckedChange={(checked) => 
+                            setEfficiencyMeasures({...efficiencyMeasures, propertyRationalization: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">Rationalize Property Portfolio</span>
+                            <span className="text-green-600 font-semibold">£5m one-time</span>
+                          </div>
+                          <p className="text-sm text-gray-600 mt-1">Sell surplus buildings and consolidate office space</p>
+                          <div className="text-xs text-gray-500 mt-2">
+                            Timeline: One-time savings from asset sales
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Procurement Centralization */}
+                    <div className="space-y-3">
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={efficiencyMeasures.procurementCentralization}
+                          onCheckedChange={(checked) => 
+                            setEfficiencyMeasures({...efficiencyMeasures, procurementCentralization: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">Centralize Procurement</span>
+                            <span className="text-green-600 font-semibold">£10m over 3 years</span>
+                          </div>
+                          <p className="text-sm text-gray-600 mt-1">Central purchasing and contract negotiation</p>
+                          <div className="text-xs text-gray-500 mt-2">
+                            Timeline: Year 1: £3m | Year 2: £6m | Year 3: £10m (cumulative)
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Total Impact */}
+                    <div className="pt-4 border-t">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-semibold text-gray-700">Year 1 Efficiency Savings:</span>
+                        <span className="text-lg font-bold text-green-600">
+                          {efficiencyImpact > 0 ? `+${formatCurrency(efficiencyImpact)}` : formatCurrency(efficiencyImpact)} savings
+                        </span>
+                      </div>
+                      <div className="mt-2 text-xs text-gray-500">
+                        Note: Full savings realized over 3-5 year implementation period
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              {/* Revenue Tab */}
+              <TabsContent value="revenue" className="space-y-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <DollarSign className="h-5 w-5" />
+                      Revenue Generation Options
+                    </CardTitle>
+                    <CardDescription>
+                      Introduce new revenue streams and increase existing fees
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    {/* Tourism & Transport */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Tourism & Transport</h4>
+                      <div className="space-y-4">
+                        {/* Tourist Accommodation Levy */}
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <Label>Tourist Accommodation Levy</Label>
+                            <span className="text-sm text-gray-600">£{revenueGeneration.touristLevyAmount} per night</span>
+                          </div>
+                          <Slider
+                            value={[revenueGeneration.touristLevyAmount]}
+                            onValueChange={(value) => 
+                              setRevenueGeneration({...revenueGeneration, touristLevyAmount: value[0]})
+                            }
+                            max={10}
+                            step={1}
+                            className="mb-2"
+                          />
+                          <div className="text-xs text-gray-500">
+                            Revenue impact: <span className="font-semibold text-green-600">
+                              +{formatCurrency(revenueGeneration.touristLevyAmount * 1600000)}
+                            </span> (1.6m visitor nights)
+                          </div>
+                        </div>
+
+                        {/* Airport Passenger Duty */}
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <Label>Airport Passenger Duty Increase</Label>
+                            <span className="text-sm text-gray-600">+{revenueGeneration.airportDutyIncrease}%</span>
+                          </div>
+                          <Slider
+                            value={[revenueGeneration.airportDutyIncrease]}
+                            onValueChange={(value) => 
+                              setRevenueGeneration({...revenueGeneration, airportDutyIncrease: value[0]})
+                            }
+                            max={50}
+                            step={5}
+                            className="mb-2"
+                          />
+                          <div className="text-xs text-gray-500">
+                            Revenue impact: <span className="font-semibold text-green-600">
+                              +{formatCurrency(4600000 * revenueGeneration.airportDutyIncrease / 100)}
+                            </span> (on £4.6m base)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* New Revenue Streams */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">New Revenue Streams</h4>
+                      <div className="space-y-2">
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={revenueGeneration.wealthTax}
+                            onCheckedChange={(checked) => 
+                              setRevenueGeneration({...revenueGeneration, wealthTax: checked as boolean})
+                            }
+                          />
+                          <span>Introduce Wealth Tax <span className="text-green-600 font-semibold">(+£5m)</span></span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={revenueGeneration.carbonTax}
+                            onCheckedChange={(checked) => 
+                              setRevenueGeneration({...revenueGeneration, carbonTax: checked as boolean})
+                            }
+                          />
+                          <span>Carbon Tax <span className="text-green-600 font-semibold">(+£3m)</span></span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={revenueGeneration.parkingCharges}
+                            onCheckedChange={(checked) => 
+                              setRevenueGeneration({...revenueGeneration, parkingCharges: checked as boolean})
+                            }
+                          />
+                          <span>Introduce/Expand Parking Charges <span className="text-green-600 font-semibold">(+£1m)</span></span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Fee Increases */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Fee Increases</h4>
+                      <div className="space-y-2">
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={revenueGeneration.planningFees}
+                            onCheckedChange={(checked) => 
+                              setRevenueGeneration({...revenueGeneration, planningFees: checked as boolean})
+                            }
+                          />
+                          <span>Planning Fees +25% <span className="text-green-600 font-semibold">(+£0.5m)</span></span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={revenueGeneration.courtFees}
+                            onCheckedChange={(checked) => 
+                              setRevenueGeneration({...revenueGeneration, courtFees: checked as boolean})
+                            }
+                          />
+                          <span>Court Fees +20% <span className="text-green-600 font-semibold">(+£0.5m)</span></span>
+                        </label>
+                        <label className="flex items-center space-x-3">
+                          <Checkbox
+                            checked={revenueGeneration.vehicleRegistration}
+                            onCheckedChange={(checked) => 
+                              setRevenueGeneration({...revenueGeneration, vehicleRegistration: checked as boolean})
+                            }
+                          />
+                          <span>Vehicle Registration +10% <span className="text-green-600 font-semibold">(+£1.6m)</span></span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Total Impact */}
+                    <div className="pt-4 border-t">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-semibold text-gray-700">Total New Revenue:</span>
+                        <span className="text-lg font-bold text-green-600">
+                          +{formatCurrency(revenueGenerationImpact)}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              {/* Benefits Tab */}
+              <TabsContent value="benefits" className="space-y-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Users className="h-5 w-5" />
+                      Benefit Reforms
+                    </CardTitle>
+                    <CardDescription>
+                      Adjust benefit eligibility and rates to reduce expenditure
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    {/* Data Discrepancy Alert */}
+                    <Alert className="border-amber-200 bg-amber-50">
+                      <AlertCircle className="h-4 w-4 text-amber-600" />
+                      <AlertDescription className="text-sm">
+                        <strong>Data Discrepancy:</strong> Spec claims Winter Bonus reduction saves £1.8m, 
+                        but JSON shows total budget is only £914k. Using real data below.
+                      </AlertDescription>
+                    </Alert>
+
+                    {/* Winter Support */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Winter Support</h4>
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={benefitReforms.winterBonus}
+                          onCheckedChange={(checked) => 
+                            setBenefitReforms({...benefitReforms, winterBonus: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span>Reduce Winter Bonus from £400 to £300</span>
+                            <span className="text-green-600 font-semibold">
+                              +{formatCurrency(transferPayments.revenue_funded_benefits.breakdown.winter_bonus.amount * 0.25)}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Affects: ~2,285 people | Current budget: {formatCurrency(transferPayments.revenue_funded_benefits.breakdown.winter_bonus.amount)} (from JSON)
+                          </p>
+                          <p className="text-xs text-amber-600 mt-1">
+                            ⚠️ Real saving from JSON data (spec claimed £1.8m from only £914k budget)
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Family Benefits */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Family Benefits</h4>
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={benefitReforms.childBenefit}
+                          onCheckedChange={(checked) => 
+                            setBenefitReforms({...benefitReforms, childBenefit: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span>Restrict Child Benefit to households earning &lt;£30k</span>
+                            <span className="text-green-600 font-semibold">
+                              +{formatCurrency(transferPayments.revenue_funded_benefits.breakdown.child_benefit.amount * 0.22)}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Affects: ~2,000 families | Current budget: {formatCurrency(transferPayments.revenue_funded_benefits.breakdown.child_benefit.amount)} (from JSON)
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Housing Support */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Housing Support</h4>
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={benefitReforms.housingBenefitCap}
+                          onCheckedChange={(checked) => 
+                            setBenefitReforms({...benefitReforms, housingBenefitCap: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span>Cap Housing Benefit at £25k per year</span>
+                            <span className="text-green-600 font-semibold">
+                              +{formatCurrency(transferPayments.revenue_funded_benefits.breakdown.income_support.amount * 0.27 * 0.20)}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Affects: ~150 households | Part of {formatCurrency(transferPayments.revenue_funded_benefits.breakdown.income_support.amount)} Income Support (from JSON)
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Pension Supplements */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Pension Supplements</h4>
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={benefitReforms.pensionSupplementTaper}
+                          onCheckedChange={(checked) => 
+                            setBenefitReforms({...benefitReforms, pensionSupplementTaper: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span>Taper pension supplements for higher earners</span>
+                            <span className="text-green-600 font-semibold">
+                              +{formatCurrency(
+                                (transferPayments.ni_funded_benefits.breakdown.pension_supplements.retirement_pension_supplement +
+                                 transferPayments.ni_funded_benefits.breakdown.pension_supplements.manx_pension_supplement) * 0.07
+                              )}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Current supplements: {formatCurrency(
+                              transferPayments.ni_funded_benefits.breakdown.pension_supplements.retirement_pension_supplement +
+                              transferPayments.ni_funded_benefits.breakdown.pension_supplements.manx_pension_supplement
+                            )} total (from JSON)
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* Total Impact */}
+                    <div className="pt-4 border-t">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-semibold text-gray-700">Total Benefit Savings:</span>
+                        <span className="text-lg font-bold text-green-600">
+                          +{formatCurrency(benefitReformsImpact)}
+                        </span>
+                      </div>
+                      <div className="mt-2 text-xs text-gray-500">
+                        Calculated from actual JSON data (spec's £9.3m claim includes impossible £1.8m Winter Bonus saving)
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              {/* Capital Tab */}
               <TabsContent value="capital" className="space-y-4">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <HardHat className="h-5 w-5" />
-                      Capital Programme Management
+                      Capital Programme Adjustments
                     </CardTitle>
                     <CardDescription>
-                      £25.7-37.6m potential from delivery optimization
+                      Defer projects, cut spending, or invest in priority areas
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="flex items-center justify-between p-3 border rounded-lg">
-                      <div className="flex-1">
-                        <Label className="flex items-center gap-2">
-                          Capital Delivery Gating
-                        </Label>
-                        <p className="text-sm text-gray-600 mt-1">
-                          Apply historical 74% delivery rate (26% typically unspent)
-                        </p>
-                        <p className="text-xs text-blue-600 mt-2">
-                          Cash-gate to confirmed delivery capacity
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Badge variant="outline" className="text-lg">
-                          {advancedPolicies.capitalGating ? '£22.7m' : '£0m'}
-                        </Badge>
-                        <Switch
-                          checked={advancedPolicies.capitalGating}
-                          onCheckedChange={(checked) => 
-                            setAdvancedPolicies(prev => ({ ...prev, capitalGating: checked }))
-                          }
-                        />
-                      </div>
-                    </div>
-                    
+                    {/* Project Deferrals */}
                     <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <Label>Defer Low BCR Projects</Label>
-                        <Badge variant="outline">
-                          £{(advancedPolicies.deferLowBCR / 1000000).toFixed(1)}m
-                        </Badge>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">
+                        Project Deferrals (Max £20m total)
+                      </h4>
+                      <div className="max-h-60 overflow-y-auto border rounded-lg p-3 space-y-2">
+                        {deferrableProjects.slice(0, 15).map(project => {
+                          const isSelected = capitalAdjustments.selectedDeferrals.includes(project.id)
+                          const totalDeferred = capitalAdjustments.selectedDeferrals.reduce((sum, id) => {
+                            const p = deferrableProjects.find(proj => proj.id === id)
+                            return sum + (p ? p.amount : 0)
+                          }, 0)
+                          const wouldExceedLimit = !isSelected && (totalDeferred + project.amount > 20000000)
+                          
+                          return (
+                            <label 
+                              key={project.id}
+                              className={`flex items-center space-x-3 ${wouldExceedLimit ? 'opacity-50' : ''}`}
+                            >
+                              <Checkbox
+                                checked={isSelected}
+                                disabled={wouldExceedLimit}
+                                onCheckedChange={(checked) => {
+                                  if (checked) {
+                                    setCapitalAdjustments({
+                                      ...capitalAdjustments,
+                                      selectedDeferrals: [...capitalAdjustments.selectedDeferrals, project.id]
+                                    })
+                                  } else {
+                                    setCapitalAdjustments({
+                                      ...capitalAdjustments,
+                                      selectedDeferrals: capitalAdjustments.selectedDeferrals.filter(id => id !== project.id)
+                                    })
+                                  }
+                                }}
+                              />
+                              <div className="flex-1">
+                                <div className="flex justify-between">
+                                  <span className="text-sm">{project.name}</span>
+                                  <span className="text-sm font-semibold text-green-600">
+                                    {formatCurrency(project.amount)}
+                                  </span>
+                                </div>
+                                <span className="text-xs text-gray-500">{project.department}</span>
+                              </div>
+                            </label>
+                          )
+                        })}
                       </div>
-                      <Slider
-                        value={[advancedPolicies.deferLowBCR]}
-                        onValueChange={([value]) => 
-                          setAdvancedPolicies(prev => ({ ...prev, deferLowBCR: value }))
-                        }
-                        max={5000000}
-                        step={250000}
-                      />
-                      <p className="text-xs text-gray-500 mt-1">
-                        Postpone projects with benefit-cost ratio &lt;1.5
-                      </p>
+                      <div className="mt-2 text-sm text-gray-600">
+                        Total deferred: {formatCurrency(
+                          capitalAdjustments.selectedDeferrals.reduce((sum, id) => {
+                            const p = deferrableProjects.find(proj => proj.id === id)
+                            return sum + (p ? p.amount : 0)
+                          }, 0)
+                        )} / £20m max
+                      </div>
                     </div>
-                    
-                    <Alert className="border-blue-200 bg-blue-50">
-                      <AlertCircle className="h-4 w-4 text-blue-600" />
-                      <AlertDescription className="text-blue-700 text-sm">
-                        Historical delivery: Only 74% of capital budget typically spent (Pink Book p.54)
-                      </AlertDescription>
-                    </Alert>
+
+                    {/* Capital Cuts */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Capital Budget Cuts</h4>
+                      <label className="flex items-start space-x-3">
+                        <Checkbox
+                          checked={capitalAdjustments.heritageRailCut}
+                          onCheckedChange={(checked) => 
+                            setCapitalAdjustments({...capitalAdjustments, heritageRailCut: checked as boolean})
+                          }
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <span>Cut Heritage Rail Capital Budget</span>
+                            <span className="text-green-600 font-semibold">
+                              +{formatCurrency(
+                                capitalProgramme.projects_2025_26.rolling_schemes
+                                  .by_department.DOI?.projects
+                                  ?.find(p => p.name === "Heritage Rail Budget")?.amount || 0
+                              )}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Eliminate capital investment in Heritage Railway
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+
+                    {/* New Investments */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-3">
+                        New Capital Investments <span className="text-amber-600">(Requires Funding)</span>
+                      </h4>
+                      <div className="space-y-3">
+                        <label className="flex items-start space-x-3">
+                          <Checkbox
+                            checked={capitalAdjustments.climateAcceleration}
+                            onCheckedChange={(checked) => 
+                              setCapitalAdjustments({...capitalAdjustments, climateAcceleration: checked as boolean})
+                            }
+                            className="mt-1"
+                          />
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <span>Accelerate Climate Action</span>
+                              <span className="text-red-600 font-semibold">-£20m</span>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-1">
+                              Climate Fund balance: {formatCurrency(
+                                reservesFunds.internal_funds.funds
+                                  .find(f => f.name === "Climate Change Fund")?.balance || 0
+                              )}
+                            </p>
+                          </div>
+                        </label>
+
+                        <label className="flex items-start space-x-3">
+                          <Checkbox
+                            checked={capitalAdjustments.housingInvestment}
+                            onCheckedChange={(checked) => 
+                              setCapitalAdjustments({...capitalAdjustments, housingInvestment: checked as boolean})
+                            }
+                            className="mt-1"
+                          />
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <span>Emergency Housing Investment</span>
+                              <span className="text-red-600 font-semibold">-£30m</span>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-1">
+                              Housing Reserve: {formatCurrency(
+                                reservesFunds.internal_funds.funds
+                                  .find(f => f.name === "Housing Reserve Fund")?.balance || 0
+                              )}
+                            </p>
+                            <p className="text-xs text-amber-600 mt-1">
+                              ⚠️ Requires new funding source or borrowing
+                            </p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Total Impact */}
+                    <div className="pt-4 border-t">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-semibold text-gray-700">Total Capital Impact:</span>
+                        <span className={`text-lg font-bold ${capitalAdjustmentsImpact >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                          {capitalAdjustmentsImpact >= 0 ? '+' : ''}{formatCurrency(Math.abs(capitalAdjustmentsImpact))}
+                          {capitalAdjustmentsImpact >= 0 ? ' savings' : ' cost'}
+                        </span>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </TabsContent>
               
-              {/* Tax Detail Sub-tab */}
-              <TabsContent value="tax-detail" className="space-y-4">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Calculator className="h-5 w-5" />
-                        Tax Thresholds & Caps
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Personal Allowance</Label>
-                          <span className="text-sm font-medium">£{personalAllowance.toLocaleString()}</span>
-                        </div>
-                        <Slider
-                          value={[personalAllowance]}
-                          onValueChange={([value]) => setPersonalAllowance(value)}
-                          min={10000}
-                          max={20000}
-                          step={500}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Current: £14,500</p>
-                      </div>
-                      
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Higher Rate Threshold</Label>
-                          <span className="text-sm font-medium">£{higherRateThreshold.toLocaleString()}</span>
-                        </div>
-                        <Slider
-                          value={[higherRateThreshold]}
-                          onValueChange={([value]) => setHigherRateThreshold(value)}
-                          min={15000}
-                          max={30000}
-                          step={1000}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Current: £21,000</p>
-                      </div>
-                      
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Personal Tax Cap</Label>
-                          <span className="text-sm font-medium">£{personalTaxCap.toLocaleString()}</span>
-                        </div>
-                        <Slider
-                          value={[personalTaxCap]}
-                          onValueChange={([value]) => setPersonalTaxCap(value)}
-                          min={150000}
-                          max={300000}
-                          step={10000}
-                        />
-                      </div>
-                      
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Joint Tax Cap</Label>
-                          <span className="text-sm font-medium">£{jointTaxCap.toLocaleString()}</span>
-                        </div>
-                        <Slider
-                          value={[jointTaxCap]}
-                          onValueChange={([value]) => setJointTaxCap(value)}
-                          min={300000}
-                          max={600000}
-                          step={20000}
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Briefcase className="h-5 w-5" />
-                        Corporate Tax Options
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Standard Rate</Label>
-                          <span className="text-sm font-medium">{corporateTaxRate}%</span>
-                        </div>
-                        <Slider
-                          value={[corporateTaxRate]}
-                          onValueChange={([value]) => setCorporateTaxRate(value)}
-                          min={0}
-                          max={20}
-                          step={1}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Current: 0%</p>
-                      </div>
-                      
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Banking/Property Rate</Label>
-                          <span className="text-sm font-medium">{bankingTaxRate}%</span>
-                        </div>
-                        <Slider
-                          value={[bankingTaxRate]}
-                          onValueChange={([value]) => setBankingTaxRate(value)}
-                          min={0}
-                          max={25}
-                          step={1}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Current: 10%</p>
-                      </div>
-                      
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Large Retailer Rate</Label>
-                          <span className="text-sm font-medium">{retailerTaxRate}%</span>
-                        </div>
-                        <Slider
-                          value={[retailerTaxRate]}
-                          onValueChange={([value]) => setRetailerTaxRate(value)}
-                          min={0}
-                          max={30}
-                          step={1}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Current: 20% (&gt;£500k profit)</p>
-                      </div>
-                      
-                      <div className="flex items-center justify-between p-3 border rounded-lg">
-                        <div>
-                          <Label>OECD Pillar Two (15% minimum)</Label>
-                          <p className="text-xs text-gray-600 mt-1">
-                            Implement global minimum tax
-                          </p>
-                        </div>
-                        <Switch
-                          checked={pillarTwoEnabled}
-                          onCheckedChange={setPillarTwoEnabled}
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Coins className="h-5 w-5" />
-                        National Insurance Rates
-                      </CardTitle>
-                      <CardDescription>
-                        Adjust employee and employer contribution rates
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Employee NI Rate</Label>
-                          <Badge variant="outline">{niEmployeeRate}%</Badge>
-                        </div>
-                        <Slider
-                          value={[niEmployeeRate]}
-                          onValueChange={([value]) => setNiEmployeeRate(value)}
-                          min={9}
-                          max={15}
-                          step={0.5}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">
-                          Current: 11% | Revenue impact: {formatCurrency((niEmployeeRate - 11) * 14988273)}
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Employer NI Rate</Label>
-                          <Badge variant="outline">{niEmployerRate}%</Badge>
-                        </div>
-                        <Slider
-                          value={[niEmployerRate]}
-                          onValueChange={([value]) => setNiEmployerRate(value)}
-                          min={10}
-                          max={16}
-                          step={0.2}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">
-                          Current: 12.8% | Revenue impact: {formatCurrency((niEmployerRate - 12.8) * 10304453)}
-                        </p>
-                      </div>
-                      
-                      <Alert className="border-blue-200 bg-blue-50">
-                        <Info className="h-4 w-4 text-blue-600" />
-                        <AlertDescription className="text-blue-700 text-sm">
-                          NI Fund balance: £850m (projected £1bn by 2030)
-                        </AlertDescription>
-                      </Alert>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-              
-              {/* Strategic Sub-tab */}
-              <TabsContent value="strategic" className="space-y-4">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Landmark className="h-5 w-5" />
-                        Reserve Policy
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>Target Reserve Level</Label>
-                          <span className="text-sm font-medium">£{targetReserveLevel}m</span>
-                        </div>
-                        <Slider
-                          value={[targetReserveLevel]}
-                          onValueChange={([value]) => setTargetReserveLevel(value)}
-                          min={1500}
-                          max={3000}
-                          step={100}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Current: £1.76bn | Target by 2030</p>
-                      </div>
-                      
-                      <div>
-                        <Label className="mb-3 block">Investment Strategy</Label>
-                        <Select value={investmentStrategy} onValueChange={(value: any) => setInvestmentStrategy(value)}>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="conservative">Conservative</SelectItem>
-                            <SelectItem value="balanced">Balanced</SelectItem>
-                            <SelectItem value="growth">Growth</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Users className="h-5 w-5" />
-                        Pension Policy
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <Label>State Pension Age</Label>
-                          <span className="text-sm font-medium">{statePensionAge}</span>
-                        </div>
-                        <Slider
-                          value={[statePensionAge]}
-                          onValueChange={([value]) => setStatePensionAge(value)}
-                          min={65}
-                          max={70}
-                          step={1}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Current: 66</p>
-                      </div>
-                      
-                      <div className="flex items-center justify-between p-3 border rounded-lg">
-                        <div>
-                          <Label>Triple Lock</Label>
-                          <p className="text-xs text-gray-600 mt-1">
-                            2.5% minimum annual increase
-                          </p>
-                        </div>
-                        <Switch
-                          checked={tripleLockEnabled}
-                          onCheckedChange={setTripleLockEnabled}
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
             </Tabs>
           </TabsContent>
         </Tabs>

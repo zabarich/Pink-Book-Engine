@@ -53,11 +53,7 @@
         "University College Isle of Man",
         "Sports and Recreation",
         "Culture and Heritage"
-      ],
-      "verified_components": {
-        "culture_division": 1434000,
-        "culture_division_source": "table_p053_01.csv row 13"
-      }
+      ]
     },
     {
       "name": "Treasury",
@@ -86,13 +82,7 @@
         "Public Transport",
         "Ports and Harbours",
         "Public Estates"
-      ],
-      "verified_components": {
-        "transport_services_division": 5993000,
-        "transport_services_source": "table_p061_01.csv row 14",
-        "isle_of_man_railways": 3038000,
-        "railways_source": "table_p061_01.csv row 15"
-      }
+      ]
     },
     {
       "name": "Home Affairs",

@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "source": "Isle of Man Pink Book 2025-26",
+    "extracted": "2025-08-20",
+    "fiscal_year": "2025-26",
+    "currency": "GBP",
+    "total_revenue": 1389024000
+  },
+  "incomeText": {
+    "current": 384040000,
+    "source": "Pink Book p.49, Table 25",
+    "bands": {
+      "personal_allowance": {
+        "threshold": 14500,
+        "rate": 0.0
+      },
+      "standard": {
+        "rate": 0.1,
+        "threshold": 14500,
+        "upper_limit": 21000,
+        "revenue": 165145000
+      },
+      "higher": {
+        "rate": 0.21,
+        "threshold": 21000,
+        "revenue": 165145000,
+        "note": "Reduced from 22% to 21% in 2025-26"
+      },
+      "cap": {
+        "amount": 220000,
+        "affected": 450,
+        "revenue_impact": 12000000
+      }
+    },
+    "components": {
+      "resident_income_tax": 330250000,
+      "company_tax": 23400000,
+      "non_resident_tax": 30400000
+    },
+    "projections": [
+      {
+        "year": "2026-27",
+        "amount": 407104000
+      },
+      {
+        "year": "2027-28",
+        "amount": 435362000
+      },
+      {
+        "year": "2028-29",
+        "amount": 449247000
+      },
+      {
+        "year": "2029-30",
+        "amount": 462724000
+      }
+    ]
+  },
+  "nationalInsurance": {
+    "total_revenue": 329742000,
+    "source": "Pink Book p.32, Table 16",
+    "employee": {
+      "rates": {
+        "standard": 0.11,
+        "upper_earnings_limit": 50270,
+        "lower_earnings_limit": 120
+      },
+      "revenue": 164871000
+    },
+    "employer": {
+      "rates": {
+        "standard": 0.128,
+        "threshold": 9100
+      },
+      "revenue": 131897000
+    },
+    "selfEmployed": {
+      "rates": {
+        "class2": 3.45,
+        "class4_standard": 0.09,
+        "class4_higher": 0.02
+      },
+      "revenue": 32974000
+    },
+    "fund_balance": 992500000,
+    "projected_fund_balance_2026": 1012500000,
+    "projections": [
+      {
+        "year": "2026-27",
+        "amount": 343517000
+      },
+      {
+        "year": "2027-28",
+        "amount": 350693000
+      },
+      {
+        "year": "2028-29",
+        "amount": 358070000
+      },
+      {
+        "year": "2029-30",
+        "amount": 365563000
+      }
+    ]
+  },
+  "corporateTax": {
+    "total_revenue": 23400000,
+    "source": "Pink Book p.49, Appendix 1",
+    "zeroRate": {
+      "companies": 7500,
+      "revenue": 0,
+      "description": "Most companies pay 0%"
+    },
+    "tenPercent": {
+      "companies": 250,
+      "revenue": 18720000,
+      "description": "Banking and land/property income"
+    },
+    "twentyPercent": {
+      "companies": 15,
+      "revenue": 4680000,
+      "description": "Large retailers with IoM profits >£500k"
+    },
+    "pillarTwo": {
+      "description": "Minimum 15% tax on large multinationals",
+      "projections": [
+        {
+          "year": "2025-26",
+          "amount": 10000000
+        },
+        {
+          "year": "2026-27",
+          "amount": 25000000
+        },
+        {
+          "year": "2027-28",
+          "amount": 35000000
+        },
+        {
+          "year": "2028-29",
+          "amount": 35000000
+        },
+        {
+          "year": "2029-30",
+          "amount": 35000000
+        }
+      ]
+    },
+    "projections": [
+      {
+        "year": "2026-27",
+        "amount": 32895000
+      },
+      {
+        "year": "2027-28",
+        "amount": 30412000
+      },
+      {
+        "year": "2028-29",
+        "amount": 31013000
+      },
+      {
+        "year": "2029-30",
+        "amount": 31644000
+      }
+    ]
+  },
+  "customsAndExcise": {
+    "total_revenue": 473552000,
+    "source": "Pink Book p.49, Table 25",
+    "vat": {
+      "revenue": 388464000,
+      "rate": 0.2,
+      "description": "Standard VAT rate 20%"
+    },
+    "exciseDuties": {
+      "fuel": {
+        "revenue": 28500000,
+        "description": "Hydrocarbon oil duty"
+      },
+      "alcohol": {
+        "revenue": 23739000,
+        "beer": 8000000,
+        "wine": 7739000,
+        "spirits": 8000000
+      },
+      "tobacco": {
+        "revenue": 18000000,
+        "description": "Tobacco products duty"
+      },
+      "betting": {
+        "revenue": 10500000,
+        "description": "Betting, gaming and lottery duties",
+        "breakdown": {
+          "gambling_duty": 4500000,
+          "air_passenger_duty": 4600000,
+          "lottery_duty": 1400000
+        }
+      }
+    },
+    "customsDuty": {
+      "revenue": 6600000,
+      "description": "Import duties"
+    },
+    "projections": [
+      {
+        "year": "2026-27",
+        "amount": 495210000
+      },
+      {
+        "year": "2027-28",
+        "amount": 514820000
+      },
+      {
+        "year": "2028-29",
+        "amount": 528900000
+      },
+      {
+        "year": "2029-30",
+        "amount": 543300000
+      }
+    ]
+  },
+  "departmentalIncome": {
+    "total_revenue": 190459000,
+    "source": "Pink Book p.26, Section 5.1",
+    "breakdown": {
+      "health_and_social_care": 71128000,
+      "infrastructure": 66521000,
+      "statutory_boards": 35416000,
+      "enterprise": 27678000,
+      "education_sport_culture": 11419000,
+      "environment_food_agriculture": 4760000,
+      "cabinet_office": 258000,
+      "executive_government": 3047000,
+      "home_affairs": 1373000,
+      "legislature": 11000
+    }
+  },
+  "otherRevenue": {
+    "investment_income": {
+      "revenue": 0,
+      "source": "Pink Book p.43, Section 7",
+      "description": "Returns on externally invested reserves",
+      "projections": [
+        {
+          "year": "2026-27",
+          "amount": 42000000
+        },
+        {
+          "year": "2027-28",
+          "amount": 43500000
+        },
+        {
+          "year": "2028-29",
+          "amount": 44500000
+        },
+        {
+          "year": "2029-30",
+          "amount": 45000000
+        }
+      ]
+    },
+    "fees_and_charges": {
+      "revenue": 11231000,
+      "source": "Pink Book p.49, Table 25",
+      "description": "Treasury fees, fines and miscellaneous income",
+      "breakdown": {
+        "interest_on_investments": 10578000,
+        "fines": 250000,
+        "miscellaneous": 403000
+      }
+    }
+  }
+}
