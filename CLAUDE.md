@@ -1,5 +1,29 @@
 # Isle of Man Master Policy Engine
 
+## 🚨 ABSOLUTE LAWS FOR DEVELOPMENT
+
+<law>
+**NEVER WRITE TODO, PLACEHOLDER, OR ANY FORM OF INCOMPLETE CODE**
+- Never write "TODO" comments
+- Never write "Placeholder" comments  
+- Never write "Will implement later" comments
+- Never write "To be completed" comments
+- Never leave any function stub or incomplete implementation
+- Every piece of code must be fully functional when written
+- If you cannot complete something, DO NOT START IT
+- The application must be production-ready at every single commit
+</law>
+
+<law>
+**NO HARDCODING VALUES INTO THE CODE!!!! NO LAZY BEHAVIOUR**
+- ALL numeric values must come from JSON files
+- NO hardcoded numbers in TypeScript/JavaScript code
+- NO exceptions - not even "temporary" ones
+- NO lazy shortcuts - do it right the first time
+- Before writing ANY number, check if it should be in JSON
+- Start EVERY task by saying "No hardcoding"
+</law>
+
 ## ⚠️ CRITICAL: EMERGENCY REBUILD IN PROGRESS
 **Specification Document**: `C:\Users\shopp\OneDrive\Apps\PINK BOOK\Specs\budget_tool_fix_specification.md`
 

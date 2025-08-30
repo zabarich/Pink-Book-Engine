@@ -4,25 +4,32 @@
     "extracted": "2025-08-20",
     "fiscal_year": "2025-26",
     "currency": "GBP",
-    "total_revenue": 1389024000
+    "total_revenue": 1389024000,
+    "pink_book_updates": {
+      "personal_allowance": "£14,750 from table_p022_01.csv line 10",
+      "higher_rate_threshold": "£21,250 (£14,750 + £6,500) from table_p022_01.csv",
+      "ni_limits": "£168 weekly, £53,664 annual from table_p024_01.csv",
+      "self_employed": "£6.45 Class 2, 8% Class 4 from table_p024_02.csv",
+      "banking_tax": "15% Pillar 2 rate from table_p023_01.csv"
+    }
   },
   "incomeText": {
     "current": 384040000,
     "source": "Pink Book p.49, Table 25",
     "bands": {
       "personal_allowance": {
-        "threshold": 14500,
+        "threshold": 14750,
         "rate": 0.0
       },
       "standard": {
         "rate": 0.1,
-        "threshold": 14500,
-        "upper_limit": 21000,
+        "threshold": 14750,
+        "upper_limit": 21250,
         "revenue": 165145000
       },
       "higher": {
         "rate": 0.21,
-        "threshold": 21000,
+        "threshold": 21250,
         "revenue": 165145000,
         "note": "Reduced from 22% to 21% in 2025-26"
       },
@@ -40,7 +47,8 @@
     "projections": [
       {
         "year": "2026-27",
-        "amount": 407104000
+        "amount": 407104000,
+        "source": "table_p012_01.csv Line 27 - Income and Other Taxes"
       },
       {
         "year": "2027-28",
@@ -62,23 +70,27 @@
     "employee": {
       "rates": {
         "standard": 0.11,
-        "upper_earnings_limit": 50270,
-        "lower_earnings_limit": 120
+        "upper_earnings_limit": 53664,
+        "lower_earnings_limit_weekly": 168,
+        "lower_earnings_limit_annual": 8736
       },
       "revenue": 164871000
     },
     "employer": {
       "rates": {
         "standard": 0.128,
-        "threshold": 9100
+        "threshold_weekly": 168,
+        "threshold_annual": 8736
       },
       "revenue": 131897000
     },
     "selfEmployed": {
       "rates": {
-        "class2": 3.45,
-        "class4_standard": 0.09,
-        "class4_higher": 0.02
+        "class2_weekly": 6.45,
+        "class4_standard": 0.08,
+        "class4_higher": 0.01,
+        "threshold_weekly": 168,
+        "threshold_annual": 8736
       },
       "revenue": 32974000
     },
@@ -87,7 +99,8 @@
     "projections": [
       {
         "year": "2026-27",
-        "amount": 343517000
+        "amount": 343517000,
+        "source": "table_p012_01.csv Line 45 - NI Operating Account"
       },
       {
         "year": "2027-28",
@@ -114,7 +127,8 @@
     "tenPercent": {
       "companies": 250,
       "revenue": 18720000,
-      "description": "Banking and land/property income"
+      "rate": 0.15,
+      "description": "Banking (15% under Pillar 2 from 2025) and land/property income"
     },
     "twentyPercent": {
       "companies": 15,
@@ -271,5 +285,73 @@
         "miscellaneous": 403000
       }
     }
+  },
+  "revenue_2026_27": {
+    "total": 1446963000,
+    "income_tax": 407104000,
+    "vat_customs": 489305000,
+    "national_insurance": 343517000,
+    "departmental_fees": 154824000,
+    "vehicle_duty": 16520000,
+    "investment_return": 10895000,
+    "surplus": 1734000,
+    "gross_income": 1446963000,
+    "operating_income": 1092551000,
+    "operating_surplus": 38839000,
+    "source": "table_p006_01.csv Line 6, table_p012_01.csv, table_p015_01.csv - 2026-27 forecasts"
+  },
+  "population_impact": {
+    "per_100_people": 1000000,
+    "baseline_population": 85000,
+    "public_sector_workers": 6000,
+    "pensioners": 23200,
+    "gdp": 5500000000,
+    "average_income": 45000,
+    "taxpayer_count": 35000
+  },
+  "fee_details": {
+    "planning_fees": {
+      "current": 2000000,
+      "potential_increase": 500000
+    },
+    "court_fees": {
+      "current": 1500000,
+      "potential_increase": 500000
+    },
+    "vehicle_registration": {
+      "current": 16039000,
+      "2026_27": 16520000
+    },
+    "vehicle_testing": {
+      "current": 2000000,
+      "recovery_potential": 500000
+    },
+    "environmental_licenses": {
+      "current": 1200000,
+      "recovery_potential": 300000
+    },
+    "planning_applications": {
+      "current": 3200000,
+      "recovery_potential": 800000
+    },
+    "total_fees_charges": 150611000
+  },
+  "tax_bases": {
+    "resident_income_tax": 330250000,
+    "company_tax": 23400000,
+    "non_resident_tax": 30400000,
+    "vat_base": 388464000,
+    "ni_employer": 164871000,
+    "ni_employee": 164871000,
+    "corporate_profit_estimate": 500000000,
+    "banking_sector_estimate": 100000000
+  },
+  "behavioral_models": {
+    "income_tax_elasticity": -0.3,
+    "vat_elasticity": -0.1,
+    "migration_threshold": 0.25,
+    "laffer_curve_threshold": 30,
+    "laffer_curve_base": 0.7,
+    "laffer_curve_decay": 0.02
   }
 }

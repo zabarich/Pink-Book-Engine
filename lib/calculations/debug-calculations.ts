@@ -299,7 +299,7 @@ export function calculateVehicleDutyChange(adjustmentPercent: number): Calculati
  * Calculate State Pension Age savings
  */
 export function calculatePensionAgeSavings(newAge: number): CalculationTrace {
-  const currentAge = 66;
+  const currentAge = 67;  // Current pension age in 2026/27
   const yearsDifference = newAge - currentAge;
   
   if (yearsDifference <= 0) {

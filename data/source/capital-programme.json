@@ -18,7 +18,10 @@
       },
       {
         "year": "2026-27",
-        "amount": 61364000
+        "amount": 61364000,
+        "discrete": 18017000,
+        "rolling": 43347000,
+        "source": "table_p073_01.csv Line 38 Col 15 - Total Capital Programme 2026-27"
       },
       {
         "year": "2027-28",
@@ -445,6 +448,20 @@
       "note": "The detailed capital programme tables show £87,352,000. This reconciliation brings the total to the official budget of £87,400,000"
     }
   },
+  "capital_2026_27": {
+    "total": 61364000,
+    "discrete_schemes": 18017000,
+    "rolling_schemes": 43347000,
+    "heritage_railway": 2250000,
+    "doi_small_works": 30000000,
+    "clf_receipts": 13863000,
+    "cfr_receipts": 5185000,
+    "clf_payments": -35000000,
+    "cfr_payments": -60000000,
+    "transfer_from_external_reserve": 28000000,
+    "transfer_from_general_reserve": 43000000,
+    "source": "table_p073_01.csv and table_p006_02.csv - Capital Programme 2026-27"
+  },
   "summary_by_category": {
     "source": "Pink Book Appendix 4 Analysis",
     "categories": {
@@ -584,5 +601,20 @@
       "reconciliation_adjustment": 48000,
       "total_budget": 87400000
     }
+  },
+  "programme_2026_27": {
+    "total": 61364000,
+    "discrete_schemes": 18017000,
+    "rolling_schemes": 43347000,
+    "historical_delivery_rate": 0.74,
+    "delivery_improvement_potential": 22700000,
+    "source": "table_p073_01.csv - Capital Programme 2026-27"
+  },
+  "delivery_metrics": {
+    "historical_rate": 0.74,
+    "target_rate": 1.00,
+    "improvement_potential": 0.26,
+    "annual_underspend_average": 22700000,
+    "source": "Historical capital programme delivery analysis"
   }
 }

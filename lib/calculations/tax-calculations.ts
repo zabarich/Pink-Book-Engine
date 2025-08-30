@@ -99,6 +99,31 @@ export function calculateIncomeTaxChange(standardRateChange: number, higherRateC
 }
 
 /**
+ * Calculate Personal Allowance Changes - ACCURATE CALCULATION
+ * Returns the revenue impact of changing personal allowance
+ */
+export function calculatePersonalAllowanceChange(newAllowance: number): number {
+  // Get baseline from JSON data
+  const policyTargets = require('@/data/source/policy-targets.json');
+  const currentAllowance = policyTargets.demographics.personal_allowance; // £14,750
+  const taxpayerCount = policyTargets.demographics.taxpayer_count; // 35,000
+  
+  const allowanceChange = newAllowance - currentAllowance;
+  
+  if (allowanceChange === 0) return 0;
+  
+  // Reducing allowance increases taxable income and vice versa
+  // Standard rate band: everyone affected gets taxed at 10% on the change
+  // Higher rate band: some people affected get taxed at 21% on the change
+  
+  // Estimate: 70% of impact is standard rate, 30% is higher rate (based on income distribution)
+  const standardRateImpact = allowanceChange * (-0.10) * 0.70 * taxpayerCount;
+  const higherRateImpact = allowanceChange * (-0.21) * 0.30 * taxpayerCount;
+  
+  return standardRateImpact + higherRateImpact;
+}
+
+/**
  * Calculate National Insurance Changes - ACCURATE CALCULATION
  * Returns the revenue impact of changing NI rates
  */

@@ -198,5 +198,73 @@
     "capital_expenditure": 87400000,
     "revenue_expenditure": 1387759000,
     "note": "Total revenue expenditure excludes capital programme; DHSC/Manx Care shown separately"
+  },
+  "employee_costs_2025_26": {
+    "total": 507240000,
+    "source": "Pink Book 2025-26 employee costs aggregate"
+  },
+  "employee_costs_2026_27": {
+    "enterprise": 14205000,
+    "education": 120153000,
+    "environment": 13435000,
+    "health": 3919000,
+    "manx_care": 249900000,
+    "home_affairs": 40014000,
+    "infrastructure": 53987000,
+    "treasury": 26614000,
+    "cabinet_office": 27638000,
+    "total": 586694000,
+    "source": "table_p030_01.csv - Employee Costs by Department 2026-27"
+  },
+  "net_expenditure_2026_27": {
+    "health_social_care": 310653000,
+    "education_sport_culture": 153281000,
+    "infrastructure": 49356000,
+    "home_affairs": 44755000,
+    "treasury": 164256000,
+    "cabinet_office": 27638000,
+    "enterprise": 2861000,
+    "environment": 19601000,
+    "executive_government": 58239000,
+    "statutory_boards": 3477000,
+    "legislature": 5759000,
+    "total": 1445229000,
+    "source": "table_p012_01.csv Line 125 - Financial Plan Net Expenditure 2026-27"
+  },
+  "gross_expenditure_2026_27": {
+    "operating_expenditure": 1053712000,
+    "structural_deficit": -64146000,
+    "ni_deficit": -18040000,
+    "overall_net_deficit": -24046000,
+    "source": "table_p015_01.csv - Summary Position 2026-27"
+  },
+  "pay_assumptions": {
+    "2025_26": {
+      "baseline_increase": 0.02,
+      "cost_per_percent": 5072400,
+      "total_cost": 10144800
+    },
+    "2026_27": {
+      "baseline_increase": 0.03,
+      "cost_per_percent": 5867000,
+      "total_cost": 17601000
+    },
+    "source": "Pink Book assumptions, table_p030_01.csv"
+  },
+  "non_pay_assumptions": {
+    "inflation_2025_26": 0.02,
+    "inflation_2026_27": 0.015,
+    "source": "Pink Book economic assumptions"
+  },
+  "minimum_viable_budgets": {
+    "health": 250000000,
+    "education": 100000000,
+    "infrastructure": 80000000,
+    "home_affairs": 60000000,
+    "treasury": 400000000,
+    "cabinet_office": 35000000,
+    "enterprise": 20000000,
+    "environment": 15000000,
+    "note": "Estimated minimum service thresholds for department operations"
   }
 }

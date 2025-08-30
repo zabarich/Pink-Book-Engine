@@ -1,0 +1,203 @@
+{
+  "metadata": {
+    "source": "Isle of Man Pink Book 2025-26 Policy Analysis",
+    "updated": "2025-08-30",
+    "fiscal_year": "2026-27",
+    "description": "Policy targets, efficiency savings, and calculation parameters extracted from hardcoded values",
+    "pink_book_sources": {
+      "tax_rates": "table_p022_01.csv - Taxation Rates and Allowances",
+      "ni_rates": "table_p024_01.csv and table_p024_02.csv - NI Contribution Rates",
+      "pillar_two": "table_p023_01.csv - Pillar 2 Global Minimum Tax"
+    }
+  },
+  "efficiency_savings": {
+    "shared_services": 15000000,
+    "digital_transformation": 20000000,
+    "property_rationalization": 5000000,
+    "procurement": 10000000,
+    "cabinet_office_max": 4000000,
+    "enterprise_grants_max": 4500000
+  },
+  "service_reductions": {
+    "heritage_railway": {
+      "baseline": 2250000,
+      "five_day_saving": 600000,
+      "reduction_percentage": 0.20,
+      "source": "Pink Book p.76, Heritage Railway budget"
+    },
+    "bus_services": {
+      "baseline": 11370000,
+      "reduction_percentage": 0.25,
+      "free_transport_cost": 3500000,
+      "source": "Pink Book transport subsidies"
+    },
+    "culture_division": {
+      "baseline": 1434000,
+      "reduction_percentage": 0.50,
+      "source": "table_p053_01.csv row 13"
+    }
+  },
+  "revenue_proposals": {
+    "wealth_tax": 5000000,
+    "carbon_tax": 3000000,
+    "parking_charges": 1000000,
+    "nhs_levy": 16000000,
+    "tourist_levy": {
+      "per_pound": 1600000,
+      "visitor_nights": 1600000
+    },
+    "airport_duty": {
+      "passengers": 800000,
+      "base_revenue": 4600000,
+      "max_charge": 5
+    },
+    "port_dues": {
+      "base_revenue": 4900000,
+      "max_increase_percentage": 10
+    },
+    "pensioner_ni": {
+      "revenue": 5000000,
+      "description": "NI contributions from working pensioners"
+    },
+    "tax_cap": {
+      "current_level": 225000,
+      "increment": 25000,
+      "revenue_per_increment": 250000,
+      "description": "Personal tax cap for new registrations"
+    }
+  },
+  "fee_increases": {
+    "planning_fees": {
+      "increase_percentage": 0.25,
+      "revenue": 500000
+    },
+    "court_fees": {
+      "increase_percentage": 0.20,
+      "revenue": 500000
+    },
+    "vehicle_testing": {
+      "recovery": 500000
+    },
+    "planning_applications": {
+      "recovery": 800000
+    },
+    "environmental_licenses": {
+      "recovery": 300000
+    },
+    "general_fees": {
+      "base": 150000000,
+      "max_increase_percentage": 0.10,
+      "two_percent_revenue": 3000000,
+      "five_percent_revenue": 7500000,
+      "ten_percent_revenue": 15000000
+    }
+  },
+  "tax_calculations": {
+    "laffer_curve": {
+      "threshold": 30,
+      "base_effectiveness": 0.7,
+      "decay_rate": 0.02
+    },
+    "behavioral_adjustments": {
+      "vat_reduction": 0.9,
+      "ni_impact": 0.5,
+      "corporate_adjustment": 0.8,
+      "higher_rate_proportion": 0.5
+    },
+    "corporate_tax": {
+      "profit_base_estimate": 500000000,
+      "banking_sector_estimate": 100000000
+    },
+    "tax_rates_baseline": {
+      "income_tax_standard": 10,
+      "income_tax_higher": 21,
+      "income_tax_higher_threshold": 21250,
+      "corporate_tax": 0,
+      "corporate_tax_banking": 15,
+      "vat": 20,
+      "ni_employee": 11,
+      "ni_employer": 12.8,
+      "ni_lower_limit_weekly": 168,
+      "ni_upper_limit_annual": 53664,
+      "ni_self_employed_class2_weekly": 6.45,
+      "ni_self_employed_class4": 8
+    }
+  },
+  "pay_assumptions": {
+    "baseline_2025_26": 0.02,
+    "baseline_2026_27": 0.03,
+    "cost_per_percent": 5072400,
+    "cost_per_percent_2026_27": 5867000,
+    "pay_scales": {
+      "1_percent": 5072400,
+      "2_percent": 10144800,
+      "3_percent": 15217200
+    }
+  },
+  "benefit_reforms": {
+    "pension_age_68_saving": 15000000,
+    "winter_bonus": {
+      "total_cost": 7200000,
+      "benefits_only_saving": 3600000,
+      "age_75_plus_saving": 2000000
+    },
+    "child_benefit": {
+      "max_saving": 3000000,
+      "step": 100000
+    },
+    "housing_benefit": {
+      "max_saving": 1500000,
+      "step": 100000
+    }
+  },
+  "capital_management": {
+    "delivery_gating": 22700000,
+    "low_bcr_deferrals_max": 5000000,
+    "historical_delivery_rate": 0.74,
+    "total_capital_budget": 87400000
+  },
+  "investment_targets": {
+    "current_return": 0.006,
+    "current_income": 10578000,
+    "target_return": 0.045,
+    "target_income": 40200000,
+    "reserve_base": 1760000000,
+    "optimization_potential": 29600000
+  },
+  "funds_available": {
+    "economic_strategy_fund": 47900000,
+    "revenue_contingency": 19700000,
+    "general_contingency": 15000000,
+    "transformation_fund": 5300000
+  },
+  "pillar_two_timeline": {
+    "2025_26": 10000000,
+    "2026_27": 25000000,
+    "2027_28": 35000000
+  },
+  "policy_ranges": {
+    "minimum_impact": 49000000,
+    "maximum_impact": 72000000,
+    "medium_confidence_threshold": 23000000,
+    "target_improvement": 60900000
+  },
+  "demographics": {
+    "population": 85000,
+    "public_sector_workers": 6000,
+    "pensioners": 23200,
+    "gdp": 5500000000,
+    "average_income": 45000,
+    "taxpayer_count": 35000,
+    "personal_allowance": 14750
+  },
+  "minimum_viable_budgets": {
+    "health": 250000000,
+    "education": 100000000,
+    "infrastructure": 80000000,
+    "home_affairs": 60000000,
+    "treasury": 400000000,
+    "cabinet_office": 35000000,
+    "enterprise": 20000000,
+    "environment": 15000000
+  }
+}

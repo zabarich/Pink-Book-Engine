@@ -6,6 +6,13 @@
     "currency": "GBP",
     "total_transfer_payments": 440078000
   },
+  "transfer_payments_2026_27": {
+    "welfare_benefits": 89664000,
+    "pension_costs": 145000000,
+    "capital_financing": 43000000,
+    "revenue_funded_welfare": 89664000,
+    "source": "table_p012_01.csv Line 93 and table_p031_01.csv Line 7 - 2026-27 forecasts"
+  },
   "ni_funded_benefits": {
     "total": 278689000,
     "source": "Pink Book p.50, Appendix 2",
@@ -235,5 +242,12 @@
       "uprated": 209963000,
       "description": "Combined state pension payments"
     }
+  },
+  "payments_2026_27": {
+    "state_pension": 145000000,
+    "welfare_benefits": 89664000,
+    "winter_bonus": 7200000,
+    "total_transfer_payments": 455000000,
+    "source": "table_p012_01.csv and table_p031_01.csv - 2026-27 forecasts"
   }
 }

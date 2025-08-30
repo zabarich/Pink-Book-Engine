@@ -60,4 +60,35 @@ page-old.tsx
 
 # Only keep data/source
 !/data/source/
+
+# Temporary and backup files
+*.old.*
+*.old
+*.backup
+*.bak
+nul
+*.tmp
+
+# Old backup JSON files
+*.json.old.*
+
+# Analysis and documentation files (not part of core app)
+*-analysis.md
+*-gap-analysis.md
+*-plan.md
+*-report.md
+*-summary.md
+hardcoded-values-remaining.md
+pink-book-*.md
+data-*.md
+budget-explorer-*.md
+code-update-plan.md
+shadcn-ui-*.md
+
+# Old project folders
+/policy-engine-old/
+
+# MCP configuration
+.mcp.json
+
 .vercel

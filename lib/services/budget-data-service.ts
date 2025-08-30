@@ -209,7 +209,7 @@ export const BudgetDataService = {
     personalTaxCap: () => revenueStreams.incomeText?.bands?.cap?.amount || 0,
     jointTaxCap: () => (revenueStreams.incomeText?.bands?.cap?.amount || 0) * 2, // Double personal cap
     niUpperLimit: () => revenueStreams.nationalInsurance?.employee?.rates?.upper_earnings_limit || 0,
-    niLowerLimit: () => revenueStreams.nationalInsurance?.employee?.rates?.lower_earnings_limit || 0,
+    niLowerLimit: () => revenueStreams.nationalInsurance?.employee?.rates?.lower_earnings_limit_weekly || 0,
     // Large retailer threshold from corporate tax description
     largeRetailerThreshold: () => {
       // From twentyPercent description: "Large retailers with IoM profits >£500k"

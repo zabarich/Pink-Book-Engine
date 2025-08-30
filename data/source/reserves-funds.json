@@ -126,5 +126,15 @@
     "internal_funds": 180398000,
     "total_reserves": 2882683000,
     "months_of_expenditure_cover": 24.9
+  },
+  "investment_performance": {
+    "current_return_rate": 0.006,
+    "current_income": 10578000,
+    "target_return_rate": 0.045,
+    "target_income": 40200000,
+    "2026_27_projected_income": 10895000,
+    "optimization_potential": 29600000,
+    "reserve_base_for_calculation": 1760000000,
+    "source": "Pink Book investment returns and optimization analysis"
   }
 }
