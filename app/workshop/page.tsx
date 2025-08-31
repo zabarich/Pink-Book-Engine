@@ -559,23 +559,19 @@ export default function IntegratedWorkshopPage() {
   const benefitReformsImpact = useMemo(() => {
     let expenditureReduction = 0
     
-    // Manx Pension Supplement reduction
-    if (benefitReforms.manxPensionReduction > 0) {
-      // From JSON: £65,063,000 Manx State Pension budget
-      const manxPensionBudget = transferPayments.ni_funded_benefits.breakdown.manx_state_pension.total_amount
-      expenditureReduction += manxPensionBudget * (benefitReforms.manxPensionReduction / 100)
-    }
+    // Manx Pension Supplement - Currently managed through triple lock and pension age controls
+    // Specific reductions can be added later if needed as separate policy controls
     
     // Child Benefit restriction to households <£30k
-    if (benefitReforms.childBenefit) {
+    if (benefitReforms.childBenefitRestrict) {
       // From JSON: child_benefit total
       const childBenefitTotal = transferPayments.revenue_funded_benefits.breakdown.child_benefit.amount
       // Restricting to <£30k households saves approximately 22% (affects ~2000 of 9000 families)
       expenditureReduction += childBenefitTotal * 0.22
     }
     
-    // Housing Benefit cap at £25k/year
-    if (benefitReforms.housingBenefitCap) {
+    // Housing Benefit cap (use capAmount > 0 to enable)
+    if (benefitReforms.housingBenefitCapAmount > 0) {
       // Housing is part of income_support from JSON
       const incomeSupport = transferPayments.revenue_funded_benefits.breakdown.income_support.amount
       // Estimate housing component is ~27% of income support, cap saves ~5% of housing portion
@@ -754,12 +750,10 @@ export default function IntegratedWorkshopPage() {
       ['Arts Council', serviceCuts.artsCouncil ? 'Yes' : 'No'],
       ['Bus Services', serviceCuts.busServices ? 'Yes' : 'No'],
       ['Heritage Railway', serviceCuts.heritageRail ? 'Yes' : 'No'],
-      ['Health Efficiency', `${serviceCuts.healthEfficiency}%`],
-      ['Education Cuts', `${serviceCuts.educationCuts}%`],
+      ['Manx Care Cuts', `${serviceCuts.manxCare}%`],
+      ['Education Cuts', `${serviceCuts.education}%`],
       [''],
       ['EFFICIENCY SAVINGS'],
-      ['Shared Services', efficiencyMeasures.sharedServices ? 'Yes' : 'No'],
-      ['Digital Transformation', efficiencyMeasures.digitalTransformation ? 'Yes' : 'No'],
       ['Property Rationalization', efficiencyMeasures.propertyRationalization ? 'Yes' : 'No'],
       ['Centralised Contract Management', efficiencyMeasures.procurementCentralization ? 'Yes' : 'No'],
       [''],
@@ -814,15 +808,9 @@ export default function IntegratedWorkshopPage() {
     let warnings: string[] = []
     
     // Phase 4: Check for double-counting conflicts
-    if (mainTab === 'advanced') {
-      if (incomeTaxRate !== policyTargets.tax_calculations.tax_rates_baseline.income_tax_higher && 
-          advancedTaxScenarios.higherRateScenario !== policyTargets.tax_calculations.tax_rates_baseline.income_tax_higher) {
-        warnings.push('⚠️ Income tax adjusted in both Basic and Advanced - only Basic value applied')
-      }
-      if (efficiencyTarget > 0 && 
-          (efficiencyMeasures.sharedServices || efficiencyMeasures.digitalTransformation || efficiencyMeasures.procurementCentralization)) {
-        warnings.push('⚠️ Basic Efficiency Target overrides Advanced Efficiency Measures - only Basic applied')
-      }
+    if (efficiencyTarget > 0 && 
+        (efficiencyMeasures.propertyRationalization || efficiencyMeasures.procurementCentralization)) {
+      warnings.push('⚠️ Basic Efficiency Target overrides Advanced Efficiency Measures - only Basic applied')
     }
     
     // ACCURATE Income tax calculations - NO ARBITRARY MULTIPLIERS
@@ -1065,8 +1053,7 @@ export default function IntegratedWorkshopPage() {
           // Advanced benefit changes will be added when implemented
         },
         efficiency_measures: {
-          shared_services: efficiencyMeasures.sharedServices ? 15000000 : 0,
-          digital_transformation: efficiencyMeasures.digitalTransformation ? 20000000 : 0,
+          property_rationalization: efficiencyMeasures.propertyRationalization ? 5000000 : 0,
           procurement_centralization: efficiencyMeasures.procurementCentralization ? 2000000 : 0
         },
         pay_policy: publicSectorPayRate,
@@ -1132,8 +1119,7 @@ export default function IntegratedWorkshopPage() {
         department_adjustments: deptAdjustments,
         benefit_changes: {},
         efficiency_measures: {
-          shared_services: efficiencyMeasures.sharedServices ? 15000000 : 0,
-          digital_transformation: efficiencyMeasures.digitalTransformation ? 20000000 : 0,
+          property_rationalization: efficiencyMeasures.propertyRationalization ? 5000000 : 0,
           procurement_centralization: efficiencyMeasures.procurementCentralization ? 2000000 : 0
         },
         pay_policy: publicSectorPayRate,
@@ -1174,7 +1160,7 @@ export default function IntegratedWorkshopPage() {
     setJointTaxCap(440000)
     setCorporateTaxRate(policyTargets.tax_calculations.tax_rates_baseline.corporate_tax)
     setRetailerTaxRate(20)
-    setPillarTwoEnabled(true)
+    // Pillar 2 is fixed by OECD agreement - no toggle to reset
     setVatRate(20)
     setFersaRate(4.35)
     setCustomsDutyRate(0)
@@ -1211,9 +1197,7 @@ export default function IntegratedWorkshopPage() {
     
     // Efficiency measures reset
     setEfficiencyMeasures({
-      sharedServices: false,
-      digitalTransformation: false,
-      networkConsolidation: false,
+      propertyRationalization: false,
       procurementCentralization: false
     })
     
@@ -1246,8 +1230,10 @@ export default function IntegratedWorkshopPage() {
       deferSecondaryWaste: false,
       deferAirfieldDrainage: false,
       deferBallacubbon: false,
-      deferBallaughtonGardens: false,
-      deferGlenVineEstates: false,
+      reduceDigitalFund: false,
+      reduceClimateFund: false,
+      heritageRailReduction: 0,
+      deferLowBCR: 0,
       selectedDeferrals: [],
       heritageRailCut: false,
       climateAcceleration: false,
@@ -1844,7 +1830,7 @@ export default function IntegratedWorkshopPage() {
                     <div className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
                       <div className="flex items-center gap-2">
                         <Label>Pillar 2 Tax (OECD Minimum)</Label>
-                        <StatusBadge status="active" />
+                        <StatusBadge status="existing" />
                         <InfoTooltip text="OECD minimum tax (15%) fixed by international agreement. Already included in baseline revenue." />
                       </div>
                       <div className="flex items-center gap-2">
@@ -2040,9 +2026,9 @@ export default function IntegratedWorkshopPage() {
                         {['freeze', '1%', '2%', '3%'].map(option => (
                           <button
                             key={option}
-                            onClick={() => setPublicSectorPay(option as any)}
+                            onClick={() => setPublicSectorPayRate(option === 'freeze' ? 0 : parseFloat(option.replace('%', '')))}
                             className={`px-3 py-2 text-sm border rounded ${
-                              advancedOptions.publicSectorPay === option 
+                              (option === 'freeze' ? publicSectorPayRate === 0 : publicSectorPayRate === parseFloat(option.replace('%', '')))
                                 ? 'bg-blue-50 border-blue-500 text-blue-700' 
                                 : 'bg-white hover:bg-gray-50'
                             }`}
@@ -2107,7 +2093,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Manx Care - Largest Budget */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Manx Care (£{(departmentBudgets.departments.find(d => d.code === 'MXC')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Manx Care (£{((departmentBudgets.departments.find(d => d.code === 'MXC')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.manxCare < 0 ? 'text-red-600' : serviceCuts.manxCare > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.manxCare < 0 ? '-' : serviceCuts.manxCare > 0 ? '+' : ''}£{Math.abs(serviceCuts.manxCare * (departmentBudgets.departments.find(d => d.code === 'MXC')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2125,7 +2111,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Education, Sport & Culture */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Education (£{(departmentBudgets.departments.find(d => d.code === 'DESC')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Education (£{(departmentBudgets.departments.find(d => d.code === 'DESC')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.education < 0 ? 'text-red-600' : serviceCuts.education > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.education < 0 ? '-' : serviceCuts.education > 0 ? '+' : ''}£{Math.abs(serviceCuts.education * (departmentBudgets.departments.find(d => d.code === 'DESC')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2143,7 +2129,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Infrastructure */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Infrastructure (£{(departmentBudgets.departments.find(d => d.code === 'DOI')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Infrastructure (£{(departmentBudgets.departments.find(d => d.code === 'DOI')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.infrastructure < 0 ? 'text-red-600' : serviceCuts.infrastructure > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.infrastructure < 0 ? '-' : serviceCuts.infrastructure > 0 ? '+' : ''}£{Math.abs(serviceCuts.infrastructure * (departmentBudgets.departments.find(d => d.code === 'DOI')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2179,7 +2165,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Home Affairs */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Home Affairs (£{(departmentBudgets.departments.find(d => d.code === 'DHA')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Home Affairs (£{(departmentBudgets.departments.find(d => d.code === 'DHA')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.homeAffairs < 0 ? 'text-red-600' : serviceCuts.homeAffairs > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.homeAffairs < 0 ? '-' : serviceCuts.homeAffairs > 0 ? '+' : ''}£{Math.abs(serviceCuts.homeAffairs * (departmentBudgets.departments.find(d => d.code === 'DHA')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2197,7 +2183,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Cabinet Office */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Cabinet Office (£{(departmentBudgets.departments.find(d => d.code === 'CO')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Cabinet Office (£{(departmentBudgets.departments.find(d => d.code === 'CO')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.cabinetOffice < 0 ? 'text-red-600' : serviceCuts.cabinetOffice > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.cabinetOffice < 0 ? '-' : serviceCuts.cabinetOffice > 0 ? '+' : ''}£{Math.abs(serviceCuts.cabinetOffice * (departmentBudgets.departments.find(d => d.code === 'CO')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2215,7 +2201,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Enterprise */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Enterprise (£{(departmentBudgets.departments.find(d => d.code === 'DFE')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Enterprise (£{(departmentBudgets.departments.find(d => d.code === 'DFE')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.enterprise < 0 ? 'text-red-600' : serviceCuts.enterprise > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.enterprise < 0 ? '-' : serviceCuts.enterprise > 0 ? '+' : ''}£{Math.abs(serviceCuts.enterprise * (departmentBudgets.departments.find(d => d.code === 'DFE')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2233,7 +2219,7 @@ export default function IntegratedWorkshopPage() {
                         {/* DEFA */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Environment (£{(departmentBudgets.departments.find(d => d.code === 'DEFA')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Environment (£{(departmentBudgets.departments.find(d => d.code === 'DEFA')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.defa < 0 ? 'text-red-600' : serviceCuts.defa > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.defa < 0 ? '-' : serviceCuts.defa > 0 ? '+' : ''}£{Math.abs(serviceCuts.defa * (departmentBudgets.departments.find(d => d.code === 'DEFA')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2251,7 +2237,7 @@ export default function IntegratedWorkshopPage() {
                         {/* DHSC */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">DHSC (£{(departmentBudgets.departments.find(d => d.code === 'DHSC')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">DHSC (£{(departmentBudgets.departments.find(d => d.code === 'DHSC')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.dhsc < 0 ? 'text-red-600' : serviceCuts.dhsc > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.dhsc < 0 ? '-' : serviceCuts.dhsc > 0 ? '+' : ''}£{Math.abs(serviceCuts.dhsc * (departmentBudgets.departments.find(d => d.code === 'DHSC')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2269,7 +2255,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Executive Government */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Executive (£{(departmentBudgets.departments.find(d => d.code === 'EXE')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Executive (£{(departmentBudgets.departments.find(d => d.code === 'EXE')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.executive < 0 ? 'text-red-600' : serviceCuts.executive > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.executive < 0 ? '-' : serviceCuts.executive > 0 ? '+' : ''}£{Math.abs(serviceCuts.executive * (departmentBudgets.departments.find(d => d.code === 'EXE')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2287,7 +2273,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Statutory Boards */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Statutory (£{(departmentBudgets.departments.find(d => d.code === 'SB')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Statutory (£{(departmentBudgets.departments.find(d => d.code === 'SB')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.statutory < 0 ? 'text-red-600' : serviceCuts.statutory > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.statutory < 0 ? '-' : serviceCuts.statutory > 0 ? '+' : ''}£{Math.abs(serviceCuts.statutory * (departmentBudgets.departments.find(d => d.code === 'SB')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
@@ -2305,7 +2291,7 @@ export default function IntegratedWorkshopPage() {
                         {/* Legislature */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Legislature (£{(departmentBudgets.departments.find(d => d.code === 'LEG')?.net_expenditure / 1000000).toFixed(1)}m)</Label>
+                            <Label className="text-sm">Legislature (£{(departmentBudgets.departments.find(d => d.code === 'LEG')?.net_expenditure || 0) / 1000000).toFixed(1)}m)</Label>
                             <span className={`text-sm ${serviceCuts.legislature < 0 ? 'text-red-600' : serviceCuts.legislature > 0 ? 'text-green-600' : 'text-gray-500'}`}>
                               {serviceCuts.legislature < 0 ? '-' : serviceCuts.legislature > 0 ? '+' : ''}£{Math.abs(serviceCuts.legislature * (departmentBudgets.departments.find(d => d.code === 'LEG')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
                             </span>
