@@ -54,10 +54,10 @@ export const CORPORATE_TAX_DATA = {
     companies: 7500,
     revenue: 0
   },
-  ten_percent: {
+  fifteen_percent: {
     companies: 250,
-    revenue: 18720000, // £18.72m banking/property
-    rate: 0.10
+    revenue: 28080000, // £28.08m banking/property at 15% OECD rate
+    rate: 0.15
   },
   twenty_percent: {
     companies: 15,
@@ -156,11 +156,11 @@ export function calculateNIChange(employeeRateChange: number, employerRateChange
 export function calculateCorporateTaxChange(newBankingRate: number, newRetailRate: number): number {
   let totalChange = 0;
   
-  // Banking rate change (from 10%)
-  if (newBankingRate !== 10) {
-    const taxableProfit = CORPORATE_TAX_DATA.ten_percent.revenue / 0.10;
+  // Banking rate change (from 15% - OECD Pillar 2 baseline)
+  if (newBankingRate !== 15) {
+    const taxableProfit = CORPORATE_TAX_DATA.fifteen_percent.revenue / 0.15;
     const newRevenue = taxableProfit * (newBankingRate / 100);
-    totalChange += newRevenue - CORPORATE_TAX_DATA.ten_percent.revenue;
+    totalChange += newRevenue - CORPORATE_TAX_DATA.fifteen_percent.revenue;
   }
   
   // Retail rate change (from 20%)

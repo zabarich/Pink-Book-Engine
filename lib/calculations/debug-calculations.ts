@@ -31,116 +31,49 @@ export interface BudgetCalculation {
 /**
  * Calculate baseline budget with full traceability
  * INCLUDES Pillar 2 tax in baseline by default as per requirement
+ * Uses 2026-27 values as baseline
  */
 export function calculateBaselineBudget(includePillar2: boolean = true): BudgetCalculation {
   const debugLog: string[] = [];
   const revenueComponents: CalculationTrace[] = [];
   const expenditureComponents: CalculationTrace[] = [];
 
-  // REVENUE CALCULATION
-  debugLog.push('=== REVENUE CALCULATION ===');
+  // REVENUE CALCULATION (2026-27)
+  debugLog.push('=== REVENUE CALCULATION (2026-27) ===');
   
-  // Income Tax
-  const incomeTaxRevenue = revenueStreams.incomeText.current;
-  revenueComponents.push({
-    sourceFile: 'revenue-streams.json',
-    sourcePath: 'incomeText.current',
-    sourceValue: incomeTaxRevenue,
-    formula: 'Direct from source',
-    calculatedValue: incomeTaxRevenue
-  });
-  debugLog.push(`Income Tax: £${incomeTaxRevenue.toLocaleString()} (revenue-streams.json → incomeText → current)`);
-
-  // National Insurance
-  const niRevenue = revenueStreams.nationalInsurance.total_revenue;
-  revenueComponents.push({
-    sourceFile: 'revenue-streams.json',
-    sourcePath: 'nationalInsurance.total_revenue',
-    sourceValue: niRevenue,
-    formula: 'Direct from source',
-    calculatedValue: niRevenue
-  });
-  debugLog.push(`National Insurance: £${niRevenue.toLocaleString()} (revenue-streams.json → nationalInsurance → total_revenue)`);
-
-  // Calculate Customs & Excise total dynamically from existing data
-  const customsExciseTotal = revenueStreams.customsAndExcise?.total_revenue || 473552000; // VAT + all duties
-  revenueComponents.push({
-    sourceFile: 'revenue-streams.json',
-    sourcePath: 'customsAndExcise.total_revenue',
-    sourceValue: customsExciseTotal,
-    formula: 'Customs & Excise total (includes VAT)',
-    calculatedValue: customsExciseTotal
-  });
-  debugLog.push(`Customs & Excise (inc. VAT): £${customsExciseTotal.toLocaleString()} (revenue-streams.json → customsAndExcise → total_revenue)`);
-
-  // Departmental Income - calculate from existing data
-  const deptIncomeRevenue = revenueStreams.departmentalIncome?.total_revenue || 190459000;
-  revenueComponents.push({
-    sourceFile: 'revenue-streams.json',
-    sourcePath: 'departmentalIncome.total_revenue',
-    sourceValue: deptIncomeRevenue,
-    formula: 'Direct from source',
-    calculatedValue: deptIncomeRevenue
-  });
-  debugLog.push(`Departmental Income: £${deptIncomeRevenue.toLocaleString()} (revenue-streams.json → departmentalIncome → total_revenue)`);
-
-  // Other Treasury Income - calculate from existing data
-  // This includes investment income and fees/charges
-  const investmentIncome = revenueStreams.otherRevenue?.investment_income?.revenue || 0;
-  const feesAndCharges = revenueStreams.otherRevenue?.fees_and_charges?.revenue || 11231000;
-  const otherRevenue = investmentIncome + feesAndCharges;
-  revenueComponents.push({
-    sourceFile: 'revenue-streams.json',
-    sourcePath: 'otherRevenue (investment + fees)',
-    sourceValue: otherRevenue,
-    formula: 'Investment income + Fees and charges',
-    calculatedValue: otherRevenue
-  });
-  debugLog.push(`Other Treasury Income: £${otherRevenue.toLocaleString()} (revenue-streams.json → otherRevenue → calculated)`);
+  // Use 2026-27 total revenue directly from JSON
+  let totalRevenue = revenueStreams.revenue_2026_27?.total || 1446963000;
   
-  // Employee Pension Contributions - Already included in validated Pink Book data
-  // The /data/source/revenue-streams.json file (modified Aug 20) already totals £1,389m
-  // Pension contributions are embedded within departmental income or other revenue components
-  const pensionContributions = 0; // Already included in the validated Pink Book totals
+  // Note: Pillar 2 is already included in the 2026-27 revenue total
+  // The revenue_2026_27.total already accounts for all revenue sources
+  
   revenueComponents.push({
-    sourceFile: 'Already included in totals',
-    sourcePath: 'embedded_in_other_revenue',
-    sourceValue: pensionContributions,
-    formula: 'Included within departmental income or other revenue items',
-    calculatedValue: pensionContributions
+    sourceFile: 'revenue-streams.json',
+    sourcePath: 'revenue_2026_27.total',
+    sourceValue: totalRevenue,
+    formula: 'Total 2026-27 revenue from Pink Book',
+    calculatedValue: totalRevenue
   });
-  debugLog.push(`Employee Pension Contributions: £${pensionContributions.toLocaleString()} (Already included in validated Pink Book totals)`);
-
-  // Pillar 2 Tax (included by default)
-  let pillar2Revenue = 0;
-  if (includePillar2) {
-    // The JSON has pillar_two_tax under risks_and_opportunities with impact array
+  
+  debugLog.push(`Total Revenue (2026-27): £${totalRevenue.toLocaleString()} (revenue-streams.json → revenue_2026_27 → total)`);
+  
+  // If Pillar 2 is disabled, subtract it from the total
+  if (!includePillar2) {
     const pillar2Data = forwardLooking.risks_and_opportunities?.pillar_two_tax?.impact;
-    const pillar2025 = pillar2Data?.find((item: any) => item.year === "2025-26");
-    pillar2Revenue = pillar2025?.amount || 10000000; // £10m for 2025-26 from Pink Book
-    revenueComponents.push({
-      sourceFile: 'forward-looking.json',
-      sourcePath: 'risks_and_opportunities.pillar_two_tax.impact[2025-26]',
-      sourceValue: pillar2Revenue,
-      formula: 'Direct from source (OECD Pillar Two)',
-      calculatedValue: pillar2Revenue
-    });
-    debugLog.push(`Pillar 2 Tax: £${pillar2Revenue.toLocaleString()} (forward-looking.json → risks_and_opportunities → pillar_two_tax)`);
+    const pillar2026 = pillar2Data?.find((item: any) => item.year === "2026-27");
+    const pillar2Revenue = pillar2026?.amount || 25000000; // £25m for 2026-27
+    totalRevenue -= pillar2Revenue;
+    debugLog.push(`Pillar 2 Tax REMOVED: -£${pillar2Revenue.toLocaleString()} (user disabled Pillar 2)`);
   }
-
-  // Total Revenue
-  const totalRevenue = revenueComponents.reduce((sum, comp) => sum + comp.calculatedValue, 0);
   debugLog.push(`TOTAL REVENUE: £${totalRevenue.toLocaleString()}`);
 
-  // EXPENDITURE CALCULATION
-  debugLog.push('\n=== EXPENDITURE CALCULATION ===');
+  // EXPENDITURE CALCULATION (2026-27)
+  debugLog.push('\n=== EXPENDITURE CALCULATION (2026-27) ===');
 
-  // CRITICAL FIX: The Pink Book states total revenue expenditure is £1,387,759,000
-  // This is the COMPLETE figure including ALL departments and transfer payments
-  // Transfer payments are paid through Treasury, so they're included in Treasury's gross
-  // We should use the total from department-budgets.json metadata directly
+  // Use 2026-27 expenditure values
+  // The Pink Book states total net expenditure for 2026-27 is £1,445,229,000
   
-  const totalRevenueExpenditure = departmentBudgets.metadata.total_revenue_expenditure;
+  const totalRevenueExpenditure = departmentBudgets.net_expenditure_2026_27?.total || 1445229000;
   
   expenditureComponents.push({
     sourceFile: 'department-budgets.json',
@@ -210,7 +143,7 @@ export function calculatePillar2Impact(enabled: boolean): CalculationTrace {
  * IMPORTANT: This REDUCES expenditure, not increases revenue
  */
 export function calculateWinterBonusSavings(meansTestOption: 'universal' | 'benefits' | 'age75'): CalculationTrace {
-  const winterBonusBase = transferPayments.benefits.winterBonus.annual_cost;
+  const winterBonusBase = transferPayments.benefits?.winter_bonus?.amount || 4800000; // £4.8m annual cost
   
   let savingsRate = 0;
   let formula = '';
@@ -234,7 +167,7 @@ export function calculateWinterBonusSavings(meansTestOption: 'universal' | 'bene
   
   return {
     sourceFile: 'transfer-payments.json',
-    sourcePath: 'benefits.winterBonus.annual_cost',
+    sourcePath: 'benefits.winter_bonus.amount',
     sourceValue: winterBonusBase,
     formula,
     calculatedValue: savings
