@@ -101,10 +101,10 @@ runTest(
 
 // TEST 6: Corporate Tax Banking Rate
 console.log('TEST 6: Corporate Tax Banking Rate')
-const bankingTaxResult = calculateCorporateTaxChange(11, 20) // 10% → 11% banking
-const expectedBanking = (CORPORATE_TAX_DATA.ten_percent.revenue / 0.10) * 0.01
+const bankingTaxResult = calculateCorporateTaxChange(16, 20) // 15% → 16% banking
+const expectedBanking = (CORPORATE_TAX_DATA.fifteen_percent.revenue / 0.15) * 0.01
 runTest(
-  'Banking tax 10% → 11% calculation',
+  'Banking tax 15% → 16% calculation',
   expectedBanking,
   bankingTaxResult
 )

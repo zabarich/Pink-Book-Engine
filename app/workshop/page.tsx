@@ -492,6 +492,70 @@ export default function IntegratedWorkshopPage() {
     
     return -expenditureChange // Return positive for cuts, negative for increases
   }, [serviceCuts]);
+
+  // Pre-compute department display values to fix JSX parsing
+  const departmentDisplayValues = useMemo(() => {
+    const getValue = (code: string) => {
+      const dept = departmentBudgets.departments.find(d => d.code === code)
+      return dept?.net_expenditure || 0
+    }
+    
+    const getServiceCutValue = (cutPercent: number, code: string) => {
+      const baseBudget = getValue(code)
+      return Math.abs(cutPercent * baseBudget / 100 / 1000000)
+    }
+
+    return {
+      manxCare: {
+        budget: (getValue('MXC') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.manxCare, 'MXC').toFixed(1)
+      },
+      education: {
+        budget: (getValue('DESC') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.education, 'DESC').toFixed(1)
+      },
+      infrastructure: {
+        budget: (getValue('DOI') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.infrastructure, 'DOI').toFixed(1)
+      },
+      homeAffairs: {
+        budget: (getValue('DHA') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.homeAffairs, 'DHA').toFixed(1)
+      },
+      treasury: {
+        budget: (getValue('TRY') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.treasury, 'TRY').toFixed(1)
+      },
+      cabinetOffice: {
+        budget: (getValue('CO') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.cabinetOffice, 'CO').toFixed(1)
+      },
+      executive: {
+        budget: (getValue('EXE') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.executive, 'EXE').toFixed(1)
+      },
+      defa: {
+        budget: (getValue('DEFA') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.defa, 'DEFA').toFixed(1)
+      },
+      enterprise: {
+        budget: (getValue('DFE') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.enterprise, 'DFE').toFixed(1)
+      },
+      statutory: {
+        budget: (getValue('SB') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.statutory, 'SB').toFixed(1)
+      },
+      legislature: {
+        budget: (getValue('LEG') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.legislature, 'LEG').toFixed(1)
+      },
+      dhsc: {
+        budget: (getValue('DHSC') / 1000000).toFixed(1),
+        impact: getServiceCutValue(serviceCuts.dhsc, 'DHSC').toFixed(1)
+      }
+    }
+  }, [serviceCuts]);
   
   // Calculate impact of efficiency measures (Phase 6)
   const efficiencyImpact = useMemo(() => {
@@ -2092,9 +2156,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Manx Care - Largest Budget */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Manx Care (£{((departmentBudgets.departments.find(d => d.code === 'MXC')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Manx Care (£{departmentDisplayValues.manxCare.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.manxCare < 0 ? 'text-red-600' : serviceCuts.manxCare > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.manxCare < 0 ? '-' : serviceCuts.manxCare > 0 ? '+' : ''}£{Math.abs(serviceCuts.manxCare * (departmentBudgets.departments.find(d => d.code === 'MXC')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.manxCare < 0 ? '-' : serviceCuts.manxCare > 0 ? '+' : ''}£{departmentDisplayValues.manxCare.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2110,9 +2174,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Education, Sport & Culture */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Education (£{(departmentBudgets.departments.find(d => d.code === 'DESC')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Education (£{departmentDisplayValues.education.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.education < 0 ? 'text-red-600' : serviceCuts.education > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.education < 0 ? '-' : serviceCuts.education > 0 ? '+' : ''}£{Math.abs(serviceCuts.education * (departmentBudgets.departments.find(d => d.code === 'DESC')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.education < 0 ? '-' : serviceCuts.education > 0 ? '+' : ''}£{departmentDisplayValues.education.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2128,9 +2192,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Infrastructure */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Infrastructure (£{(departmentBudgets.departments.find(d => d.code === 'DOI')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Infrastructure (£{departmentDisplayValues.infrastructure.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.infrastructure < 0 ? 'text-red-600' : serviceCuts.infrastructure > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.infrastructure < 0 ? '-' : serviceCuts.infrastructure > 0 ? '+' : ''}£{Math.abs(serviceCuts.infrastructure * (departmentBudgets.departments.find(d => d.code === 'DOI')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.infrastructure < 0 ? '-' : serviceCuts.infrastructure > 0 ? '+' : ''}£{departmentDisplayValues.infrastructure.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2164,9 +2228,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Home Affairs */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Home Affairs (£{(departmentBudgets.departments.find(d => d.code === 'DHA')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Home Affairs (£{departmentDisplayValues.homeAffairs.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.homeAffairs < 0 ? 'text-red-600' : serviceCuts.homeAffairs > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.homeAffairs < 0 ? '-' : serviceCuts.homeAffairs > 0 ? '+' : ''}£{Math.abs(serviceCuts.homeAffairs * (departmentBudgets.departments.find(d => d.code === 'DHA')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.homeAffairs < 0 ? '-' : serviceCuts.homeAffairs > 0 ? '+' : ''}£{departmentDisplayValues.homeAffairs.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2182,9 +2246,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Cabinet Office */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Cabinet Office (£{(departmentBudgets.departments.find(d => d.code === 'CO')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Cabinet Office (£{departmentDisplayValues.cabinetOffice.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.cabinetOffice < 0 ? 'text-red-600' : serviceCuts.cabinetOffice > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.cabinetOffice < 0 ? '-' : serviceCuts.cabinetOffice > 0 ? '+' : ''}£{Math.abs(serviceCuts.cabinetOffice * (departmentBudgets.departments.find(d => d.code === 'CO')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.cabinetOffice < 0 ? '-' : serviceCuts.cabinetOffice > 0 ? '+' : ''}£{departmentDisplayValues.cabinetOffice.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2200,9 +2264,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Enterprise */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Enterprise (£{(departmentBudgets.departments.find(d => d.code === 'DFE')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Enterprise (£{departmentDisplayValues.enterprise.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.enterprise < 0 ? 'text-red-600' : serviceCuts.enterprise > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.enterprise < 0 ? '-' : serviceCuts.enterprise > 0 ? '+' : ''}£{Math.abs(serviceCuts.enterprise * (departmentBudgets.departments.find(d => d.code === 'DFE')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.enterprise < 0 ? '-' : serviceCuts.enterprise > 0 ? '+' : ''}£{departmentDisplayValues.enterprise.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2218,9 +2282,9 @@ export default function IntegratedWorkshopPage() {
                         {/* DEFA */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Environment (£{(departmentBudgets.departments.find(d => d.code === 'DEFA')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Environment (£{departmentDisplayValues.defa.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.defa < 0 ? 'text-red-600' : serviceCuts.defa > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.defa < 0 ? '-' : serviceCuts.defa > 0 ? '+' : ''}£{Math.abs(serviceCuts.defa * (departmentBudgets.departments.find(d => d.code === 'DEFA')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.defa < 0 ? '-' : serviceCuts.defa > 0 ? '+' : ''}£{departmentDisplayValues.defa.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2236,9 +2300,9 @@ export default function IntegratedWorkshopPage() {
                         {/* DHSC */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">DHSC (£{(departmentBudgets.departments.find(d => d.code === 'DHSC')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">DHSC (£{departmentDisplayValues.dhsc.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.dhsc < 0 ? 'text-red-600' : serviceCuts.dhsc > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.dhsc < 0 ? '-' : serviceCuts.dhsc > 0 ? '+' : ''}£{Math.abs(serviceCuts.dhsc * (departmentBudgets.departments.find(d => d.code === 'DHSC')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.dhsc < 0 ? '-' : serviceCuts.dhsc > 0 ? '+' : ''}£{departmentDisplayValues.dhsc.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2254,9 +2318,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Executive Government */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Executive (£{(departmentBudgets.departments.find(d => d.code === 'EXE')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Executive (£{departmentDisplayValues.executive.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.executive < 0 ? 'text-red-600' : serviceCuts.executive > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.executive < 0 ? '-' : serviceCuts.executive > 0 ? '+' : ''}£{Math.abs(serviceCuts.executive * (departmentBudgets.departments.find(d => d.code === 'EXE')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.executive < 0 ? '-' : serviceCuts.executive > 0 ? '+' : ''}£{departmentDisplayValues.executive.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2272,9 +2336,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Statutory Boards */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Statutory (£{(departmentBudgets.departments.find(d => d.code === 'SB')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Statutory (£{departmentDisplayValues.statutory.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.statutory < 0 ? 'text-red-600' : serviceCuts.statutory > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.statutory < 0 ? '-' : serviceCuts.statutory > 0 ? '+' : ''}£{Math.abs(serviceCuts.statutory * (departmentBudgets.departments.find(d => d.code === 'SB')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.statutory < 0 ? '-' : serviceCuts.statutory > 0 ? '+' : ''}£{departmentDisplayValues.statutory.impact}m
                             </span>
                           </div>
                           <Slider
@@ -2290,9 +2354,9 @@ export default function IntegratedWorkshopPage() {
                         {/* Legislature */}
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
-                            <Label className="text-sm">Legislature (£{(departmentBudgets.departments.find(d => d.code === 'LEG')?.net_expenditure || 0) / 1000000).toFixed(1)}m</Label>
+                            <Label className="text-sm">Legislature (£{departmentDisplayValues.legislature.budget}m</Label>
                             <span className={`text-sm ${serviceCuts.legislature < 0 ? 'text-red-600' : serviceCuts.legislature > 0 ? 'text-green-600' : 'text-gray-500'}`}>
-                              {serviceCuts.legislature < 0 ? '-' : serviceCuts.legislature > 0 ? '+' : ''}£{Math.abs(serviceCuts.legislature * (departmentBudgets.departments.find(d => d.code === 'LEG')?.net_expenditure || 0) / 100 / 1000000).toFixed(1)}m
+                              {serviceCuts.legislature < 0 ? '-' : serviceCuts.legislature > 0 ? '+' : ''}£{departmentDisplayValues.legislature.impact}m
                             </span>
                           </div>
                           <Slider
