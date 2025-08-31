@@ -203,8 +203,8 @@ export default function IntegratedWorkshopPage() {
   })
   
   // Phase 3: Macro-Level Controls
-  const [publicSectorPayRate, setPublicSectorPayRate] = useState(0) // Start at baseline 0%
-  const [nonPayInflation, setNonPayInflation] = useState(0) // Start at baseline 0%
+  const [publicSectorPayRate, setPublicSectorPayRate] = useState(3) // 3% embedded in baseline
+  const [nonPayInflation, setNonPayInflation] = useState(1.5) // 1.5% embedded in baseline
   const [efficiencyTarget, setEfficiencyTarget] = useState(0) // £0 to £50m
   const [populationChange, setPopulationChange] = useState(0) // In hundreds of people
   const [meansTestedBenefits, setMeansTestedBenefits] = useState(false) // New toggle
