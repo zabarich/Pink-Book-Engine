@@ -203,8 +203,8 @@ export default function IntegratedWorkshopPage() {
   })
   
   // Phase 3: Macro-Level Controls
-  const [publicSectorPayRate, setPublicSectorPayRate] = useState(3) // Default 3% per requirements
-  const [nonPayInflation, setNonPayInflation] = useState(1.5) // Default 1.5% per requirements
+  const [publicSectorPayRate, setPublicSectorPayRate] = useState(0) // Start at baseline 0%
+  const [nonPayInflation, setNonPayInflation] = useState(0) // Start at baseline 0%
   const [efficiencyTarget, setEfficiencyTarget] = useState(0) // £0 to £50m
   const [populationChange, setPopulationChange] = useState(0) // In hundreds of people
   const [meansTestedBenefits, setMeansTestedBenefits] = useState(false) // New toggle
@@ -218,7 +218,7 @@ export default function IntegratedWorkshopPage() {
   
   // Pension Policy
   const [statePensionAge, setStatePensionAge] = useState(67) // Current age is 67 - NEEDS JSON MIGRATION
-  const [tripleLockEnabled, setTripleLockEnabled] = useState(true)
+  const [tripleLockEnabled, setTripleLockEnabled] = useState(false) // Start at baseline disabled
   const [publicPensionContribution, setPublicPensionContribution] = useState(13.7) // Employee contribution rate
   
   // Capital Programme
