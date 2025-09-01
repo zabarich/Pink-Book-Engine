@@ -218,7 +218,7 @@ export default function IntegratedWorkshopPage() {
   
   // Pension Policy
   const [statePensionAge, setStatePensionAge] = useState(67) // Current age is 67 - NEEDS JSON MIGRATION
-  const [tripleLockEnabled, setTripleLockEnabled] = useState(false) // Start at baseline disabled
+  const [tripleLockEnabled, setTripleLockEnabled] = useState(true) // Start at baseline enabled (4.1% increase embedded in budget)
   const [publicPensionContribution, setPublicPensionContribution] = useState(13.7) // Employee contribution rate
   
   // Capital Programme

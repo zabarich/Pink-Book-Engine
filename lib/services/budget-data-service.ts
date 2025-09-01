@@ -16,20 +16,8 @@ export const BudgetDataService = {
   // Revenue Methods
   getRevenue: {
     total: () => {
-      // Calculate total revenue from components
-      const incomeTax = revenueStreams.incomeText?.current || 0;
-      const ni = revenueStreams.nationalInsurance?.total_revenue || 0;
-      const customsExcise = revenueStreams.customsAndExcise?.total_revenue || 0;
-      const deptIncome = revenueStreams.departmentalIncome?.total_revenue || 0;
-      const otherRevenue = (revenueStreams.otherRevenue?.investment_income?.revenue || 0) + 
-                          (revenueStreams.otherRevenue?.fees_and_charges?.revenue || 0);
-      // Pension contributions already included in validated Pink Book data
-      const pensionContributions = 0; // Already embedded in departmental income or other revenue
-      const pillar2 = forwardLooking.risks_and_opportunities?.pillar_two_tax?.impact?.find(
-        (item: any) => item.year === "2025-26"
-      )?.amount || 0;
-      
-      return incomeTax + ni + customsExcise + deptIncome + otherRevenue + pensionContributions + pillar2;
+      // Use 2026-27 values from JSON
+      return revenueStreams.revenue_2026_27?.total || 1446963000;
     },
     incomeTax: () => revenueStreams.incomeText?.current || 0,
     vat: () => revenueStreams.customsAndExcise?.vat?.revenue || 0,
@@ -52,7 +40,7 @@ export const BudgetDataService = {
 
   // Expenditure Methods
   getExpenditure: {
-    total: () => departmentBudgets.metadata.total_revenue_expenditure,
+    total: () => departmentBudgets.net_expenditure_2026_27?.total || 1445229000,
     byDepartment: (deptName: string) => {
       const dept = departmentBudgets.departments.find((d: any) => d.name === deptName);
       // Treasury's gross in JSON includes £418m administered benefits - use operational budget only

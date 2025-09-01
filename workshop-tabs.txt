@@ -1,0 +1,539 @@
+        <Tabs defaultValue="infrastructure" className="space-y-4">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="infrastructure">Infrastructure</TabsTrigger>
+            <TabsTrigger value="transfers">Transfers</TabsTrigger>
+            <TabsTrigger value="departments">Departments</TabsTrigger>
+            <TabsTrigger value="fees">Fees & Charges</TabsTrigger>
+            <TabsTrigger value="capital">Capital</TabsTrigger>
+          </TabsList>
+
+          {/* Infrastructure Tab */}
+          <TabsContent value="infrastructure" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Plane className="h-5 w-5" />
+                  Infrastructure Revenue Options
+                </CardTitle>
+                <CardDescription>
+                  Generate revenue from infrastructure assets and services
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Airport Passenger Charge */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Label>Airport Passenger Charge</Label>
+                    <Badge variant="outline">High confidence</Badge>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm w-12">£{advancedOptions.airportCharge}</span>
+                    <Slider
+                      value={[advancedOptions.airportCharge]}
+                      onValueChange={([value]) => 
+                        setAdvancedOptions(prev => ({ ...prev, airportCharge: value }))
+                      }
+                      min={0}
+                      max={10}
+                      step={1}
+                      className="flex-1"
+                    />
+                    <span className="text-sm text-gray-500 w-20">
+                      +{formatCurrency(advancedOptions.airportCharge * 652000)}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-600">
+                    New charge per passenger (652k passengers/year - 2024 data). UK airports charge £13-35.
+                  </p>
+                </div>
+
+                {/* Port Dues Increase */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Label>Port Dues Increase</Label>
+                    <Badge variant="outline">Medium confidence</Badge>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm w-12">{advancedOptions.portDuesIncrease}%</span>
+                    <Slider
+                      value={[advancedOptions.portDuesIncrease]}
+                      onValueChange={([value]) => 
+                        setAdvancedOptions(prev => ({ ...prev, portDuesIncrease: value }))
+                      }
+                      min={0}
+                      max={30}
+                      step={5}
+                      className="flex-1"
+                    />
+                    <span className="text-sm text-gray-500 w-20">
+                      +{formatCurrency(5000000 * (advancedOptions.portDuesIncrease / 100))}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-600">
+                    Increase from current £5m base (~500 pleasure craft + 14-15 cruise ships). Still below UK port rates.
+                  </p>
+                </div>
+
+                {/* Internal Rent Charging */}
+                <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div>
+                    <Label>Internal Rent Charging</Label>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Charge departments market rent for government buildings
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-500">
+                      {advancedOptions.internalRentCharging ? '+£3m' : '£0'}
+                    </span>
+                    <Switch
+                      checked={advancedOptions.internalRentCharging}
+                      onCheckedChange={(checked) => 
+                        setAdvancedOptions(prev => ({ ...prev, internalRentCharging: checked }))
+                      }
+                    />
+                  </div>
+                </div>
+
+                <div className="border-t pt-4 mt-4">
+                  <h4 className="text-sm font-medium mb-3">Transport Policies</h4>
+                  
+                  {/* Free Public Transport */}
+                  <div className="flex items-center justify-between p-3 border rounded-lg mb-3">
+                    <div>
+                      <Label>Free Public Transport</Label>
+                      <p className="text-xs text-gray-600 mt-1">
+                        Make all bus services free (additional cost)
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm text-gray-500">
+                        {advancedOptions.freeTransport ? '-£3.5m' : '£0'}
+                      </span>
+                      <Switch
+                        checked={advancedOptions.freeTransport}
+                        onCheckedChange={(checked) => 
+                          setAdvancedOptions(prev => ({ ...prev, freeTransport: checked }))
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  {/* Heritage Railway Days */}
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <Label>Heritage Railway Operating Days</Label>
+                      <Badge variant="outline">High confidence</Badge>
+                    </div>
+                    <Select
+                      value={advancedOptions.heritageRailDays.toString()}
+                      onValueChange={(value) => 
+                        setAdvancedOptions(prev => ({ ...prev, heritageRailDays: parseInt(value) }))
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="7">7 days/week (current)</SelectItem>
+                        <SelectItem value="5">5 days/week (+£600k savings)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <p className="text-xs text-gray-600">
+                      Reduce Heritage Railway to weekdays only. Annual budget: £2.25m
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Transfers Tab */}
+          <TabsContent value="transfers" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="h-5 w-5" />
+                  Transfer Payment Reforms
+                </CardTitle>
+                <CardDescription>
+                  Optimize transfer payments while protecting vulnerable groups
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Winter Bonus Changes */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Label>Winter Bonus Rate</Label>
+                    <Badge variant="outline">18,000 recipients</Badge>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm w-16">£{advancedOptions.winterBonusRate}</span>
+                    <Slider
+                      value={[advancedOptions.winterBonusRate]}
+                      onValueChange={([value]) => 
+                        setAdvancedOptions(prev => ({ ...prev, winterBonusRate: value }))
+                      }
+                      min={0}
+                      max={400}
+                      step={50}
+                      className="flex-1"
+                    />
+                    <span className="text-sm text-gray-500 w-20">
+                      {advancedOptions.winterBonusRate < 400 ? 
+                        `+${formatCurrency(18000 * (400 - advancedOptions.winterBonusRate))}` : 
+                        '£0'}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-600">
+                    Current rate: £400 per recipient. Total cost: £{(7200000 / 1000000).toFixed(1)}m
+                  </p>
+                </div>
+
+                {/* Winter Bonus Means Testing */}
+                <div className="space-y-3">
+                  <Label>Winter Bonus Means Testing</Label>
+                  <Select
+                    value={advancedOptions.winterBonusMeans}
+                    onValueChange={(value) => 
+                      setAdvancedOptions(prev => ({ ...prev, winterBonusMeans: value as 'universal' | 'benefits' | 'age75' }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="universal">Universal (current)</SelectItem>
+                      <SelectItem value="benefits">Benefits recipients only (+£{(7200000 * 0.5 / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="age75">Age 75+ only (+£{(7200000 * 0.7 / 1000000).toFixed(1)}m)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    Currently £{(7200000 / 1000000).toFixed(1)}m universal payment to {18000.toLocaleString()} recipients. UK has moved to means testing.
+                  </p>
+                </div>
+
+                {/* Child Benefit Means Testing */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Label>Child Benefit Means Testing</Label>
+                    <Badge variant="outline">8,500 families</Badge>
+                  </div>
+                  <Select
+                    value={advancedOptions.childBenefitThreshold.toString()}
+                    onValueChange={(value) => {
+                      const threshold = parseInt(value);
+                      setAdvancedOptions(prev => ({ ...prev, childBenefitThreshold: threshold }));
+                      // Calculate and set the taper based on threshold
+                      if (threshold > 0) {
+                        const affectedFamilies = threshold <= 50000 ? 8500 * 0.25 :
+                                                 threshold <= 75000 ? 8500 * 0.15 :
+                                                 8500 * 0.08;
+                        const avgBenefit = 12000000 / 8500;
+                        setAdvancedOptions(prev => ({ ...prev, childBenefitTaper: Math.round(affectedFamilies * avgBenefit) }));
+                      } else {
+                        setAdvancedOptions(prev => ({ ...prev, childBenefitTaper: 0 }));
+                      }
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0">No means testing</SelectItem>
+                      <SelectItem value="50000">£50k threshold (+£{((8500 * 0.25 * 12000000 / 8500) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="75000">£75k threshold (+£{((8500 * 0.15 * 12000000 / 8500) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="100000">£100k threshold (+£{((8500 * 0.08 * 12000000 / 8500) / 1000000).toFixed(1)}m)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    {8500.toLocaleString()} families, {17000.toLocaleString()} children. Total cost: £{(12000000 / 1000000).toFixed(0)}m. 
+                    First child: £{25.60}/week, others: £{16.95}/week
+                  </p>
+                </div>
+
+                {/* Housing Benefit Cap */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Label>Housing Benefit Cap (Monthly)</Label>
+                    <Badge variant="outline">3,200 recipients</Badge>
+                  </div>
+                  <Select
+                    value={advancedOptions.housingBenefitCap.toString()}
+                    onValueChange={(value) => 
+                      setAdvancedOptions(prev => ({ ...prev, housingBenefitCap: parseInt(value) }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0">No cap (current avg: £{495}/month)</SelectItem>
+                      <SelectItem value="400">£400/month cap (+£{((3200 * 0.3 * (495 - 400) * 12) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="350">£350/month cap (+£{((3200 * 0.3 * (495 - 350) * 12) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="300">£300/month cap (+£{((3200 * 0.3 * (495 - 300) * 12) / 1000000).toFixed(1)}m)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    {3200.toLocaleString()} recipients, average £{495}/month. 
+                    Total cost: £{(19000000 / 1000000).toFixed(1)}m. Cap affects top 30% of claimants.
+                  </p>
+                </div>
+
+                {/* State Pension Age */}
+                <div className="space-y-3 border-t pt-4 mt-4">
+                  <div className="flex justify-between items-center">
+                    <Label>State Pension Age</Label>
+                    <Badge variant="outline">23,200 pensioners</Badge>
+                  </div>
+                  <Select
+                    value={advancedOptions.pensionAge.toString()}
+                    onValueChange={(value) => 
+                      setAdvancedOptions(prev => ({ ...prev, pensionAge: parseInt(value) }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="66">Age 66 (current)</SelectItem>
+                      <SelectItem value="67">Age 67 (+£{((206000000 / (18600 + 4600) * 400) / 1000000).toFixed(1)}m)</SelectItem>
+                      <SelectItem value="68">Age 68 (+£{((206000000 / (18600 + 4600) * 800) / 1000000).toFixed(1)}m)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    Basic pension: {18600.toLocaleString()} at £{185.15}/week.
+                    Manx pension: {4600.toLocaleString()} at £{141.85}/week.
+                    Total: £{(206000000 / 1000000).toFixed(0)}m
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Departments Tab */}
+          <TabsContent value="departments" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Building className="h-5 w-5" />
+                  Department Operations
+                </CardTitle>
+                <CardDescription>
+                  Targeted efficiency savings and grant reductions
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Cabinet Office Efficiency */}
+                <div className="space-y-3">
+                  <Label>Cabinet Office Efficiency Target</Label>
+                  <Select
+                    value={advancedOptions.cabinetEfficiency.toString()}
+                    onValueChange={(value) => 
+                      setAdvancedOptions(prev => ({ ...prev, cabinetEfficiency: parseInt(value) }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0">No additional savings</SelectItem>
+                      <SelectItem value="5000000">10% reduction (+£5m)</SelectItem>
+                      <SelectItem value="7500000">15% reduction (+£7.5m)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    Streamline central administration functions
+                  </p>
+                </div>
+
+                {/* Enterprise Grants */}
+                <div className="space-y-3">
+                  <Label>Enterprise Grant Reduction</Label>
+                  <Select
+                    value={advancedOptions.enterpriseGrants.toString()}
+                    onValueChange={(value) => 
+                      setAdvancedOptions(prev => ({ ...prev, enterpriseGrants: parseInt(value) }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0">Maintain current</SelectItem>
+                      <SelectItem value="3000000">Reduce discretionary grants (+£3m)</SelectItem>
+                      <SelectItem value="5000000">Focus on core only (+£5m)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    Review non-essential business support grants
+                  </p>
+                </div>
+
+                {/* Public Sector Pay */}
+                <div className="space-y-3 border-t pt-4 mt-4">
+                  <div className="flex justify-between items-center">
+                    <Label>Public Sector Pay Increase</Label>
+                    <Badge variant="outline">High impact</Badge>
+                  </div>
+                  <Select
+                    value={advancedOptions.publicSectorPay}
+                    onValueChange={(value) => 
+                      setAdvancedOptions(prev => ({ ...prev, publicSectorPay: value }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="freeze">Pay freeze (+£10.1m savings)</SelectItem>
+                      <SelectItem value="1%">1% increase (+£5.1m savings vs 2%)</SelectItem>
+                      <SelectItem value="2%">2% increase (baseline)</SelectItem>
+                      <SelectItem value="3%">3% increase (-£5.1m additional cost)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    Affects all public sector employees across government. 2% is the current assumption.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Fees & Charges Tab */}
+          <TabsContent value="fees" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Receipt className="h-5 w-5" />
+                  Fees & Charges
+                </CardTitle>
+                <CardDescription>
+                  Update government fees to reflect costs and inflation
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* General Fees Uplift */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <Label>General Fees Uplift</Label>
+                    <Badge variant="outline">High confidence</Badge>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm w-12">{advancedOptions.generalFeesUplift}%</span>
+                    <Slider
+                      value={[advancedOptions.generalFeesUplift]}
+                      onValueChange={([value]) => 
+                        setAdvancedOptions(prev => ({ ...prev, generalFeesUplift: value }))
+                      }
+                      min={0}
+                      max={10}
+                      step={1}
+                      className="flex-1"
+                    />
+                    <span className="text-sm text-gray-500 w-20">
+                      +{formatCurrency(150000000 * (advancedOptions.generalFeesUplift / 100))}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-600">
+                    Inflation adjustment across all government fees (£150m base)
+                  </p>
+                </div>
+
+                {/* Targeted Recovery */}
+                <div className="space-y-3">
+                  <Label>Targeted Cost Recovery</Label>
+                  <div className="space-y-2">
+                    {[
+                      { id: 'vehicle', label: 'Vehicle registration (+£500k)' },
+                      { id: 'planning', label: 'Planning applications (+£800k)' },
+                      { id: 'court', label: 'Court fees (+£400k)' },
+                      { id: 'environmental', label: 'Environmental permits (+£300k)' }
+                    ].map(item => (
+                      <div key={item.id} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={item.id}
+                          checked={advancedOptions.targetedRecovery.includes(item.id)}
+                          onCheckedChange={(checked) => {
+                            setAdvancedOptions(prev => ({
+                              ...prev,
+                              targetedRecovery: checked
+                                ? [...prev.targetedRecovery, item.id]
+                                : prev.targetedRecovery.filter(x => x !== item.id)
+                            }));
+                          }}
+                        />
+                        <label
+                          htmlFor={item.id}
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          {item.label}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Capital Tab */}
+          <TabsContent value="capital" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <HardHat className="h-5 w-5" />
+                  Capital Programme Management
+                </CardTitle>
+                <CardDescription>
+                  Optimize capital spending based on delivery capability
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Capital Gating */}
+                <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div>
+                    <Label>Realistic Capital Gating</Label>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Reduce budget to match 74% historical delivery rate
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-500">
+                      {advancedOptions.capitalGating ? '+£22.7m' : '£0'}
+                    </span>
+                    <Switch
+                      checked={advancedOptions.capitalGating}
+                      onCheckedChange={(checked) => 
+                        setAdvancedOptions(prev => ({ ...prev, capitalGating: checked }))
+                      }
+                    />
+                  </div>
+                </div>
+
+                {/* Defer Low BCR Projects */}
+                <div className="space-y-3">
+                  <Label>Defer Low BCR Projects</Label>
+                  <Select
+                    value={advancedOptions.deferLowBCR.toString()}
+                    onValueChange={(value) => 
+                      setAdvancedOptions(prev => ({ ...prev, deferLowBCR: parseInt(value) }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0">Proceed with all</SelectItem>
+                      <SelectItem value="10000000">Defer BCR &lt; 1.5 (+£10m)</SelectItem>
+                      <SelectItem value="15000000">Defer BCR &lt; 2.0 (+£15m)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-600">
+                    Postpone projects with low benefit-cost ratios
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
